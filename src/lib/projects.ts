@@ -171,6 +171,12 @@ export const projects: Project[] = [
       { src: "/projects/ramadan-4.png", caption: "Frame 04", gridGroup: 3, gridCols: 2 },
       { src: "/projects/ramadan-5.png", caption: "Frame 05", gridGroup: 3, gridCols: 2 },
     ],
+    videos: [
+      {
+        src: "/projects/ramadan-greetings.mp4",
+        caption: "Ramadan Greetings",
+      },
+    ],
     tags: ["Seasonal", "Animation", "Ramadan"],
     featured: true,
   },
