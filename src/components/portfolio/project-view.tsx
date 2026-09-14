@@ -122,6 +122,9 @@ export function ProjectView({ project, transitionKey }: Props) {
                       controls
                       playsInline
                       preload="auto"
+                      controlsList="nodownload nofullscreen noremoteplayback"
+                      disablePictureInPicture
+                      onContextMenu={(e) => e.preventDefault()}
                       className="block w-full h-auto rounded-2xl border border-[var(--rule)]"
                     />
                   </motion.figure>
