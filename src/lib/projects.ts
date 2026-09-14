@@ -204,6 +204,12 @@ export const projects: Project[] = [
       { src: "/projects/mst-frame-2.gif", caption: "Frame 02", gridGroup: 2, gridCols: 3 },
       { src: "/projects/mst-frame-3.gif", caption: "Frame 03", gridGroup: 2, gridCols: 3 },
     ],
+    videos: [
+      {
+        src: "/projects/mst-web-header.mp4",
+        caption: "Web Header 2025",
+      },
+    ],
     tags: ["Campaign", "Animation", "Social"],
     featured: true,
   },
