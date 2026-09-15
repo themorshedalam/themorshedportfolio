@@ -32,7 +32,7 @@ export function QuotesPanel({ active, intervalMs = 5000 }: Props) {
   return (
     <div className="flex h-full flex-col bg-[var(--cream)]">
       {/* Showreel video — bigger, higher up */}
-      <div className="flex flex-1 items-start justify-center px-6 pt-4 md:px-10">
+      <div className="flex flex-1 items-start justify-center px-6 pt-4 pb-0 md:px-10">
         <div className="w-full max-w-[1100px]">
           <div className="font-mono-label mb-2 text-[10px] uppercase tracking-[0.24em] text-[var(--meta)]">
             Showreel
@@ -51,7 +51,7 @@ export function QuotesPanel({ active, intervalMs = 5000 }: Props) {
       </div>
 
       {/* Quote — smaller, closer to video, no border line */}
-      <div className="px-8 pt-2 pb-3 md:px-12">
+      <div className="px-8 pt-0 pb-2 md:px-12">
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
