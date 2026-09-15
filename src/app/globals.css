@@ -337,11 +337,4 @@ input, textarea {
   user-select: text;
 }
 
-/* ===== Madani Arabic font ===== */
-@font-face {
-  font-family: 'Madani Arabic';
-  src: url('/fonts/MadaniArabic-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
 }
