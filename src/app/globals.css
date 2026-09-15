@@ -321,3 +321,18 @@ button img, a img {
   pointer-events: auto;
   -webkit-user-drag: none;
 }
+
+/* ===== Block text selection and right-click globally ===== */
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* Allow selection in form inputs only */
+input, textarea {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}

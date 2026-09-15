@@ -53,6 +53,44 @@ export default function Home() {
     setShowIntro(false);
   }, []);
 
+  // Block right-click, screenshots, and developer shortcuts globally
+  useEffect(() => {
+    if (showIntro) return;
+
+    const onContextMenu = (e: MouseEvent) => e.preventDefault();
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "PrintScreen" || e.code === "PrintScreen") {
+        e.preventDefault();
+        navigator.clipboard?.writeText("");
+        return false;
+      }
+      if ((e.ctrlKey || e.metaKey) && e.key === "s") { e.preventDefault(); return false; }
+      if ((e.ctrlKey || e.metaKey) && e.key === "p") { e.preventDefault(); return false; }
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === "S") { e.preventDefault(); return false; }
+      if (e.key === "F12") { e.preventDefault(); return false; }
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) { e.preventDefault(); return false; }
+      if ((e.ctrlKey || e.metaKey) && e.key === "u") { e.preventDefault(); return false; }
+    };
+
+    const onCopy = (e: ClipboardEvent) => {
+      if (!(e.target instanceof HTMLElement)) return;
+      if (e.target.tagName !== "INPUT" && e.target.tagName !== "TEXTAREA") {
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener("contextmenu", onContextMenu);
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("copy", onCopy);
+
+    return () => {
+      document.removeEventListener("contextmenu", onContextMenu);
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("copy", onCopy);
+    };
+  }, [showIntro]);
+
   // Keyboard navigation
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
