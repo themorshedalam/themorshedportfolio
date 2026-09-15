@@ -2,64 +2,58 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { designQuotes } from "@/lib/projects";
+import { quranVerses } from "@/lib/quran-verses";
 
 type Props = {
   active: boolean;
-  intervalMs?: number;
 };
 
 /**
- * Right panel — showreel video (large, autoplay, loop, muted, no controls)
- * at top, small rotating quote at bottom.
+ * Right panel — showreel video centered (desktop), 
+ * Quran verse at bottom on mobile.
  */
-export function QuotesPanel({ active, intervalMs = 5000 }: Props) {
-  const [index, setIndex] = useState(() =>
-    Math.floor(Math.random() * designQuotes.length)
-  );
+export function QuotesPanel({ active }: Props) {
+  const [index, setIndex] = useState(0);
   const timer = useRef<ReturnType<typeof setInterval>>();
 
   useEffect(() => {
     if (!active) return;
     timer.current = setInterval(() => {
-      setIndex((prev) => (prev + 1) % designQuotes.length);
-    }, intervalMs);
+      setIndex((prev) => (prev + 1) % quranVerses.length);
+    }, 10000);
     return () => clearInterval(timer.current);
-  }, [active, intervalMs]);
+  }, [active]);
 
-  const quote = designQuotes[index];
+  const verse = quranVerses[index];
 
   return (
-    <div className="flex h-full flex-col bg-[var(--cream)]">
-      {/* Showreel video — bigger, higher up */}
-      <div className="flex items-start justify-center px-6 pt-4 pb-0 md:px-10">
-        <div className="w-full max-w-[1100px]">
-          <div className="font-mono-label mb-2 text-[10px] uppercase tracking-[0.24em] text-[var(--meta)]">
-            Showreel
-          </div>
-          {/* Mobile: GIF banner above showreel */}
-          <img
-            src="/projects/showreel-banner.gif"
-            alt="Showreel banner"
-            className="mb-4 block w-full max-w-[280px] h-auto rounded-2xl mx-auto md:hidden"
-          />
-          {/* Showreel video */}
-          <video
-            src="/projects/showreel.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster="/projects/showreel-poster.jpg"
-            onContextMenu={(e) => e.preventDefault()}
-            className="block w-full h-auto rounded-2xl border border-[var(--rule)]"
-          />
+    <div className="flex h-full flex-col items-center justify-center bg-[var(--cream)]">
+      {/* Showreel — centered */}
+      <div className="w-full max-w-[1100px] px-6 md:px-10">
+        <div className="font-mono-label mb-2 text-[10px] uppercase tracking-[0.24em] text-[var(--meta)]">
+          Showreel
         </div>
+        {/* Mobile: GIF banner above showreel */}
+        <img
+          src="/projects/showreel-banner.gif"
+          alt="Showreel banner"
+          className="mb-4 block w-full max-w-[280px] h-auto rounded-2xl mx-auto md:hidden"
+        />
+        <video
+          src="/projects/showreel.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/projects/showreel-poster.jpg"
+          onContextMenu={(e) => e.preventDefault()}
+          className="block w-full h-auto rounded-2xl border border-[var(--rule)]"
+        />
       </div>
 
-      {/* Quote — smaller, closer to video, no border line */}
-      <div className="px-8 pt-8 pb-4 md:px-12">
+      {/* Quran verse — mobile only, at bottom */}
+      <div className="mt-6 px-8 pb-6 md:hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
@@ -69,11 +63,11 @@ export function QuotesPanel({ active, intervalMs = 5000 }: Props) {
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="text-center"
           >
-            <p className="font-serif-display text-balance text-[clamp(1.05rem,1.5vw,1.05rem)] md:text-[clamp(0.95rem,1.6vw,1.3rem)] leading-[1.35] text-foreground/70">
-              &ldquo;{quote.text}&rdquo;
+            <p className="font-mono-label text-[13px] leading-[1.4] text-foreground/70">
+              {verse.english}
             </p>
-            <p className="font-mono-label mt-1.5 text-[10px] uppercase tracking-[0.24em] text-[var(--meta)] md:text-[9px]">
-              {quote.author}
+            <p className="font-mono-label mt-1 text-[9px] uppercase tracking-[0.12em] text-[var(--meta)]">
+              {verse.reference}
             </p>
           </motion.div>
         </AnimatePresence>
