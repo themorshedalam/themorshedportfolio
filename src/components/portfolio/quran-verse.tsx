@@ -6,9 +6,8 @@ import { quranVerses } from "@/lib/quran-verses";
 
 /**
  * Rotating Quran verse display for the header center.
- * Shows: Arabic text, English translation, Surah:verse reference.
- * Changes every 1 minute with a smooth fade transition.
- * Desktop only (hidden on mobile).
+ * Arabic (small, mono), English (bigger, stands out), reference (smallest).
+ * Changes every 10 seconds. Desktop only.
  */
 export function QuranVerse() {
   const [index, setIndex] = useState(0);
@@ -16,7 +15,7 @@ export function QuranVerse() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % quranVerses.length);
-    }, 60000); // 1 minute
+    }, 10000); // 10 seconds
     return () => clearInterval(interval);
   }, []);
 
@@ -30,21 +29,21 @@ export function QuranVerse() {
           initial={{ opacity: 0, y: 4 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -4 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col items-center"
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col items-center max-w-[400px]"
         >
-          {/* Arabic */}
+          {/* Arabic — small, mono font */}
           <p
-            className="text-[15px] leading-[1.6] text-foreground"
-            style={{ fontFamily: "var(--font-amiri), serif", direction: "rtl" }}
+            className="font-mono-label text-[11px] leading-[1.4] text-foreground/50 text-center"
+            style={{ direction: "rtl" }}
           >
             {verse.arabic}
           </p>
-          {/* English */}
-          <p className="font-mono-label mt-0.5 text-[9px] leading-[1.3] text-foreground/50">
+          {/* English — bigger, stands out */}
+          <p className="font-mono-label mt-0.5 text-[12px] leading-[1.3] text-foreground/80 text-center">
             {verse.english}
           </p>
-          {/* Reference */}
+          {/* Reference — smallest */}
           <p className="font-mono-label mt-0.5 text-[8px] uppercase tracking-[0.12em] text-[var(--meta)]">
             {verse.reference}
           </p>

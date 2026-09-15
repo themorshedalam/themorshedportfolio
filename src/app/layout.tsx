@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Sans, Instrument_Serif, JetBrains_Mono, Amiri } from "next/font/google";
+import { Instrument_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { projects } from "@/lib/projects";
@@ -24,13 +24,6 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600"],
-});
-
-const amiri = Amiri({
-  variable: "--font-amiri",
-  subsets: ["arabic", "latin"],
-  display: "swap",
-  weight: ["400", "700"],
 });
 
 const siteUrl = "https://themorshedalam.com";
@@ -250,7 +243,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${instrumentSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} ${amiri.variable} font-sans antialiased bg-background text-foreground`}
+        className={`${instrumentSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} font-sans antialiased bg-background text-foreground`}
       >
         {children}
         <Toaster />
