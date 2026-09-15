@@ -1,5 +1,5 @@
 name = "themorshedportfolio"
-compatibility_date = "2024-09-01"
+compatibility_date = "2024-09-23"
 
 [assets]
 directory = "./out"
