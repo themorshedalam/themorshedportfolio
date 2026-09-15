@@ -7,7 +7,6 @@ type Props = {
   activeNav: string;
   onNav: (id: string) => void;
   onHome: () => void;
-  /** Whether a project is actually selected (false when showing quotes) */
   hasProject?: boolean;
 };
 
@@ -28,10 +27,16 @@ export function Header({ activeNav, onNav, onHome, hasProject = true }: Props) {
         </span>
       </button>
 
+      {/* Center — animated GIF logo */}
+      <img
+        src="/header-logo.gif"
+        alt="MA Studio"
+        className="absolute left-1/2 top-1/2 hidden h-9 w-9 -translate-x-1/2 -translate-y-1/2 rounded-full md:block"
+      />
+
       {/* Nav — no numbers */}
       <nav className="flex items-center gap-7 md:gap-9">
         {navItems.map((item) => {
-          // "Project" is only active when a project is actually selected
           const isActive =
             item.id === "project"
               ? activeNav === "project" && hasProject
