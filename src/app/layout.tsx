@@ -251,6 +251,15 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet" />
+        <style>{`
+          @font-face {
+            font-family: 'Madani Arabic';
+            src: url('https://fonts.gstatic.com/s/almarai/v15/tssoApxBaigK_hnnQ1iFo25GAA.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+          }
+        `}</style>
       </head>
       <body
         className={`${instrumentSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} ${almarai.variable} font-sans antialiased bg-background text-foreground`}
