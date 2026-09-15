@@ -32,7 +32,7 @@ export function QuotesPanel({ active, intervalMs = 5000 }: Props) {
   return (
     <div className="flex h-full flex-col bg-[var(--cream)]">
       {/* Showreel video — bigger, higher up */}
-      <div className="flex flex-1 items-start justify-center px-6 pt-4 pb-0 md:px-10">
+      <div className="flex items-start justify-center px-6 pt-4 pb-0 md:px-10">
         <div className="w-full max-w-[1100px]">
           <div className="font-mono-label mb-2 text-[10px] uppercase tracking-[0.24em] text-[var(--meta)]">
             Showreel
