@@ -1,9 +1,29 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { profile } from "@/lib/projects";
 
 export function ContactView() {
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const update = () => {
+      const now = new Date();
+      const dubaiTime = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Asia/Dubai",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+      }).format(now);
+      setTime(dubaiTime);
+    };
+    update();
+    const interval = setInterval(update, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="scroll-cream relative h-full overflow-y-auto bg-[var(--cream)]">
       <div className="mx-auto max-w-[1100px] px-6 pt-12 pb-24 md:px-12 md:pt-16">
@@ -70,6 +90,17 @@ export function ContactView() {
             </div>
             <div className="font-mono-label mt-1 text-[11px] text-[var(--meta)]">
               UAE · GMT+4
+            </div>
+          </div>
+          <div>
+            <div className="font-mono-label mb-2 text-[10px] uppercase tracking-[0.24em] text-[var(--meta)]">
+              Local Time
+            </div>
+            <div className="font-mono-display text-[28px] tabular-nums text-foreground">
+              {time}
+            </div>
+            <div className="font-mono-label mt-1 text-[11px] text-[var(--meta)]">
+              Dubai · 24h
             </div>
           </div>
           <div>
