@@ -62,10 +62,10 @@ export function QuotesPanel({ active, intervalMs = 5000 }: Props) {
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="text-center"
           >
-            <p className="font-serif-display text-balance text-[clamp(1.1rem,3vw,1.3rem)] leading-[1.35] text-foreground/70">
+            <p className="font-serif-display text-balance text-[clamp(1.3rem,3vw,1.3rem)] md:text-[clamp(0.95rem,1.6vw,1.3rem)] leading-[1.35] text-foreground/70">
               &ldquo;{quote.text}&rdquo;
             </p>
-            <p className="font-mono-label mt-1.5 text-[9px] uppercase tracking-[0.24em] text-[var(--meta)]">
+            <p className="font-mono-label mt-1.5 text-[11px] uppercase tracking-[0.24em] text-[var(--meta)] md:text-[9px]">
               {quote.author}
             </p>
           </motion.div>
