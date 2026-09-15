@@ -52,7 +52,7 @@ export function QuotesPanel({ active, intervalMs = 5000 }: Props) {
       </div>
 
       {/* Quote — smaller, closer to video, no border line */}
-      <div className="px-8 pt-4 pb-3 md:px-12">
+      <div className="px-8 pt-8 pb-4 md:px-12">
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
@@ -62,10 +62,10 @@ export function QuotesPanel({ active, intervalMs = 5000 }: Props) {
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="text-center"
           >
-            <p className="font-serif-display text-balance text-[clamp(0.8rem,1.2vw,1rem)] leading-[1.3] text-foreground/60">
+            <p className="font-serif-display text-balance text-[clamp(0.95rem,1.6vw,1.3rem)] leading-[1.35] text-foreground/70">
               &ldquo;{quote.text}&rdquo;
             </p>
-            <p className="font-mono-label mt-1 text-[8px] uppercase tracking-[0.24em] text-[var(--meta)]">
+            <p className="font-mono-label mt-1.5 text-[9px] uppercase tracking-[0.24em] text-[var(--meta)]">
               {quote.author}
             </p>
           </motion.div>
