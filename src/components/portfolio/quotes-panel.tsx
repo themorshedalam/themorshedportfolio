@@ -41,7 +41,7 @@ export function QuotesPanel({ active, intervalMs = 5000 }: Props) {
           <img
             src="/projects/showreel-banner.gif"
             alt="Showreel banner"
-            className="mb-4 block w-full max-w-[400px] h-auto rounded-2xl border border-[var(--rule)] mx-auto md:hidden"
+            className="mb-4 block w-full max-w-[280px] h-auto rounded-2xl border border-[var(--rule)] mx-auto md:hidden"
           />
           {/* Showreel video */}
           <video
