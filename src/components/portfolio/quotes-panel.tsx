@@ -37,6 +37,13 @@ export function QuotesPanel({ active, intervalMs = 5000 }: Props) {
           <div className="font-mono-label mb-2 text-[10px] uppercase tracking-[0.24em] text-[var(--meta)]">
             Showreel
           </div>
+          {/* Mobile: GIF banner above showreel */}
+          <img
+            src="/projects/showreel-banner.gif"
+            alt="Showreel banner"
+            className="mb-4 block w-full max-w-[400px] h-auto rounded-2xl border border-[var(--rule)] mx-auto md:hidden"
+          />
+          {/* Showreel video */}
           <video
             src="/projects/showreel.mp4"
             autoPlay
