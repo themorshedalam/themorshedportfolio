@@ -308,3 +308,16 @@ video::-webkit-media-controls-panel {
 video::-media-controls-download-button {
   display: none !important;
 }
+
+/* ===== Prevent image download/drag/click ===== */
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+/* Allow pointer events on images that are inside buttons (for lightbox/gallery clicks) */
+button img, a img {
+  pointer-events: auto;
+  -webkit-user-drag: none;
+}

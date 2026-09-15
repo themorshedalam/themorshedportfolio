@@ -130,6 +130,10 @@ export function AboutView() {
             <img
               src="/projects/morshed-portrait.png"
               alt="Morshed Alam — Motion Graphics Designer in Dubai"
+              draggable="false"
+              onContextMenu={(e) => e.preventDefault()}
+              onClick={(e) => e.preventDefault()}
+              style={{ pointerEvents: "none", userSelect: "none", WebkitUserDrag: "none" }}
               className="w-[200px] rounded-2xl border border-[var(--rule)] object-cover md:w-[260px]"
             />
           </motion.div>
