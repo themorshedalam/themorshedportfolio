@@ -118,7 +118,7 @@ export function ContactView() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-15% 0px" }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="group mt-20 block border-t border-[var(--rule)] pt-10"
+          className="group mt-10 block border-t border-[var(--rule)] pt-8"
         >
           <div className="font-mono-label mb-2 text-[10px] uppercase tracking-[0.24em] text-[var(--meta)]">
             Start a project
