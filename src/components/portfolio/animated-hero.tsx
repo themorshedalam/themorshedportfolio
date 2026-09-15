@@ -63,28 +63,36 @@ export function AnimatedHero() {
         <FloatingShape key={i} shape={shape} index={i} mouseX={sx} mouseY={sy} />
       ))}
 
-      {/* Headline text */}
+      {/* Headline text — GSAP-style staggered drop-in with bounce */}
       <div className="relative z-10 text-center">
-        <div className="flex justify-center">
+        <div className="flex justify-center overflow-hidden">
           {headline1.map((char, i) => (
             <motion.span
               key={`l1-${i}`}
-              initial={{ opacity: 0, y: 40, rotateX: -90 }}
-              animate={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ delay: 0.4 + i * 0.05, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ y: "120%", opacity: 0 }}
+              animate={{ y: "0%", opacity: 1 }}
+              transition={{
+                delay: 0.3 + i * 0.06,
+                duration: 0.7,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className="font-mono-display inline-block text-[clamp(1.5rem,4vw,2.5rem)] text-foreground"
             >
               {char === " " ? "\u00A0" : char}
             </motion.span>
           ))}
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center overflow-hidden">
           {headline2.map((char, i) => (
             <motion.span
               key={`l2-${i}`}
-              initial={{ opacity: 0, y: 40, rotateX: -90 }}
-              animate={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ delay: 0.4 + (headline1.length + i) * 0.05, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ y: "120%", opacity: 0 }}
+              animate={{ y: "0%", opacity: 1 }}
+              transition={{
+                delay: 0.3 + (headline1.length + i) * 0.06,
+                duration: 0.7,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className="font-mono-display inline-block text-[clamp(1.5rem,4vw,2.5rem)] text-foreground"
             >
               {char === " " ? "\u00A0" : char}
