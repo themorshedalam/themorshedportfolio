@@ -10,8 +10,8 @@ type Props = {
 };
 
 /**
- * Right panel — showreel video (large, ~75% height) at top,
- * small rotating quote at bottom.
+ * Right panel — showreel video (large, autoplay, loop, muted, no controls)
+ * at top, small rotating quote at bottom.
  */
 export function QuotesPanel({ active, intervalMs = 5000 }: Props) {
   const [index, setIndex] = useState(() =>
@@ -31,7 +31,7 @@ export function QuotesPanel({ active, intervalMs = 5000 }: Props) {
 
   return (
     <div className="flex h-full flex-col bg-[var(--cream)]">
-      {/* Showreel video — large, takes most of the space */}
+      {/* Showreel video — large, autoplay, loop, muted, no controls */}
       <div className="flex flex-1 items-center justify-center px-8 pt-6 md:px-12">
         <div className="w-full max-w-[900px]">
           <div className="font-mono-label mb-3 text-[10px] uppercase tracking-[0.24em] text-[var(--meta)]">
@@ -39,14 +39,11 @@ export function QuotesPanel({ active, intervalMs = 5000 }: Props) {
           </div>
           <video
             src="/projects/showreel.mp4"
-            controls
             autoPlay
             muted
             loop
             playsInline
-            preload="metadata"
-            controlsList="nodownload nofullscreen noremoteplayback"
-            disablePictureInPicture
+            preload="auto"
             onContextMenu={(e) => e.preventDefault()}
             className="block w-full h-auto rounded-2xl border border-[var(--rule)]"
           />
