@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Instrument_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { projects } from "@/lib/projects";
 
 const instrumentSans = Instrument_Sans({
   variable: "--font-instrument-sans",
@@ -171,6 +172,54 @@ export default function RootLayout({
               description:
                 "Portfolio of Morshed Alam — Motion Graphics Designer and Video Editor in Dubai.",
               inLanguage: "en",
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              name: "Selected Work — Morshed Alam",
+              itemListOrder: "https://schema.org/ItemListOrderAscending",
+              numberOfItems: projects.length,
+              itemListElement: projects.map((p, i) => ({
+                "@type": "ListItem",
+                position: i + 1,
+                name: p.title,
+                url: siteUrl,
+                description: p.description,
+                image: p.images[0]?.src
+                  ? `${siteUrl}${p.images[0].src}`
+                  : p.videos?.[0]?.src
+                    ? `${siteUrl}${p.videos[0].src}`
+                    : `${siteUrl}/og-image.png`,
+              })),
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ImageGallery",
+              name: "Morshed Alam — Motion Design Portfolio",
+              url: siteUrl,
+              image: projects
+                .filter((p) => p.images[0]?.src)
+                .slice(0, 6)
+                .map((p) => ({
+                  "@type": "ImageObject",
+                  contentUrl: `${siteUrl}${p.images[0].src}`,
+                  name: p.title,
+                  description: p.description,
+                  creator: {
+                    "@type": "Person",
+                    name: "Morshed Alam",
+                  },
+                })),
             }),
           }}
         />
