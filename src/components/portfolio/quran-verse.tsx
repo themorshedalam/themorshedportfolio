@@ -22,7 +22,7 @@ export function QuranVerse() {
   const verse = quranVerses[index];
 
   return (
-    <div className="absolute left-1/2 top-full hidden -translate-x-1/2 md:block">
+    <div className="absolute left-1/2 top-full mt-1 hidden -translate-x-1/2 md:block">
       <AnimatePresence mode="wait">
         <motion.div
           key={index}
@@ -35,7 +35,7 @@ export function QuranVerse() {
           {/* Arabic — Madani Arabic font, smaller */}
           <p
             className="text-[10px] leading-[1.5] text-foreground/50 text-center"
-            style={{ fontFamily: "var(--font-almarai), sans-serif", direction: "rtl" }}
+            style={{ fontFamily: "'Almarai', sans-serif", direction: "rtl" }}
           >
             {verse.arabic}
           </p>

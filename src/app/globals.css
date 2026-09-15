@@ -349,3 +349,6 @@ input, textarea {
   src: local('Almarai');
   font-display: swap;
 }
+
+/* Import Almarai from Google Fonts directly */
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap');
