@@ -78,42 +78,62 @@ export function AboutView() {
           <span>/about</span>
         </motion.div>
 
-        {/* Hero name — 20% smaller */}
-        <motion.h1
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.05, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="font-mono-display text-balance text-[clamp(1.44rem,3.84vw,2.4rem)] leading-[1.1] text-foreground"
-        >
-          {profile.name}
-        </motion.h1>
+        {/* Hero section — name/title/summary on left, photo on right */}
+        <div className="flex flex-col gap-10 md:flex-row md:items-start md:gap-16">
+          {/* Left — name, title, summary */}
+          <div className="min-w-0 flex-1">
+            {/* Hero name — 20% smaller */}
+            <motion.h1
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.05, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="font-mono-display text-balance text-[clamp(1.44rem,3.84vw,2.4rem)] leading-[1.1] text-foreground"
+            >
+              {profile.name}
+            </motion.h1>
 
-        {/* Title — closer tracking, | separator */}
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="font-mono-label mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] uppercase tracking-[0.08em] text-[var(--meta)]"
-        >
-          {profile.roles.map((r, i) => (
-            <span key={r} className="flex items-center gap-2">
-              {r}
-              {i < profile.roles.length - 1 && (
-                <span className="text-[var(--rule)]">|</span>
-              )}
-            </span>
-          ))}
-        </motion.div>
+            {/* Title — closer tracking, | separator */}
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="font-mono-label mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] uppercase tracking-[0.08em] text-[var(--meta)]"
+            >
+              {profile.roles.map((r, i) => (
+                <span key={r} className="flex items-center gap-2">
+                  {r}
+                  {i < profile.roles.length - 1 && (
+                    <span className="text-[var(--rule)]">|</span>
+                  )}
+                </span>
+              ))}
+            </motion.div>
 
-        {/* Summary — short, single line */}
-        <motion.p
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.25, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="font-body-sans text-balance mt-10 max-w-[820px] text-[17px] leading-[1.6] text-foreground/80"
-        >
-          {profile.bio[0]}
-        </motion.p>
+            {/* Summary */}
+            <motion.p
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.25, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="font-body-sans text-balance mt-10 max-w-[560px] text-[17px] leading-[1.6] text-foreground/80"
+            >
+              {profile.bio[0]}
+            </motion.p>
+          </div>
+
+          {/* Right — portrait photo */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="shrink-0"
+          >
+            <img
+              src="/projects/morshed-portrait.png"
+              alt="Morshed Alam — Motion Graphics Designer in Dubai"
+              className="w-[200px] rounded-2xl border border-[var(--rule)] object-cover md:w-[260px]"
+            />
+          </motion.div>
+        </div>
 
         {/* Capabilities */}
         <motion.section
