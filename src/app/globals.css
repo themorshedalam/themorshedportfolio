@@ -342,3 +342,10 @@ input, textarea {
 
 /* Almarai Arabic */
 .font-almarai { font-family: var(--font-almarai), sans-serif; }
+
+/* Override any cached Madani font-face to use Almarai */
+@font-face {
+  font-family: 'Madani Arabic';
+  src: local('Almarai');
+  font-display: swap;
+}
