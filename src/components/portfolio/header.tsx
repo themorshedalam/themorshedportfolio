@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { profile, navItems } from "@/lib/projects";
+import { QuranVerse } from "./quran-verse";
 
 type Props = {
   activeNav: string;
@@ -27,12 +28,8 @@ export function Header({ activeNav, onNav, onHome, hasProject = true }: Props) {
         </span>
       </button>
 
-      {/* Center — animated GIF logo */}
-      <img
-        src="/header-logo.gif"
-        alt="MA Studio"
-        className="absolute left-1/2 top-1/2 hidden h-9 w-9 -translate-x-1/2 -translate-y-1/2 rounded-full md:block"
-      />
+      {/* Center — rotating Quran verse */}
+      <QuranVerse />
 
       {/* Nav — no numbers */}
       <nav className="flex items-center gap-7 md:gap-9">
