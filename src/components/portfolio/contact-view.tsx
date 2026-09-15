@@ -44,7 +44,7 @@ export function ContactView() {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.05, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="font-serif-display text-balance text-[clamp(1.25rem,3.5vw,2.5rem)] leading-[1.02] text-foreground"
+          className="font-serif-display text-balance text-[clamp(1.75rem,5vw,3.5rem)] leading-[1.02] text-foreground"
         >
           Let&apos;s make
           <br />
