@@ -254,7 +254,7 @@ export const profile = {
     { label: "Behance", href: "https://www.behance.net/themorshedalam" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/themorshedalam/" },
   ],
-  email: "hello@ma-studio.co",
+  email: "info@themorshedalam.com",
   resumeUrl: "#",
   year: "2026",
 };
