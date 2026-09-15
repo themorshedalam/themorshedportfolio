@@ -37,6 +37,7 @@ export function QuotesPanel({ active, intervalMs = 5000 }: Props) {
           <div className="font-mono-label mb-2 text-[10px] uppercase tracking-[0.24em] text-[var(--meta)]">
             Showreel
           </div>
+          {/* Desktop: landscape video */}
           <video
             src="/projects/showreel.mp4"
             autoPlay
@@ -46,7 +47,19 @@ export function QuotesPanel({ active, intervalMs = 5000 }: Props) {
             preload="metadata"
             poster="/projects/showreel-poster.jpg"
             onContextMenu={(e) => e.preventDefault()}
-            className="block w-full h-auto rounded-2xl border border-[var(--rule)]"
+            className="hidden w-full h-auto rounded-2xl border border-[var(--rule)] md:block"
+          />
+          {/* Mobile: vertical video */}
+          <video
+            src="/projects/showreel-mobile.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/projects/showreel-mobile-poster.jpg"
+            onContextMenu={(e) => e.preventDefault()}
+            className="block w-full h-auto rounded-2xl border border-[var(--rule)] md:hidden mx-auto max-w-[360px]"
           />
         </div>
       </div>
