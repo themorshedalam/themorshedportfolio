@@ -51,7 +51,7 @@ export function QuotesPanel({ active, intervalMs = 5000 }: Props) {
       </div>
 
       {/* Quote — smaller, closer to video, no border line */}
-      <div className="px-8 pt-0 pb-2 md:px-12">
+      <div className="px-8 pt-4 pb-3 md:px-12">
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
