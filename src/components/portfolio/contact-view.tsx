@@ -6,6 +6,7 @@ import { profile } from "@/lib/projects";
 
 export function ContactView() {
   const [time, setTime] = useState("");
+  const [hijriDate, setHijriDate] = useState("");
 
   useEffect(() => {
     const update = () => {
@@ -18,6 +19,20 @@ export function ContactView() {
         hour12: false,
       }).format(now);
       setTime(dubaiTime);
+
+      // Hijri date
+      try {
+        const hijri = new Intl.DateTimeFormat("en-US", {
+          timeZone: "Asia/Dubai",
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+          calendar: "islamic",
+        }).format(now);
+        setHijriDate(hijri + " AH");
+      } catch {
+        setHijriDate("");
+      }
     };
     update();
     const interval = setInterval(update, 1000);
@@ -78,6 +93,9 @@ export function ContactView() {
             </div>
             <div className="font-mono-label mt-1 text-[11px] text-[var(--meta)]">
               UAE · GMT+4
+            </div>
+            <div className="font-mono-label mt-2 text-[11px] text-foreground/60">
+              {hijriDate}
             </div>
           </div>
           <div>
