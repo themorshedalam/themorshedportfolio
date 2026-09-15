@@ -339,3 +339,6 @@ input, textarea {
 
 }
 /* v2 */
+
+/* Almarai Arabic */
+.font-almarai { font-family: var(--font-almarai), sans-serif; }
