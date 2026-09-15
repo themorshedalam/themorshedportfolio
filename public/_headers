@@ -1,5 +1,4 @@
 # Cloudflare Pages — security + caching headers
-# https://developers.cloudflare.com/pages/configuration/headers/
 
 # Security headers for all routes
 /*
@@ -8,16 +7,20 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
 
-# Cache static assets aggressively (1 year)
-/projects/*
+# Cache all video files aggressively (1 year)
+/projects/*.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache all images/GIFs aggressively (1 year)
+/projects/*.png
+  Cache-Control: public, max-age=31536000, immutable
+/projects/*.gif
+  Cache-Control: public, max-age=31536000, immutable
+/projects/*.jpg
   Cache-Control: public, max-age=31536000, immutable
 
 # Cache Next.js static chunks aggressively
 /_next/static/*
-  Cache-Control: public, max-age=31536000, immutable
-
-# Cache fonts
-/_next/static/media/*
   Cache-Control: public, max-age=31536000, immutable
 
 # HTML pages — short cache (so deploys show quickly)
