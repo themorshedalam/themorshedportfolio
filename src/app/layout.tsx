@@ -31,15 +31,16 @@ const siteUrl = "https://themorshedalam.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Morshed Alam — Motion Graphics Designer & Video Editor in Dubai",
+    default: "Creative Motion Graphics Designer in Dubai",
     template: "%s | Morshed Alam",
   },
   description:
-    "Morshed Alam is a Motion Graphics Designer and Video Editor based in Dubai, working at The Entertainer. Specializing in campaign films, launch films, and seasonal narratives using After Effects, VEO3, and Runway.",
+    "Motion Graphics Designer at ENTERTAINER FZ LLC, creating innovative visual content for brand growth. I specialize in dynamic Meta Ads, EDM, CRM, and Paid Media using cutting-edge tools like VEO3 and Runway.",
   keywords: [
     "Morshed Alam",
     "Morshed Alam Dubai",
     "themorshedalam",
+    "Creative Motion Graphics Designer in Dubai",
     "Motion Graphics Designer Dubai",
     "Video Editor Dubai",
     "Motion Designer UAE",
@@ -47,10 +48,12 @@ export const metadata: Metadata = {
     "Campaign Film Dubai",
     "MA Studio",
     "The Entertainer designer",
+    "ENTERTAINER FZ LLC",
     "VEO3",
     "Runway AI",
     "Graphic Designer Dubai",
     "Multimedia Designer UAE",
+    "Creative Multimedia Designer",
   ],
   authors: [{ name: "Morshed Alam", url: siteUrl }],
   creator: "Morshed Alam",
@@ -70,11 +73,11 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Morshed Alam — Motion Graphics Designer & Video Editor in Dubai",
+    title: "Creative Motion Graphics Designer in Dubai",
     description:
-      "Motion Graphics Designer and Video Editor based in Dubai. Campaign films, launch films, and seasonal narratives for brands that take craft seriously.",
+      "Motion Graphics Designer at ENTERTAINER FZ LLC, creating innovative visual content for brand growth. Specializing in Meta Ads, EDM, CRM, and Paid Media using VEO3 and Runway.",
     url: siteUrl,
-    siteName: "Morshed Alam — Motion & Design",
+    siteName: "Morshed Alam — Creative Multimedia Designer",
     type: "website",
     locale: "en_US",
     images: [
@@ -88,9 +91,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Morshed Alam — Motion Graphics Designer in Dubai",
+    title: "Creative Motion Graphics Designer in Dubai",
     description:
-      "Motion Graphics Designer and Video Editor based in Dubai. Campaign films, launch films, and seasonal narratives.",
+      "Motion Graphics Designer at ENTERTAINER FZ LLC. Specializing in Meta Ads, EDM, CRM, and Paid Media using VEO3 and Runway.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -122,11 +125,11 @@ export default function RootLayout({
               "@type": "Person",
               name: "Morshed Alam",
               url: siteUrl,
-              image: `${siteUrl}/logo.svg`,
-              jobTitle: "Motion Graphics Designer & Video Editor",
+              image: `${siteUrl}/og-image.png`,
+              jobTitle: "Creative Multimedia Designer",
               worksFor: {
                 "@type": "Organization",
-                name: "The Entertainer FZ LLC",
+                name: "ENTERTAINER FZ LLC",
               },
               address: {
                 "@type": "PostalAddress",
@@ -163,15 +166,23 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: "Morshed Alam — Motion & Design",
+              name: "Morshed Alam — Creative Multimedia Designer",
               url: siteUrl,
               author: {
                 "@type": "Person",
                 name: "Morshed Alam",
               },
               description:
-                "Portfolio of Morshed Alam — Motion Graphics Designer and Video Editor in Dubai.",
+                "Creative Motion Graphics Designer in Dubai. Motion Graphics Designer at ENTERTAINER FZ LLC, specializing in Meta Ads, EDM, CRM, and Paid Media using VEO3 and Runway.",
               inLanguage: "en",
+              potentialAction: {
+                "@type": "SearchAction",
+                target: {
+                  "@type": "EntryPoint",
+                  urlTemplate: `${siteUrl}/?q={search_term_string}`,
+                },
+                "query-input": "required name=search_term_string",
+              },
             }),
           }}
         />

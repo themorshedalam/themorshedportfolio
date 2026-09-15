@@ -41,7 +41,7 @@ export const projects: Project[] = [
     role: "Motion Design, Storyboarding",
     scope: "Campaign Film, Social, OOH",
     description:
-      "A milestone anniversary campaign for The Entertainer — two films celebrating twenty-five years of the brand. 'Here Why You'll Love TE' and 'Celebrating 25 Years of TE' blend motion graphics, visual effects, and typography to tell the story of a quarter century.",
+      "Celebrating the years of 25 for the Entertainer",
     brief:
       "Craft a celebratory narrative that feels timeless rather than nostalgic. The visual language pairs warm golden tones with kinetic type and layered motion design, built in After Effects with Illustrator and Photoshop assets.",
     images: [],
@@ -68,7 +68,7 @@ export const projects: Project[] = [
     role: "Motion Design, Direction",
     scope: "Launch Film, Stage Content",
     description:
-      "A product launch film designed to be felt before it is understood. Abstract motion builds tension across a darkened stage until the reveal — a study in restraint, pace, and the power of a single held beat.",
+      "Share the love with loved one with most affordable price",
     brief:
       "Build anticipation through a slow, controlled visual crescendo. The palette leans into deep blacks with punctuated amber and electric blue, letting the product emerge from shadow rather than announce itself.",
     images: [
@@ -223,7 +223,7 @@ export const projects: Project[] = [
     role: "Direction, Motion, Edit",
     scope: "Campaign Film, Documentary",
     description:
-      "A campaign film about people, not statistics. Hands, faces, and small gestures carry the story — a portrait of community told through the kind of details that numbers alone can never quite reach.",
+      "Share the love with loved one",
     brief:
       "Lead with humanity. The edit is gentle and observational, favouring natural light and unguarded moments. Motion design is minimal — typography that breathes, transitions that respect the subject.",
     images: [
