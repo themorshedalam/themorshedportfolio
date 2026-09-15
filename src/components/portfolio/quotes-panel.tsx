@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { designQuotes } from "@/lib/projects";
+import { VideoSlider } from "./video-slider";
 
 type Props = {
   /** Rotation only starts once this is true (i.e. after the intro) */
@@ -34,8 +35,13 @@ export function QuotesPanel({ active, intervalMs = 5000 }: Props) {
   const quote = designQuotes[index];
 
   return (
-    <div className="flex h-full items-center justify-center bg-[var(--cream)] px-8 md:px-12 lg:px-16">
-      <div className="relative w-full max-w-[640px] min-h-[140px]">
+    <div className="flex h-full flex-col bg-[var(--cream)]">
+      {/* YouTube playlist slider — top */}
+      <VideoSlider />
+
+      {/* Quote — centered below */}
+      <div className="flex flex-1 items-center justify-center px-8 md:px-12 lg:px-16 py-12">
+        <div className="relative w-full max-w-[640px] min-h-[140px]">
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
@@ -52,6 +58,7 @@ export function QuotesPanel({ active, intervalMs = 5000 }: Props) {
             </p>
           </motion.div>
         </AnimatePresence>
+        </div>
       </div>
     </div>
   );
