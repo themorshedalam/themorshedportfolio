@@ -130,7 +130,7 @@ export default function Home() {
               className="h-full"
             >
               {activeNav === "project" && !activeProject && (
-                <QuotesPanel active={!showIntro} />
+                <QuotesPanel active={!showIntro} onPickProject={handleSelectProject} />
               )}
               {activeNav === "project" && activeProject && (
                 <ProjectView

@@ -78,7 +78,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/logo.svg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Morshed Alam — Motion Graphics Designer in Dubai",
@@ -90,7 +90,7 @@ export const metadata: Metadata = {
     title: "Morshed Alam — Motion Graphics Designer in Dubai",
     description:
       "Motion Graphics Designer and Video Editor based in Dubai. Campaign films, launch films, and seasonal narratives.",
-    images: ["/logo.svg"],
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
