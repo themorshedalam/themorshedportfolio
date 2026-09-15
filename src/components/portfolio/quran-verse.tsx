@@ -32,10 +32,10 @@ export function QuranVerse() {
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col items-center max-w-[400px]"
         >
-          {/* Arabic — small, mono font */}
+          {/* Arabic — Madani Arabic font, smaller */}
           <p
-            className="font-mono-label text-[11px] leading-[1.4] text-foreground/50 text-center"
-            style={{ direction: "rtl" }}
+            className="text-[10px] leading-[1.5] text-foreground/50 text-center"
+            style={{ fontFamily: "'Madani Arabic', sans-serif", direction: "rtl" }}
           >
             {verse.arabic}
           </p>
