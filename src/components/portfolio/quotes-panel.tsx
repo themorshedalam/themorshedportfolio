@@ -43,7 +43,8 @@ export function QuotesPanel({ active, intervalMs = 5000 }: Props) {
             muted
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
+            poster="/projects/showreel-poster.jpg"
             onContextMenu={(e) => e.preventDefault()}
             className="block w-full h-auto rounded-2xl border border-[var(--rule)]"
           />
