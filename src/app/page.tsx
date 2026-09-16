@@ -11,6 +11,7 @@ import { AboutView } from "@/components/portfolio/about-view";
 import { ContactView } from "@/components/portfolio/contact-view";
 import { IntroOverlay } from "@/components/portfolio/intro-overlay";
 import { QuotesPanel } from "@/components/portfolio/quotes-panel";
+import { PrayerTimes } from "@/components/portfolio/prayer-times";
 import { projects, type NavId } from "@/lib/projects";
 
 export default function Home() {
@@ -182,6 +183,11 @@ export default function Home() {
           </AnimatePresence>
         </main>
       </div>
+
+      {/* Prayer times — desktop floating bottom right (homepage only) */}
+      {activeNav === "project" && !activeProject && !showIntro && (
+        <PrayerTimes />
+      )}
 
       {/* Mobile drawer sidebar */}
       <AnimatePresence>

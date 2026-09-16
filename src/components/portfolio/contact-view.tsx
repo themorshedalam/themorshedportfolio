@@ -111,7 +111,7 @@ export function ContactView() {
             <div className="font-mono-display text-[15px] text-foreground">
               {hijriDate}
             </div>
-            <div className="font-mono-label mt-1 text-[11px] text-[var(--meta)]">
+            <div className="font-mono-display mt-1 text-[15px] text-foreground">
               {gregorianDate}
             </div>
           </div>

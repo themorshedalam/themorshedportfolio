@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { quranVerses } from "@/lib/quran-verses";
+import { PrayerTimes } from "./prayer-times";
 
 type Props = {
   active: boolean;
@@ -72,6 +73,9 @@ export function QuotesPanel({ active }: Props) {
           </motion.div>
         </AnimatePresence>
       </div>
+
+      {/* Prayer times — mobile only, below Quran verse */}
+      <PrayerTimes compact />
     </div>
   );
 }
