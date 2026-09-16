@@ -7,6 +7,7 @@ import { profile } from "@/lib/projects";
 export function ContactView() {
   const [time, setTime] = useState("");
   const [hijriDate, setHijriDate] = useState("");
+  const [gregorianDate, setGregorianDate] = useState("");
 
   useEffect(() => {
     const update = () => {
@@ -20,7 +21,7 @@ export function ContactView() {
       }).format(now);
       setTime(dubaiTime);
 
-      // Hijri date
+      // Hijri date + Gregorian date
       try {
         const hijri = new Intl.DateTimeFormat("en-US", {
           timeZone: "Asia/Dubai",
@@ -29,9 +30,17 @@ export function ContactView() {
           year: "numeric",
           calendar: "islamic",
         }).format(now);
+        const gregorian = new Intl.DateTimeFormat("en-US", {
+          timeZone: "Asia/Dubai",
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        }).format(now);
         setHijriDate(hijri);
+        setGregorianDate(gregorian);
       } catch {
         setHijriDate("");
+        setGregorianDate("");
       }
     };
     update();
@@ -97,10 +106,13 @@ export function ContactView() {
           </div>
           <div>
             <div className="font-mono-label mb-2 text-[10px] uppercase tracking-[0.24em] text-[var(--meta)]">
-              Hijri Date
+              Date
             </div>
-            <div className="font-mono-display text-[16px] text-foreground">
+            <div className="font-mono-display text-[15px] text-foreground">
               {hijriDate}
+            </div>
+            <div className="font-mono-label mt-1 text-[11px] text-[var(--meta)]">
+              {gregorianDate}
             </div>
           </div>
           <div>
