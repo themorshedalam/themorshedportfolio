@@ -75,7 +75,9 @@ export function QuotesPanel({ active }: Props) {
       </div>
 
       {/* Prayer times — mobile only, below Quran verse */}
-      <PrayerTimes compact />
+      <div className="md:hidden">
+        <PrayerTimes compact />
+      </div>
     </div>
   );
 }
