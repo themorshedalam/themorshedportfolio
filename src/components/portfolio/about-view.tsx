@@ -45,6 +45,8 @@ const recommendations = [
     title: "Marketing Manager — Middle East, NAMAA (an ATOMS Company)",
     date: "Aug 2026",
     relationship: "Worked with Morshed at the ENTERTAINER",
+    initials: "LC",
+    color: "#2563eb",
     text: "I had the pleasure of working with Morshed at the ENTERTAINER, where I worked as Performance Marketing Manager and regularly collaborated with him across motion graphics, video editing and creative production. Morshed was always someone I could rely on to turn a brief into strong, engaging creative that performed.",
   },
   {
@@ -52,6 +54,8 @@ const recommendations = [
     title: "Content Disruptor",
     date: "Aug 2026",
     relationship: "Managed Morshed directly",
+    initials: "MD",
+    color: "#7c3aed",
     text: "I had the pleasure of working with Morshed, and I was always impressed by his creativity, attention to detail, and ability to bring ideas to life through animation. He has a great eye for visual storytelling and consistently delivered work that exceeded expectations.",
   },
   {
@@ -59,6 +63,8 @@ const recommendations = [
     title: "UAE Marketing, the ENTERTAINER",
     date: "Aug 2026",
     relationship: "Worked with Morshed on the same team",
+    initials: "OH",
+    color: "#059669",
     text: "I had the pleasure of working alongside Morshed and can confidently say he was a fantastic colleague and a real asset to the team. Hardworking, reliable, and always bringing a positive, collaborative attitude to everything he does.",
   },
 ];
@@ -244,13 +250,22 @@ export function AboutView() {
                 key={r.name}
                 className="border-b border-[var(--rule)] pb-8"
               >
-                <div className="mb-3 flex items-baseline justify-between gap-4">
-                  <div>
-                    <h3 className="font-mono-display text-[15px] leading-tight text-foreground">
-                      {r.name}
-                    </h3>
-                    <div className="font-mono-label mt-0.5 text-[11px] text-foreground/60">
-                      {r.title}
+                <div className="mb-3 flex items-start justify-between gap-4">
+                  <div className="flex items-start gap-3">
+                    {/* Avatar — LinkedIn style */}
+                    <div
+                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[14px] font-semibold text-white"
+                      style={{ backgroundColor: r.color }}
+                    >
+                      {r.initials}
+                    </div>
+                    <div>
+                      <h3 className="font-mono-display text-[15px] leading-tight text-foreground">
+                        {r.name}
+                      </h3>
+                      <div className="font-mono-label mt-0.5 text-[11px] text-foreground/60">
+                        {r.title}
+                      </div>
                     </div>
                   </div>
                   <span className="font-mono-label shrink-0 text-[11px] uppercase tracking-[0.08em] text-[var(--meta)]">
