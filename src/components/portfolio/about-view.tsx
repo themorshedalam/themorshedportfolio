@@ -47,6 +47,7 @@ const recommendations = [
     relationship: "Worked with Morshed at the ENTERTAINER",
     initials: "LC",
     color: "#2563eb",
+    photo: "/projects/logan.jpg",
     text: "I had the pleasure of working with Morshed at the ENTERTAINER, where I worked as Performance Marketing Manager and regularly collaborated with him across motion graphics, video editing and creative production. Morshed was always someone I could rely on to turn a brief into strong, engaging creative that performed.",
   },
   {
@@ -56,6 +57,7 @@ const recommendations = [
     relationship: "Managed Morshed directly",
     initials: "MD",
     color: "#7c3aed",
+    photo: "/projects/may.jpg",
     text: "I had the pleasure of working with Morshed, and I was always impressed by his creativity, attention to detail, and ability to bring ideas to life through animation. He has a great eye for visual storytelling and consistently delivered work that exceeded expectations.",
   },
   {
@@ -65,6 +67,7 @@ const recommendations = [
     relationship: "Worked with Morshed on the same team",
     initials: "OH",
     color: "#059669",
+    photo: "/projects/olivia.jpg",
     text: "I had the pleasure of working alongside Morshed and can confidently say he was a fantastic colleague and a real asset to the team. Hardworking, reliable, and always bringing a positive, collaborative attitude to everything he does.",
   },
 ];
@@ -252,13 +255,22 @@ export function AboutView() {
               >
                 <div className="mb-3 flex items-start justify-between gap-4">
                   <div className="flex items-start gap-3">
-                    {/* Avatar — LinkedIn style */}
-                    <div
-                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[14px] font-semibold text-white"
-                      style={{ backgroundColor: r.color }}
-                    >
-                      {r.initials}
-                    </div>
+                    {/* Avatar — real photo, LinkedIn style */}
+                    {r.photo ? (
+                      <img
+                        src={r.photo}
+                        alt={r.name}
+                        className="h-11 w-11 shrink-0 rounded-full object-cover border border-[var(--rule)]"
+                        draggable={false}
+                      />
+                    ) : (
+                      <div
+                        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[14px] font-semibold text-white"
+                        style={{ backgroundColor: r.color }}
+                      >
+                        {r.initials}
+                      </div>
+                    )}
                     <div>
                       <h3 className="font-mono-display text-[15px] leading-tight text-foreground">
                         {r.name}
