@@ -29,7 +29,7 @@ export function ContactView() {
           year: "numeric",
           calendar: "islamic",
         }).format(now);
-        setHijriDate(hijri + " AH");
+        setHijriDate(hijri);
       } catch {
         setHijriDate("");
       }
