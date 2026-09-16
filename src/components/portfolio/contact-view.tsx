@@ -82,7 +82,7 @@ export function ContactView() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.32, duration: 0.7 }}
-          className="mt-14 grid gap-x-8 gap-y-10 border-t border-[var(--rule)] pt-10 sm:grid-cols-3 lg:gap-x-12"
+          className="mt-14 grid gap-x-8 gap-y-10 border-t border-[var(--rule)] pt-10 sm:grid-cols-4 lg:gap-x-12"
         >
           <div>
             <div className="font-mono-label mb-2 text-[10px] uppercase tracking-[0.24em] text-[var(--meta)]">
@@ -94,7 +94,12 @@ export function ContactView() {
             <div className="font-mono-label mt-1 text-[11px] text-[var(--meta)]">
               UAE · GMT+4
             </div>
-            <div className="font-mono-label mt-2 text-[11px] text-foreground/60">
+          </div>
+          <div>
+            <div className="font-mono-label mb-2 text-[10px] uppercase tracking-[0.24em] text-[var(--meta)]">
+              Hijri Date
+            </div>
+            <div className="font-mono-display text-[16px] text-foreground">
               {hijriDate}
             </div>
           </div>
