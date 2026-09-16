@@ -13,15 +13,14 @@ type PrayerTimes = {
 
 /**
  * Prayer times for Dubai.
- * Fetches from Aladhan API based on Dubai coordinates.
- * Shows on desktop (bottom right of homepage) and mobile (below Quran verse).
+ * Desktop: floating bottom-right card showing only next prayer.
+ * Mobile: compact centered, only next prayer.
  */
 export function PrayerTimes({ compact = false }: { compact?: boolean }) {
-  const [prayers, setPrayers] = useState<PrayerTimes | null>(null);
-  const [nextPrayer, setNextPrayer] = useState<string>("");
+  const [nextPrayerName, setNextPrayerName] = useState("");
+  const [nextPrayerTime, setNextPrayerTime] = useState("");
 
   useEffect(() => {
-    // Dubai coordinates: 25.2048, 55.2708
     const today = new Date();
     const day = today.getDate();
     const month = today.getMonth() + 1;
@@ -40,16 +39,7 @@ export function PrayerTimes({ compact = false }: { compact?: boolean }) {
           const h12 = hour % 12 || 12;
           return `${h12}:${m} ${ampm}`;
         };
-        const p: PrayerTimes = {
-          Fajr: formatTime(t.Fajr),
-          Dhuhr: formatTime(t.Dhuhr),
-          Asr: formatTime(t.Asr),
-          Maghrib: formatTime(t.Maghrib),
-          Isha: formatTime(t.Isha),
-        };
-        setPrayers(p);
 
-        // Find next prayer
         const now = new Date();
         const dubaiHour = parseInt(
           new Intl.DateTimeFormat("en-GB", {
@@ -66,7 +56,7 @@ export function PrayerTimes({ compact = false }: { compact?: boolean }) {
         );
         const nowMin = dubaiHour * 60 + dubaiMin;
 
-        const prayerTimes = [
+        const prayerList = [
           { name: "Fajr", time: t.Fajr },
           { name: "Dhuhr", time: t.Dhuhr },
           { name: "Asr", time: t.Asr },
@@ -74,49 +64,42 @@ export function PrayerTimes({ compact = false }: { compact?: boolean }) {
           { name: "Isha", time: t.Isha },
         ];
 
-        for (const pt of prayerTimes) {
+        let found = false;
+        for (const pt of prayerList) {
           const [h, m] = pt.time.split(":");
           const ptMin = parseInt(h) * 60 + parseInt(m);
           if (ptMin > nowMin) {
-            setNextPrayer(pt.name);
+            setNextPrayerName(pt.name);
+            setNextPrayerTime(formatTime(pt.time));
+            found = true;
             break;
           }
         }
-        if (!nextPrayer && !nextPrayerSet) {
-          setNextPrayer("Fajr (tomorrow)");
+        if (!found) {
+          setNextPrayerName("Fajr (tomorrow)");
+          setNextPrayerTime(formatTime(t.Fajr));
         }
       })
-      .catch(() => setPrayers(null));
+      .catch(() => {});
   }, []);
 
-  let nextPrayerSet = false;
-
-  if (!prayers) return null;
+  if (!nextPrayerName) return null;
 
   if (compact) {
-    // Mobile — very small
+    // Mobile — compact, centered, only next prayer
     return (
-      <div className="px-8 pb-4">
-        <div className="font-mono-label mb-1.5 text-[8px] uppercase tracking-[0.2em] text-[var(--meta)]">
-          Prayer Times · Dubai
+      <div className="px-8 pb-4 text-center">
+        <div className="font-mono-label text-[8px] uppercase tracking-[0.2em] text-[var(--meta)]">
+          Next Prayer · Dubai
         </div>
-        <div className="flex flex-wrap justify-center gap-x-3 gap-y-0.5">
-          {Object.entries(prayers).map(([name, time]) => (
-            <span
-              key={name}
-              className={`font-mono-label text-[8px] ${
-                nextPrayer === name ? "text-foreground font-semibold" : "text-foreground/40"
-              }`}
-            >
-              {name} {time}
-            </span>
-          ))}
+        <div className="font-mono-label mt-0.5 text-[10px] text-foreground/70">
+          <span className="font-semibold text-foreground">{nextPrayerName}</span> — {nextPrayerTime}
         </div>
       </div>
     );
   }
 
-  // Desktop — bottom right
+  // Desktop — floating bottom-right, only next prayer
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -124,27 +107,12 @@ export function PrayerTimes({ compact = false }: { compact?: boolean }) {
       transition={{ delay: 0.5, duration: 0.6 }}
       className="fixed bottom-4 right-4 z-20 hidden rounded-2xl border border-[var(--rule)] bg-[var(--cream)]/95 px-4 py-3 backdrop-blur-sm md:block"
     >
-      <div className="font-mono-label mb-2 text-[9px] uppercase tracking-[0.2em] text-[var(--meta)]">
-        Prayer Times · Dubai
+      <div className="font-mono-label mb-1 text-[9px] uppercase tracking-[0.2em] text-[var(--meta)]">
+        Next Prayer · Dubai
       </div>
-      <div className="space-y-1">
-        {Object.entries(prayers).map(([name, time]) => (
-          <div
-            key={name}
-            className={`flex items-baseline justify-between gap-6 ${
-              nextPrayer === name ? "font-semibold text-foreground" : "text-foreground/50"
-            }`}
-          >
-            <span className="font-mono-label text-[10px]">{name}</span>
-            <span className="font-mono-label text-[10px] tabular-nums">{time}</span>
-          </div>
-        ))}
+      <div className="font-mono-display text-[14px] text-foreground">
+        {nextPrayerName} — {nextPrayerTime}
       </div>
-      {nextPrayer && (
-        <div className="font-mono-label mt-2 border-t border-[var(--rule)] pt-1.5 text-[8px] uppercase tracking-[0.15em] text-[var(--meta)]">
-          Next: {nextPrayer}
-        </div>
-      )}
     </motion.div>
   );
 }
