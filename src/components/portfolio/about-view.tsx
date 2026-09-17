@@ -35,8 +35,9 @@ const experience = [
 
 const capabilities = [
   { group: "Motion", items: ["After Effects", "Cinema 4D", "Frame by Frame", "Type in Motion"] },
-  { group: "AI Tools", items: ["VEO3", "Runway", "AI Workflows", "Generative"] },
+  { group: "AI Tools", items: ["Google Flow", "Runway", "Higgsfield", "Firefly", "Claude"] },
   { group: "Edit", items: ["Premiere Pro", "DaVinci Resolve", "Color", "Sound Design"] },
+  { group: "Design", items: ["Adobe Photoshop", "Illustrator", "InDesign", "Figma", "Canva"] },
 ];
 
 const recommendations = [
@@ -161,10 +162,10 @@ export function AboutView() {
               Capabilities
             </h2>
             <span className="font-mono-label text-[11px] tabular-nums text-[var(--meta)]">
-              03 disciplines
+              04 disciplines
             </span>
           </div>
-          <div className="grid gap-x-6 gap-y-8 sm:grid-cols-3">
+          <div className="grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
             {capabilities.map((c) => (
               <div key={c.group}>
                 <div className="font-mono-label mb-3 text-[10px] uppercase tracking-[0.24em] text-[var(--meta)]">
