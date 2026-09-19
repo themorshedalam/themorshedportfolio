@@ -12,9 +12,11 @@ type Props = {
 /**
  * Right panel — showreel video centered (desktop), 
  * Quran verse at bottom on mobile.
+ * Optimized for LCP: poster loads instantly, video lazy-loads.
  */
 export function QuotesPanel({ active }: Props) {
   const [index, setIndex] = useState(0);
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const timer = useRef<ReturnType<typeof setInterval>>();
 
   useEffect(() => {
@@ -34,22 +36,27 @@ export function QuotesPanel({ active }: Props) {
         <div className="font-mono-label mb-2 text-[10px] uppercase tracking-[0.24em] text-[var(--meta)]">
           Showreel
         </div>
-        {/* Mobile: GIF banner above showreel */}
+        {/* Mobile: GIF banner above showreel — lazy loaded */}
         <img
           src="/projects/showreel-banner.gif"
           alt="Showreel banner"
+          loading="lazy"
+          decoding="async"
           className="mb-4 block w-full max-w-[280px] h-auto rounded-2xl mx-auto md:hidden"
         />
+        {/* Showreel video — poster loads instantly (LCP), video streams after */}
         <video
           src="/projects/showreel.mp4"
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="none"
           poster="/projects/showreel-poster.jpg"
+          onLoadedData={() => setVideoLoaded(true)}
           onContextMenu={(e) => e.preventDefault()}
           className="block w-full h-auto rounded-2xl border border-[var(--rule)]"
+          style={{ contentVisibility: "auto" }}
         />
       </div>
 

@@ -9,7 +9,7 @@ type Props = {
 };
 
 /** How long the logo card holds before auto-dismissing, in ms */
-const HOLD_MS = 1500;
+const HOLD_MS = 800;
 
 /**
  * Minimal title-card intro. Just the "MA — Studio" wordmark centered on

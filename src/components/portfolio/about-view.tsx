@@ -140,6 +140,8 @@ export function AboutView() {
             <img
               src="/projects/morshed-portrait.png"
               alt="Morshed Alam — Motion Graphics Designer in Dubai"
+              loading="lazy"
+              decoding="async"
               draggable="false"
               onContextMenu={(e) => e.preventDefault()}
               onClick={(e) => e.preventDefault()}

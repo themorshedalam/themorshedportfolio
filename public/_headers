@@ -19,10 +19,14 @@
 /projects/*.jpg
   Cache-Control: public, max-age=31536000, immutable
 
-# Cache Next.js static chunks aggressively
+# Cache Next.js static chunks aggressively (1 year)
 /_next/static/*
   Cache-Control: public, max-age=31536000, immutable
 
 # HTML pages — short cache (so deploys show quickly)
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
+
+# Compress responses
+/*
+  Content-Encoding: br
