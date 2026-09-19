@@ -107,7 +107,7 @@ function ProjectItem({
               className={`font-mono-display text-[17px] leading-[1.15] transition-all duration-300 ${
                 active
                   ? "text-foreground"
-                  : "text-foreground/45 group-hover:text-foreground/80"
+                  : "text-foreground/70 group-hover:text-foreground"
               }`}
             >
               {project.title}

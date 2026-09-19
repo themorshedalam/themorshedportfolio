@@ -24,7 +24,7 @@ export function Header({ activeNav, onNav, onHome, hasProject = true }: Props) {
         <span className="font-mono-label text-[12px] tracking-[0.02em] text-foreground">
           MA
         </span>
-        <span className="font-mono-label text-[12px] tracking-[0.02em] text-foreground/45">
+        <span className="font-mono-label text-[12px] tracking-[0.02em] text-foreground/70">
           — Studio
         </span>
       </button>
@@ -49,7 +49,7 @@ export function Header({ activeNav, onNav, onHome, hasProject = true }: Props) {
               >
                 <span
                   className={`font-mono-label text-[12px] tracking-[0.02em] transition-colors duration-300 ${
-                    isActive ? "text-foreground" : "text-foreground/45 hover:text-foreground"
+                    isActive ? "text-foreground" : "text-foreground/70 hover:text-foreground"
                   }`}
                 >
                   {item.id === "project" ? "Project" : item.id === "personal" ? "About" : "Contact"}
