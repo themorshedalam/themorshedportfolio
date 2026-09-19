@@ -30,3 +30,8 @@
 # Compress responses
 /*
   Content-Encoding: br
+
+# Video files — enable range requests for iOS
+/projects/*.mp4
+  Accept-Ranges: bytes
+  Access-Control-Allow-Origin: *

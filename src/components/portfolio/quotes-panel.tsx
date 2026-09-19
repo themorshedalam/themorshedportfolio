@@ -42,8 +42,13 @@ export function QuotesPanel({ active }: Props) {
           decoding="async"
           className="mb-4 block w-full max-w-[280px] h-auto rounded-2xl mx-auto md:hidden"
         />
-        {/* Showreel video */}
+        {/* Showreel video — with ref for manual play on mobile */}
         <video
+          ref={(el) => {
+            if (el) {
+              el.play().catch(() => {});
+            }
+          }}
           src="/projects/showreel.mp4"
           autoPlay
           muted
