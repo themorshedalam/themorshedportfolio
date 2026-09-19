@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Send, Mail } from "lucide-react";
+import { X, Send, Mail } from "lucide-react";
 import { profile } from "@/lib/projects";
 
 type Message = {
@@ -178,10 +178,14 @@ export function Chatbot() {
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
             onClick={() => setIsOpen(true)}
             data-cursor="link"
-            className="fixed bottom-5 right-5 z-50 hidden h-14 w-14 items-center justify-center rounded-full bg-foreground text-[var(--cream)] shadow-xl hover:scale-105 transition-transform lg:flex"
+            className="fixed bottom-5 right-5 z-50 hidden h-16 w-16 items-center justify-center rounded-full bg-foreground shadow-xl hover:scale-105 transition-transform lg:flex"
             aria-label="Ask me anything"
           >
-            <MessageCircle className="h-6 w-6" />
+            <img
+              src="/projects/valentines-heart.gif"
+              alt="Ask me anything"
+              className="h-14 w-14 rounded-full object-cover"
+            />
             <span className="absolute -top-1 -right-1 flex h-3 w-3">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
               <span className="relative inline-flex h-3 w-3 rounded-full bg-green-500" />
