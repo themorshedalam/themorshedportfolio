@@ -47,9 +47,7 @@ export function ProjectVideo({ src, caption }: { src: string; caption: string })
   }, [src]);
 
   useEffect(() => {
-    if (!loading && videoRef.current) {
-      videoRef.current.play().catch(() => {});
-    }
+    // Don't autoplay — user clicks play manually
   }, [loading, blobUrl]);
 
   const videoSrc = useBlob ? (blobUrl || undefined) : src;
@@ -70,9 +68,6 @@ export function ProjectVideo({ src, caption }: { src: string; caption: string })
           ref={videoRef}
           src={videoSrc}
           controls
-          autoPlay
-          muted
-          loop
           playsInline
           preload="auto"
           controlsList="nodownload nofullscreen noremoteplayback"
