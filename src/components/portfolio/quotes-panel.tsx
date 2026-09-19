@@ -12,11 +12,12 @@ type Props = {
 /**
  * Right panel — showreel video centered (desktop), 
  * Quran verse at bottom on mobile.
- * Video is loaded as a blob to bypass range request issues on iOS.
+ * Smart video loading: direct URL on desktop, blob on iOS/Safari.
  */
 export function QuotesPanel({ active }: Props) {
   const [index, setIndex] = useState(0);
-  const [videoUrl, setVideoUrl] = useState<string>("");
+  const [videoSrc, setVideoSrc] = useState<string>("");
+  const [videoLoading, setVideoLoading] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
   const timer = useRef<ReturnType<typeof setInterval>>();
 
@@ -28,30 +29,41 @@ export function QuotesPanel({ active }: Props) {
     return () => clearInterval(timer.current);
   }, [active]);
 
-  // Fetch video as blob to bypass iOS range request issues
+  // Smart video loading — direct URL on desktop, blob on iOS
   useEffect(() => {
-    let url: string;
-    fetch("/projects/showreel.mp4")
-      .then((res) => res.blob())
-      .then((blob) => {
-        url = URL.createObjectURL(blob);
-        setVideoUrl(url);
-      })
-      .catch(() => {
-        // Fallback: use direct URL (works on desktop)
-        setVideoUrl("/projects/showreel.mp4");
-      });
-    return () => {
-      if (url) URL.revokeObjectURL(url);
-    };
+    const src = "/projects/showreel.mp4";
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+    if (isIOS || isSafari) {
+      let url: string;
+      fetch(src)
+        .then((res) => res.blob())
+        .then((blob) => {
+          url = URL.createObjectURL(blob);
+          setVideoSrc(url);
+          setVideoLoading(false);
+        })
+        .catch(() => {
+          setVideoSrc(src);
+          setVideoLoading(false);
+        });
+      return () => {
+        if (url) URL.revokeObjectURL(url);
+      };
+    } else {
+      // Desktop: use direct URL instantly — no loading delay
+      setVideoSrc(src);
+      setVideoLoading(false);
+    }
   }, []);
 
-  // Play video once blob URL is ready
   useEffect(() => {
-    if (videoUrl && videoRef.current) {
+    if (!videoLoading && videoSrc && videoRef.current) {
       videoRef.current.play().catch(() => {});
     }
-  }, [videoUrl]);
+  }, [videoLoading, videoSrc]);
 
   const verse = quranVerses[index];
 
@@ -70,19 +82,34 @@ export function QuotesPanel({ active }: Props) {
           decoding="async"
           className="mb-4 block w-full max-w-[280px] h-auto rounded-2xl mx-auto md:hidden"
         />
-        {/* Showreel video — blob URL for iOS compatibility */}
-        <video
-          ref={videoRef}
-          src={videoUrl || undefined}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          poster="/projects/showreel-poster.jpg"
-          onContextMenu={(e) => e.preventDefault()}
-          className="block w-full h-auto rounded-2xl border border-[var(--rule)]"
-        />
+        {/* Showreel video — poster shows instantly, video plays when ready */}
+        {videoLoading ? (
+          <div className="flex aspect-video w-full items-center justify-center rounded-2xl border border-[var(--rule)] bg-[var(--cream-soft)] overflow-hidden">
+            <img
+              src="/projects/showreel-poster.jpg"
+              alt="Showreel loading"
+              className="absolute h-full w-full object-cover opacity-50"
+            />
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+              className="relative h-8 w-8 rounded-full border-2 border-white/40 border-t-white"
+            />
+          </div>
+        ) : (
+          <video
+            ref={videoRef}
+            src={videoSrc || undefined}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster="/projects/showreel-poster.jpg"
+            onContextMenu={(e) => e.preventDefault()}
+            className="block w-full h-auto rounded-2xl border border-[var(--rule)]"
+          />
+        )}
       </div>
 
       {/* Quran verse — mobile only, at bottom */}
