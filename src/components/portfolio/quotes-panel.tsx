@@ -9,6 +9,10 @@ type Props = {
   active: boolean;
 };
 
+/**
+ * Right panel — showreel video centered (desktop), 
+ * Quran verse at bottom on mobile.
+ */
 export function QuotesPanel({ active }: Props) {
   const [index, setIndex] = useState(0);
   const timer = useRef<ReturnType<typeof setInterval>>();
@@ -30,7 +34,7 @@ export function QuotesPanel({ active }: Props) {
         <div className="font-mono-label mb-2 text-[10px] uppercase tracking-[0.24em] text-[var(--meta)]">
           Showreel
         </div>
-        {/* Mobile: GIF banner above showreel — lazy loaded */}
+        {/* Mobile: GIF banner above showreel */}
         <img
           src="/projects/showreel-banner.gif"
           alt="Showreel banner"
@@ -38,7 +42,7 @@ export function QuotesPanel({ active }: Props) {
           decoding="async"
           className="mb-4 block w-full max-w-[280px] h-auto rounded-2xl mx-auto md:hidden"
         />
-        {/* Showreel video — optimized for mobile autoplay */}
+        {/* Showreel video */}
         <video
           src="/projects/showreel.mp4"
           autoPlay
@@ -73,7 +77,7 @@ export function QuotesPanel({ active }: Props) {
         </AnimatePresence>
       </div>
 
-      {/* Prayer times — mobile only, below Quran verse */}
+      {/* Prayer times — mobile only */}
       <div className="md:hidden">
         <PrayerTimes compact />
       </div>
