@@ -209,6 +209,7 @@ export default function Home() {
         {showIntro && <IntroOverlay onComplete={handleIntroComplete} />}
       </AnimatePresence>
     </div>
+    </LangProvider>
   );
 }
 
@@ -291,7 +292,5 @@ function KeyboardHint({ start }: { start: boolean }) {
         </motion.div>
       )}
     </AnimatePresence>
-    </div>
-    </LangProvider>
   );
 }
