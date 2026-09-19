@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { profile, navItems } from "@/lib/projects";
 import { QuranVerse } from "./quran-verse";
 import { ThemeToggle } from "./theme-toggle";
+import { LangToggle } from "./lang-toggle";
 
 type Props = {
   activeNav: string;
@@ -66,6 +67,7 @@ export function Header({ activeNav, onNav, onHome, hasProject = true }: Props) {
           })}
         </nav>
         <ThemeToggle />
+        <LangToggle />
       </div>
     </header>
   );
