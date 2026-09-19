@@ -168,7 +168,7 @@ export function Chatbot() {
 
   return (
     <>
-      {/* Floating button — moves up on mobile to avoid overlap with menu button */}
+      {/* Floating button — desktop only (hidden on mobile) */}
       <AnimatePresence>
         {!isOpen && (
           <motion.button
@@ -178,7 +178,7 @@ export function Chatbot() {
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
             onClick={() => setIsOpen(true)}
             data-cursor="link"
-            className="fixed bottom-20 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-foreground text-[var(--cream)] shadow-xl hover:scale-105 transition-transform lg:bottom-5"
+            className="fixed bottom-5 right-5 z-50 hidden h-14 w-14 items-center justify-center rounded-full bg-foreground text-[var(--cream)] shadow-xl hover:scale-105 transition-transform lg:flex"
             aria-label="Ask me anything"
           >
             <MessageCircle className="h-6 w-6" />
@@ -190,7 +190,7 @@ export function Chatbot() {
         )}
       </AnimatePresence>
 
-      {/* Chat window — moves up on mobile to avoid overlap with menu button */}
+      {/* Chat window — desktop only (hidden on mobile) */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -198,7 +198,7 @@ export function Chatbot() {
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="fixed bottom-20 right-5 z-50 flex h-[520px] w-[calc(100vw-2.5rem)] max-w-[380px] flex-col overflow-hidden rounded-2xl border border-[var(--rule)] bg-[var(--cream)] shadow-2xl lg:bottom-5"
+            className="fixed bottom-5 right-5 z-50 hidden h-[520px] w-[calc(100vw-2.5rem)] max-w-[380px] flex-col overflow-hidden rounded-2xl border border-[var(--rule)] bg-[var(--cream)] shadow-2xl lg:flex"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-[var(--rule)] bg-foreground px-4 py-3 text-[var(--cream)]">
