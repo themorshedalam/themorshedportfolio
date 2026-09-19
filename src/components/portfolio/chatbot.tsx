@@ -182,7 +182,7 @@ export function Chatbot() {
             aria-label="Ask me anything"
           >
             <img
-              src="/projects/valentines-heart.gif"
+              src="/projects/chatbot-heart.gif"
               alt="Ask me anything"
               className="h-14 w-14 rounded-full object-cover"
             />
