@@ -78,7 +78,9 @@ export function QuotesPanel({ active }: Props) {
         <img
           src="/projects/showreel-banner.gif"
           alt="Showreel banner"
-          loading="lazy"
+          width={500}
+          height={281}
+          fetchPriority="high"
           decoding="async"
           className="mb-4 block w-full max-w-[280px] h-auto rounded-2xl mx-auto md:hidden"
         />

@@ -184,6 +184,8 @@ export function Chatbot() {
             <img
               src="/projects/chatbot-heart.gif"
               alt="Ask me anything"
+              width={56}
+              height={56}
               className="h-14 w-14 rounded-full object-cover"
             />
             <span className="absolute -top-1 -right-1 flex h-3 w-3">
