@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { profile, navItems } from "@/lib/projects";
 import { QuranVerse } from "./quran-verse";
+import { ThemeToggle } from "./theme-toggle";
 
 type Props = {
   activeNav: string;
@@ -31,38 +32,41 @@ export function Header({ activeNav, onNav, onHome, hasProject = true }: Props) {
       {/* Center — rotating Quran verse */}
       <QuranVerse />
 
-      {/* Nav — no numbers */}
-      <nav className="flex items-center gap-7 md:gap-9">
-        {navItems.map((item) => {
-          const isActive =
-            item.id === "project"
-              ? activeNav === "project" && hasProject
-              : activeNav === item.id;
-          return (
-            <button
-              key={item.id}
-              onClick={() => onNav(item.id)}
-              data-cursor="link"
-              className="group relative"
-            >
-              <span
-                className={`font-mono-label text-[12px] tracking-[0.02em] transition-colors duration-300 ${
-                  isActive ? "text-foreground" : "text-foreground/45 hover:text-foreground"
-                }`}
+      {/* Nav + theme toggle */}
+      <div className="flex items-center gap-5 md:gap-7">
+        <nav className="flex items-center gap-7 md:gap-9">
+          {navItems.map((item) => {
+            const isActive =
+              item.id === "project"
+                ? activeNav === "project" && hasProject
+                : activeNav === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => onNav(item.id)}
+                data-cursor="link"
+                className="group relative"
               >
-                {item.label}
-              </span>
-              {isActive && (
-                <motion.span
-                  layoutId="nav-underline"
-                  className="absolute -bottom-1 left-0 h-px w-full bg-foreground"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                />
-              )}
-            </button>
-          );
-        })}
-      </nav>
+                <span
+                  className={`font-mono-label text-[12px] tracking-[0.02em] transition-colors duration-300 ${
+                    isActive ? "text-foreground" : "text-foreground/45 hover:text-foreground"
+                  }`}
+                >
+                  {item.label}
+                </span>
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-underline"
+                    className="absolute -bottom-1 left-0 h-px w-full bg-foreground"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </button>
+            );
+          })}
+        </nav>
+        <ThemeToggle />
+      </div>
     </header>
   );
 }
