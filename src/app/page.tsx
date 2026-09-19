@@ -11,8 +11,6 @@ import { AboutView } from "@/components/portfolio/about-view";
 import { ContactView } from "@/components/portfolio/contact-view";
 import { IntroOverlay } from "@/components/portfolio/intro-overlay";
 import { QuotesPanel } from "@/components/portfolio/quotes-panel";
-import { PrayerTimes } from "@/components/portfolio/prayer-times";
-import { LangProvider } from "@/lib/lang-context";
 import { projects, type NavId } from "@/lib/projects";
 
 export default function Home() {
@@ -132,7 +130,6 @@ export default function Home() {
   }, [handleSelectProject]);
 
   return (
-    <LangProvider>
     <div className="app-shell relative flex h-screen flex-col overflow-hidden bg-[var(--cream)] text-foreground">
       <CustomCursor />
 
@@ -186,11 +183,6 @@ export default function Home() {
         </main>
       </div>
 
-      {/* Prayer times — desktop floating bottom right (homepage only) */}
-      {activeNav === "project" && !activeProject && !showIntro && (
-        <PrayerTimes />
-      )}
-
       {/* Mobile drawer sidebar */}
       <AnimatePresence>
         {mobileNav && (
@@ -209,7 +201,6 @@ export default function Home() {
         {showIntro && <IntroOverlay onComplete={handleIntroComplete} />}
       </AnimatePresence>
     </div>
-    </LangProvider>
   );
 }
 

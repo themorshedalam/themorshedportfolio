@@ -3,8 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { quranVerses } from "@/lib/quran-verses";
-import { PrayerTimes } from "./prayer-times";
-import { useLang } from "@/lib/lang-context";
 
 type Props = {
   active: boolean;
@@ -16,7 +14,6 @@ type Props = {
  * Smart video loading: direct URL on desktop, blob on iOS/Safari.
  */
 export function QuotesPanel({ active }: Props) {
-  const { t } = useLang();
   const [index, setIndex] = useState(0);
   const [videoSrc, setVideoSrc] = useState<string>("");
   const [videoLoading, setVideoLoading] = useState(true);
@@ -74,7 +71,7 @@ export function QuotesPanel({ active }: Props) {
       {/* {t.showreel} — centered */}
       <div className="w-full max-w-[1100px] px-6 md:px-10">
         <div className="font-mono-label mb-2 text-[10px] uppercase tracking-[0.24em] text-[var(--meta)]">
-          {t.showreel}
+          Showreel
         </div>
         {/* Mobile: GIF banner above showreel */}
         <img
@@ -133,11 +130,6 @@ export function QuotesPanel({ active }: Props) {
             </p>
           </motion.div>
         </AnimatePresence>
-      </div>
-
-      {/* Prayer times — mobile only */}
-      <div className="md:hidden">
-        <PrayerTimes compact />
       </div>
     </div>
   );

@@ -244,8 +244,6 @@ export default function RootLayout({
         />
         {/* Resource hints for LCP optimization */}
         <link rel="preload" as="image" href="/projects/showreel-poster.jpg" fetchPriority="high" />
-        <link rel="preconnect" href="https://api.aladhan.com" />
-        <link rel="dns-prefetch" href="https://api.aladhan.com" />
         {/* Prevent flash of wrong theme (FOUC) */}
         <script dangerouslySetInnerHTML={{
           __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');}}catch(e){}})();`

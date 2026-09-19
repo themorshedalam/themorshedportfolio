@@ -3,7 +3,6 @@
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects, profile, type Project } from "@/lib/projects";
-import { useLang } from "@/lib/lang-context";
 
 type Props = {
   activeId: string | null;
@@ -11,7 +10,6 @@ type Props = {
 };
 
 export function Sidebar({ activeId, onSelect }: Props) {
-  const { t } = useLang();
   const activeIndex = activeId
     ? projects.findIndex((p) => p.id === activeId)
     : -1;
@@ -22,7 +20,7 @@ export function Sidebar({ activeId, onSelect }: Props) {
       {/* Projects header */}
       <div className="flex items-baseline justify-between px-6 pt-7 pb-5 md:px-8">
         <h2 className="font-mono-label text-[12px] uppercase tracking-[0.24em] text-foreground">
-          {t.projects}
+          Projects
         </h2>
         <span className="font-mono-label text-[11px] tabular-nums text-[var(--meta)]">
           {activeIndex >= 0
@@ -192,16 +190,15 @@ function PreviewThumb({ project }: { project: Project }) {
 }
 
 function SidebarFooter() {
-  const { t } = useLang();
   return (
     <div className="border-t border-[var(--rule)] px-6 py-5 md:px-8">
       <div className="font-mono-label space-y-3 text-[11px] leading-relaxed text-[var(--meta)]">
         <div className="flex items-baseline justify-between">
-          <span className="uppercase tracking-[0.24em]">{t.location}</span>
+          <span className="uppercase tracking-[0.24em]">Location</span>
           <span className="text-foreground/80">{profile.location}</span>
         </div>
         <div className="flex items-baseline justify-between">
-          <span className="uppercase tracking-[0.24em]">{t.social}</span>
+          <span className="uppercase tracking-[0.24em]">Social</span>
           <div className="flex gap-3">
             {profile.social.map((s) => (
               <a
@@ -217,7 +214,7 @@ function SidebarFooter() {
         </div>
         <div className="flex items-baseline justify-between border-t border-[var(--rule)] pt-3">
           <span>© {profile.year}</span>
-          <span>{t.allRightsReserved}</span>
+          <span>All rights reserved</span>
         </div>
       </div>
     </div>

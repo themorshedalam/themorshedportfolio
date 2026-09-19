@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { profile } from "@/lib/projects";
-import { useLang } from "@/lib/lang-context";
 
 const experience = [
   {
@@ -75,7 +74,6 @@ const recommendations = [
 ];
 
 export function AboutView() {
-  const { t } = useLang();
   return (
     <div className="scroll-cream relative h-full overflow-y-auto bg-[var(--cream)]">
       <div className="mx-auto max-w-[1100px] px-6 pt-12 pb-24 md:px-12 md:pt-16">
@@ -203,7 +201,7 @@ export function AboutView() {
               Experience
             </h2>
             <span className="font-mono-label text-[11px] tabular-nums text-[var(--meta)]">
-              {experience.length} {t.roles}
+              {experience.length} roles
             </span>
           </div>
           <ul className="space-y-0">
