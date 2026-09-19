@@ -113,7 +113,7 @@ export function QuotesPanel({ active }: Props) {
       </div>
 
       {/* Quran verse — mobile only, at bottom */}
-      <div className="mt-6 px-8 pb-2 md:hidden">
+      <div className="mt-8 px-8 pb-4 md:hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
@@ -134,7 +134,7 @@ export function QuotesPanel({ active }: Props) {
       </div>
 
       {/* Prayer times — mobile only */}
-      <div className="md:hidden">
+      <div className="mt-6 pb-6 md:hidden">
         <PrayerTimes />
       </div>
     </div>
