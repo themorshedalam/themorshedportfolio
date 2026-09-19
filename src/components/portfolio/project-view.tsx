@@ -5,6 +5,7 @@ import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
 import { projects, type Project } from "@/lib/projects";
 import { Lightbox } from "./lightbox";
 import { ProjectImage } from "./project-image";
+import { ProjectVideo } from "./project-video";
 
 type Props = {
   project: Project;
@@ -117,16 +118,7 @@ export function ProjectView({ project, transitionKey }: Props) {
                         Video
                       </span>
                     </div>
-                    <video
-                      src={vid.src}
-                      controls
-                      playsInline
-                      preload="auto"
-                      controlsList="nodownload nofullscreen noremoteplayback"
-                      disablePictureInPicture
-                      onContextMenu={(e) => e.preventDefault()}
-                      className="block w-full h-auto rounded-2xl border border-[var(--rule)]"
-                    />
+                    <ProjectVideo src={vid.src} caption={vid.caption} />
                   </motion.figure>
                 ))}
               </div>
