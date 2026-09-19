@@ -11,6 +11,7 @@ import { AboutView } from "@/components/portfolio/about-view";
 import { ContactView } from "@/components/portfolio/contact-view";
 import { IntroOverlay } from "@/components/portfolio/intro-overlay";
 import { QuotesPanel } from "@/components/portfolio/quotes-panel";
+import { Chatbot } from "@/components/portfolio/chatbot";
 import { projects, type NavId } from "@/lib/projects";
 
 export default function Home() {
@@ -200,6 +201,9 @@ export default function Home() {
       <AnimatePresence>
         {showIntro && <IntroOverlay onComplete={handleIntroComplete} />}
       </AnimatePresence>
+
+      {/* Ask Me Anything chatbot — bottom right corner */}
+      <Chatbot />
     </div>
   );
 }
