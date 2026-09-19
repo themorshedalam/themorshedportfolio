@@ -51,7 +51,7 @@ export function QuotesPanel({ active }: Props) {
           muted
           loop
           playsInline
-          preload="none"
+          preload="metadata"
           poster="/projects/showreel-poster.jpg"
           onLoadedData={() => setVideoLoaded(true)}
           onContextMenu={(e) => e.preventDefault()}
