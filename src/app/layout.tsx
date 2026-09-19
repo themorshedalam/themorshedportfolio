@@ -32,7 +32,7 @@ const siteUrl = "https://themorshedalam.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Graphic & Motion Graphics Designer in Dubai",
+    default: "Graphic & Motion Graphics Designer",
     template: "%s | Morshed Alam",
   },
   description:
