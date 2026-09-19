@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { quranVerses } from "@/lib/quran-verses";
+import { motion } from "framer-motion";
 
 type Props = {
   active: boolean;
@@ -14,19 +13,9 @@ type Props = {
  * Smart video loading: direct URL on desktop, blob on iOS/Safari.
  */
 export function QuotesPanel({ active }: Props) {
-  const [index, setIndex] = useState(0);
   const [videoSrc, setVideoSrc] = useState<string>("");
   const [videoLoading, setVideoLoading] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const timer = useRef<ReturnType<typeof setInterval>>();
-
-  useEffect(() => {
-    if (!active) return;
-    timer.current = setInterval(() => {
-      setIndex((prev) => (prev + 1) % quranVerses.length);
-    }, 10000);
-    return () => clearInterval(timer.current);
-  }, [active]);
 
   // Smart video loading — direct URL on desktop, blob on iOS
   useEffect(() => {
@@ -63,8 +52,6 @@ export function QuotesPanel({ active }: Props) {
       videoRef.current.play().catch(() => {});
     }
   }, [videoLoading, videoSrc]);
-
-  const verse = quranVerses[index];
 
   return (
     <div className="flex h-full flex-col items-center justify-center bg-[var(--cream)]">
@@ -109,27 +96,6 @@ export function QuotesPanel({ active }: Props) {
             className="block w-full h-auto rounded-2xl border border-[var(--rule)]"
           />
         )}
-      </div>
-
-      {/* Quran verse — mobile only, at bottom */}
-      <div className="mt-6 px-8 pb-6 md:hidden">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="text-center"
-          >
-            <p className="font-mono-label text-[13px] leading-[1.4] text-foreground/70">
-              {verse.english}
-            </p>
-            <p className="font-mono-label mt-1 text-[9px] uppercase tracking-[0.12em] text-[var(--meta)]">
-              {verse.reference}
-            </p>
-          </motion.div>
-        </AnimatePresence>
       </div>
     </div>
   );
