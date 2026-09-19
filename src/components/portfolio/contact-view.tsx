@@ -2,9 +2,11 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useLang } from "@/lib/lang-context";
 import { profile } from "@/lib/projects";
 
 export function ContactView() {
+  const { t } = useLang();
   const [time, setTime] = useState("");
   const [hijriDate, setHijriDate] = useState("");
   const [gregorianDate, setGregorianDate] = useState("");
@@ -61,7 +63,7 @@ export function ContactView() {
           <span className="h-1 w-1 rounded-full bg-foreground" />
           <span>/contact</span>
           <span className="text-[var(--rule)]">/</span>
-          <span>Get in touch</span>
+          <span>{t.getInTouch}</span>
         </motion.div>
 
         <motion.h1
@@ -72,7 +74,7 @@ export function ContactView() {
         >
           Let&apos;s make
           <br />
-          something good.
+          {t.somethingGood}
         </motion.h1>
 
         <motion.p
@@ -156,11 +158,11 @@ export function ContactView() {
           className="group mt-10 block border-t border-[var(--rule)] pt-8"
         >
           <div className="font-mono-label mb-2 text-[10px] uppercase tracking-[0.24em] text-[var(--meta)]">
-            Start a project
+            {t.startAProject}
           </div>
           <div className="flex items-center gap-4">
             <span className="font-serif-display text-balance text-[clamp(1.75rem,4vw,3.25rem)] leading-[1.05] text-foreground transition-opacity group-hover:opacity-50">
-              Write a hello →
+              {t.writeAHello}
             </span>
           </div>
         </motion.a>

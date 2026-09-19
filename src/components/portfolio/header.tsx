@@ -5,6 +5,7 @@ import { profile, navItems } from "@/lib/projects";
 import { QuranVerse } from "./quran-verse";
 import { ThemeToggle } from "./theme-toggle";
 import { LangToggle } from "./lang-toggle";
+import { useLang } from "@/lib/lang-context";
 
 type Props = {
   activeNav: string;
@@ -14,6 +15,7 @@ type Props = {
 };
 
 export function Header({ activeNav, onNav, onHome, hasProject = true }: Props) {
+  const { t } = useLang();
   return (
     <header className="relative z-30 flex h-16 items-center justify-between border-b border-[var(--rule)] bg-[var(--cream)] px-6 md:px-10">
       {/* Brand — clicking returns to the homepage */}
@@ -53,7 +55,7 @@ export function Header({ activeNav, onNav, onHome, hasProject = true }: Props) {
                     isActive ? "text-foreground" : "text-foreground/45 hover:text-foreground"
                   }`}
                 >
-                  {item.label}
+                  {item.id === "project" ? t.project : item.id === "personal" ? t.about : t.contact}
                 </span>
                 {isActive && (
                   <motion.span

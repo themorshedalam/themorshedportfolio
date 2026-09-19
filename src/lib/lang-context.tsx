@@ -51,18 +51,18 @@ const en: Translations = {
 };
 
 const ar: Translations = {
-  project: "المشاريع", about: "نبذة", contact: "تواصل",
-  projects: "المشاريع", location: "الموقع", social: "التواصل",
+  project: "الأعمال", about: "نبذة عني", contact: "تواصل معي",
+  projects: "الأعمال", location: "الموقع", social: "روابط التواصل",
   allRightsReserved: "جميع الحقوق محفوظة",
   client: "العميل", year: "السنة", caseStudy: "دراسة حالة",
-  video: "فيديو", view: "عرض", nextProject: "المشروع التالي",
-  capabilities: "المهارات", disciplines: "تخصصات",
-  experience: "الخبرة", roles: "وظائف", recommendations: "التوصيات",
-  getInTouch: "تواصل معنا", letsMake: "لنصنع", somethingGood: "شيئاً رائعاً.",
-  contactDesc: "دائماً منفتح على المحادثة حول الحملات والإطلاقات والأفلام الموسمية. إذا لديك فكرة — أو حتى اتجاه — أود أن أسمع ما تصنعه.",
-  date: "التاريخ", localTime: "الوقت المحلي", startAProject: "ابدأ مشروعاً",
-  writeAHello: "اكتب رسالة →", showreel: "معرض الأعمال",
-  openForCollaborations: "متاح للتعاون",
+  video: "فيديو", view: "عرض", nextProject: "العمل التالي",
+  capabilities: "المهارات والقدرات", disciplines: "تخصصات",
+  experience: "الخبرات العملية", roles: "وظائف", recommendations: "التوصيات",
+  getInTouch: "تواصل معي", letsMake: "لنصنع", somethingGood: "شيئاً استثنائياً.",
+  contactDesc: "أنا دائماً منفتحٌ على الحوار حول الحملات والإطلاقات والأعمال الموسمية. إن كان لديك مشروعٌ — أو حتى مجرد فكرة — يسعدني أن أسمع ما تعمل عليه.",
+  date: "التاريخ", localTime: "التوقيت المحلي", startAProject: "ابدأ مشروعك",
+  writeAHello: "أرسل رسالة ←", showreel: "معرض الأعمال",
+  openForCollaborations: "متاحٌ للتعاون",
 };
 
 type LangContextType = {

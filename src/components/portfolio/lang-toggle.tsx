@@ -10,7 +10,7 @@ export function LangToggle() {
   const { lang, setLang } = useLang();
 
   return (
-    <div className="flex items-center gap-1 rounded-full border border-[var(--rule)] px-1 py-0.5">
+    <div className="hidden items-center gap-1 rounded-full border border-[var(--rule)] px-1 py-0.5 md:flex">
       <button
         onClick={() => setLang("en")}
         className={`font-mono-label rounded-full px-2 py-0.5 text-[10px] tracking-[0.02em] transition-colors ${

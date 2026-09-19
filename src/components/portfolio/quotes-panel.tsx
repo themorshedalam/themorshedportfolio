@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { quranVerses } from "@/lib/quran-verses";
 import { PrayerTimes } from "./prayer-times";
+import { useLang } from "@/lib/lang-context";
 
 type Props = {
   active: boolean;
@@ -15,6 +16,7 @@ type Props = {
  * Smart video loading: direct URL on desktop, blob on iOS/Safari.
  */
 export function QuotesPanel({ active }: Props) {
+  const { t } = useLang();
   const [index, setIndex] = useState(0);
   const [videoSrc, setVideoSrc] = useState<string>("");
   const [videoLoading, setVideoLoading] = useState(true);
@@ -69,10 +71,10 @@ export function QuotesPanel({ active }: Props) {
 
   return (
     <div className="flex h-full flex-col items-center justify-center bg-[var(--cream)]">
-      {/* Showreel — centered */}
+      {/* {t.showreel} — centered */}
       <div className="w-full max-w-[1100px] px-6 md:px-10">
         <div className="font-mono-label mb-2 text-[10px] uppercase tracking-[0.24em] text-[var(--meta)]">
-          Showreel
+          {t.showreel}
         </div>
         {/* Mobile: GIF banner above showreel */}
         <img
@@ -82,7 +84,7 @@ export function QuotesPanel({ active }: Props) {
           decoding="async"
           className="mb-4 block w-full max-w-[280px] h-auto rounded-2xl mx-auto md:hidden"
         />
-        {/* Showreel video — poster shows instantly, video plays when ready */}
+        {/* {t.showreel} video — poster shows instantly, video plays when ready */}
         {videoLoading ? (
           <div className="flex aspect-video w-full items-center justify-center rounded-2xl border border-[var(--rule)] bg-[var(--cream-soft)] overflow-hidden">
             <img

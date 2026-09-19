@@ -6,6 +6,7 @@ import { projects, type Project } from "@/lib/projects";
 import { Lightbox } from "./lightbox";
 import { ProjectImage } from "./project-image";
 import { ProjectVideo } from "./project-video";
+import { useLang } from "@/lib/lang-context";
 
 type Props = {
   project: Project;
