@@ -12,9 +12,12 @@ type Props = {
 /**
  * Right panel — showreel video centered (desktop), 
  * Quran verse at bottom on mobile.
+ * Video is loaded as a blob to bypass range request issues on iOS.
  */
 export function QuotesPanel({ active }: Props) {
   const [index, setIndex] = useState(0);
+  const [videoUrl, setVideoUrl] = useState<string>("");
+  const videoRef = useRef<HTMLVideoElement>(null);
   const timer = useRef<ReturnType<typeof setInterval>>();
 
   useEffect(() => {
@@ -24,6 +27,31 @@ export function QuotesPanel({ active }: Props) {
     }, 10000);
     return () => clearInterval(timer.current);
   }, [active]);
+
+  // Fetch video as blob to bypass iOS range request issues
+  useEffect(() => {
+    let url: string;
+    fetch("/projects/showreel.mp4")
+      .then((res) => res.blob())
+      .then((blob) => {
+        url = URL.createObjectURL(blob);
+        setVideoUrl(url);
+      })
+      .catch(() => {
+        // Fallback: use direct URL (works on desktop)
+        setVideoUrl("/projects/showreel.mp4");
+      });
+    return () => {
+      if (url) URL.revokeObjectURL(url);
+    };
+  }, []);
+
+  // Play video once blob URL is ready
+  useEffect(() => {
+    if (videoUrl && videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, [videoUrl]);
 
   const verse = quranVerses[index];
 
@@ -42,14 +70,10 @@ export function QuotesPanel({ active }: Props) {
           decoding="async"
           className="mb-4 block w-full max-w-[280px] h-auto rounded-2xl mx-auto md:hidden"
         />
-        {/* Showreel video — with ref for manual play on mobile */}
+        {/* Showreel video — blob URL for iOS compatibility */}
         <video
-          ref={(el) => {
-            if (el) {
-              el.play().catch(() => {});
-            }
-          }}
-          src="/projects/showreel.mp4"
+          ref={videoRef}
+          src={videoUrl || undefined}
           autoPlay
           muted
           loop
