@@ -178,7 +178,7 @@ export function Chatbot() {
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
             onClick={() => setIsOpen(true)}
             data-cursor="link"
-            className="fixed bottom-5 right-5 z-50 hidden h-16 w-16 items-center justify-center rounded-full bg-foreground shadow-xl hover:scale-105 transition-transform lg:flex"
+            className="fixed bottom-5 right-5 z-50 hidden h-16 w-16 items-center justify-center rounded-full bg-white shadow-xl hover:scale-105 transition-transform lg:flex"
             aria-label="Ask me anything"
           >
             <img
