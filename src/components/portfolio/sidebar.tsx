@@ -213,7 +213,7 @@ function SidebarFooter() {
           </div>
         </div>
         <div className="flex items-baseline justify-between border-t border-[var(--rule)] pt-3">
-          <span>© {profile.year}</span>
+          <span>© {new Date().getFullYear()}</span>
           <span>All rights reserved</span>
         </div>
       </div>
