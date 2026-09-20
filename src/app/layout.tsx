@@ -131,7 +131,7 @@ export default function RootLayout({
               name: "Morshed Alam",
               url: siteUrl,
               image: `${siteUrl}/og-image.png`,
-              jobTitle: "Creative Multimedia Designer",
+              jobTitle: "Animator & Designer",
               worksFor: {
                 "@type": "Organization",
                 name: "ENTERTAINER FZ LLC",
@@ -159,12 +159,12 @@ export default function RootLayout({
                 "Graphic Design",
               ],
               sameAs: [
-                "https://www.behance.net/themorshedalam",
                 "https://www.linkedin.com/in/themorshedalam/",
+                "https://www.behance.net/themorshedalam",
                 "https://themorshedalam.com",
               ],
               description:
-                "Morshed Alam is a Motion Graphics Designer and Video Editor based in Dubai, working at The Entertainer FZ LLC. Specializing in campaign films, launch films, and seasonal narratives.",
+                "Morshed Alam — Animator & Designer based in Dubai, working at The Entertainer FZ LLC. Specializing in campaign films, launch films, and seasonal narratives.",
             }),
           }}
         />
@@ -181,7 +181,7 @@ export default function RootLayout({
                 name: "Morshed Alam",
               },
               description:
-                "Creative Motion Graphics Designer in Dubai. Motion Graphics Designer at ENTERTAINER FZ LLC, specializing in Meta Ads, EDM, CRM, and Paid Media using VEO3 and Runway.",
+                "Morshed Alam — Animator & Designer based in Dubai. Motion Graphics Designer at ENTERTAINER FZ LLC, specializing in Meta Ads, EDM, CRM, and Paid Media using VEO3 and Runway.",
               inLanguage: "en",
               potentialAction: {
                 "@type": "SearchAction",
