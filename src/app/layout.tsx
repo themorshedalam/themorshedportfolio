@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     template: "%s | Morshed Alam",
   },
   description:
-    "Morshed Alam – Animator & Designer",
+    "Animator & Designer at ENTERTAINER FZ LLC. Specializing in Meta Ads, EDM, CRM, and Paid Media using Higgsfield and Runway.",
   keywords: [
     "Morshed Alam",
     "Morshed Alam Dubai",
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Morshed Alam — Animator & Designer",
     description:
-      "Motion Graphics Designer at ENTERTAINER FZ LLC, creating innovative visual content for brand growth. Specializing in Meta Ads, EDM, CRM, and Paid Media using VEO3 and Runway.",
+      "Animator & Designer at ENTERTAINER FZ LLC. Specializing in Meta Ads, EDM, CRM, and Paid Media using Higgsfield and Runway.",
     url: siteUrl,
     siteName: "MA - Studio",
     type: "website",
@@ -98,7 +98,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Morshed Alam — Animator & Designer",
     description:
-      "Motion Graphics Designer at ENTERTAINER FZ LLC. Specializing in Meta Ads, EDM, CRM, and Paid Media using VEO3 and Runway.",
+      "Animator & Designer at ENTERTAINER FZ LLC. Specializing in Meta Ads, EDM, CRM, and Paid Media using Higgsfield and Runway.",
     images: ["/og-image.png"],
   },
   robots: {
