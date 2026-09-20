@@ -32,7 +32,7 @@ const siteUrl = "https://themorshedalam.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Morshed Alam - Creative Designer",
+    default: "Morshed Alam — Animator & Designer",
     template: "%s | Morshed Alam",
   },
   description:
@@ -78,11 +78,11 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Morshed Alam - Creative Designer",
+    title: "Morshed Alam — Animator & Designer",
     description:
       "Motion Graphics Designer at ENTERTAINER FZ LLC, creating innovative visual content for brand growth. Specializing in Meta Ads, EDM, CRM, and Paid Media using VEO3 and Runway.",
     url: siteUrl,
-    siteName: "Morshed Alam - Creative Designer",
+    siteName: "Morshed Alam — Animator & Designer",
     type: "website",
     locale: "en_US",
     images: [
@@ -90,13 +90,13 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Morshed Alam - Creative Designer",
+        alt: "Morshed Alam — Animator & Designer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Morshed Alam - Creative Designer",
+    title: "Morshed Alam — Animator & Designer",
     description:
       "Motion Graphics Designer at ENTERTAINER FZ LLC. Specializing in Meta Ads, EDM, CRM, and Paid Media using VEO3 and Runway.",
     images: ["/og-image.png"],
@@ -174,7 +174,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: "Morshed Alam - Creative Designer",
+              name: "Morshed Alam — Animator & Designer",
               url: siteUrl,
               author: {
                 "@type": "Person",
