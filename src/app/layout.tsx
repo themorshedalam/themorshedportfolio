@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     description:
       "Motion Graphics Designer at ENTERTAINER FZ LLC, creating innovative visual content for brand growth. Specializing in Meta Ads, EDM, CRM, and Paid Media using VEO3 and Runway.",
     url: siteUrl,
-    siteName: "Morshed Alam — Animator & Designer",
+    siteName: "MA - Studio",
     type: "website",
     locale: "en_US",
     images: [
@@ -174,7 +174,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: "Morshed Alam — Animator & Designer",
+              name: "MA - Studio",
               url: siteUrl,
               author: {
                 "@type": "Person",
