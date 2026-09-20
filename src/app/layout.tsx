@@ -32,11 +32,11 @@ const siteUrl = "https://themorshedalam.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Morshed Alam — Animator & Designer",
+    default: "Morshed Alam",
     template: "%s | Morshed Alam",
   },
   description:
-    "Motion graphics designer and animator in Dubai. Motion Graphics Designer at ENTERTAINER FZ LLC, creating innovative visual content for brand growth. Specializing in Meta Ads, EDM, CRM, and Paid Media using VEO3 and Runway.",
+    "Morshed Alam – Animator & Designer",
   keywords: [
     "Morshed Alam",
     "Morshed Alam Dubai",
