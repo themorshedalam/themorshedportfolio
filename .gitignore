@@ -53,3 +53,7 @@ tests/
 # Database
 db/
 prisma/
+
+# TypeScript Build Cache
+*.tsbuildinfo
+download/
