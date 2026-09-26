@@ -21,7 +21,7 @@ export function QuranVerse() {
   const verse = quranVerses[index];
 
   return (
-    <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:block">
+    <div className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 xl:block">
       <AnimatePresence mode="wait">
         <motion.div
           key={index}
