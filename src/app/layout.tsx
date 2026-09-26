@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Instrument_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
@@ -26,21 +26,29 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500", "600"],
 });
 
-
 const siteUrl = "https://themorshedalam.com";
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fdfbf7" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Morshed Alam — Animator & Designer",
+    default: "Morshed Alam — Motion Designer & Animator | Dubai, UAE",
     template: "%s | Morshed Alam",
   },
   description:
-    "Animator & Designer at ENTERTAINER FZ LLC. Specializing in Meta Ads, EDM, CRM, and Paid Media using Higgsfield and Runway.",
+    "Morshed Alam is a Motion Graphics Designer & Animator based in Dubai at ENTERTAINER FZ LLC. Specializing in commercial campaign films, Meta ads, 3D motion, and AI-driven creative media.",
   keywords: [
     "Morshed Alam",
-    "Morshed Alam Dubai",
     "themorshedalam",
+    "Morshed Alam Dubai",
     "Motion graphics designer in Dubai",
     "Motion Graphics Designer Dubai",
     "Motion Graphics Animator in Dubai",
@@ -50,12 +58,15 @@ export const metadata: Metadata = {
     "Video Editor Dubai",
     "Motion Designer UAE",
     "After Effects Dubai",
+    "Cinema 4D Dubai",
     "Campaign Film Dubai",
     "MA Studio",
     "The Entertainer designer",
     "ENTERTAINER FZ LLC",
     "VEO3",
     "Runway AI",
+    "Higgsfield",
+    "Meta Ads Designer",
     "Graphic Designer Dubai",
     "Multimedia Designer UAE",
     "Creative Multimedia Designer",
@@ -63,6 +74,13 @@ export const metadata: Metadata = {
   authors: [{ name: "Morshed Alam", url: siteUrl }],
   creator: "Morshed Alam",
   publisher: "Morshed Alam",
+  category: "design",
+  classification: "Portfolio",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   alternates: {
     canonical: siteUrl,
   },
@@ -78,28 +96,30 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Morshed Alam — Animator & Designer",
+    title: "Morshed Alam — Motion Designer & Animator | Dubai, UAE",
     description:
-      "Animator & Designer at ENTERTAINER FZ LLC. Specializing in Meta Ads, EDM, CRM, and Paid Media using Higgsfield and Runway.",
+      "Morshed Alam is a Motion Graphics Designer & Animator based in Dubai at ENTERTAINER FZ LLC. Specializing in commercial campaign films, Meta ads, 3D motion, and AI-driven creative media.",
     url: siteUrl,
-    siteName: "MA - Studio",
-    type: "website",
+    siteName: "MA — Studio | Morshed Alam",
+    type: "profile",
     locale: "en_US",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Morshed Alam — Animator & Designer",
+        alt: "Morshed Alam — Motion Designer & Animator Portfolio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Morshed Alam — Animator & Designer",
+    title: "Morshed Alam — Motion Designer & Animator | Dubai, UAE",
     description:
-      "Animator & Designer at ENTERTAINER FZ LLC. Specializing in Meta Ads, EDM, CRM, and Paid Media using Higgsfield and Runway.",
+      "Morshed Alam is a Motion Graphics Designer & Animator based in Dubai at ENTERTAINER FZ LLC. Specializing in commercial campaign films, Meta ads, 3D motion, and AI-driven creative media.",
     images: ["/og-image.png"],
+    creator: "@themorshedalam",
+    site: "@themorshedalam",
   },
   robots: {
     index: true,
@@ -114,6 +134,197 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLdGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfilePage",
+      "@id": `${siteUrl}/#profile`,
+      url: siteUrl,
+      name: "Morshed Alam — Motion Designer & Animator Portfolio",
+      isPartOf: {
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+      },
+      about: {
+        "@id": `${siteUrl}/#person`,
+      },
+      mainEntity: {
+        "@id": `${siteUrl}/#person`,
+      },
+      datePublished: "2024-01-01T00:00:00Z",
+      dateModified: new Date().toISOString(),
+      inLanguage: "en",
+    },
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+      name: "Morshed Alam",
+      alternateName: ["themorshedalam", "MA — Studio", "Morshed"],
+      url: siteUrl,
+      image: `${siteUrl}/projects/morshed-portrait.png`,
+      jobTitle: "Motion Graphics Designer & Animator",
+      worksFor: {
+        "@type": "Organization",
+        name: "ENTERTAINER FZ LLC",
+        url: "https://www.theentertainerme.com",
+        location: {
+          "@type": "Place",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Dubai",
+            addressCountry: "AE",
+          },
+        },
+      },
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Dubai",
+        addressRegion: "Dubai",
+        addressCountry: "AE",
+      },
+      nationality: {
+        "@type": "Country",
+        name: "United Arab Emirates",
+      },
+      hasOccupation: {
+        "@type": "Occupation",
+        name: "Motion Graphics Designer & Video Editor",
+        occupationalCategory: "27-1014.00 - Multimedia Artists and Animators",
+        skills: [
+          "Motion Graphics Design",
+          "2D & 3D Animation",
+          "Video Editing",
+          "Campaign Films",
+          "Meta Ads",
+          "EDM & CRM Creative",
+          "After Effects",
+          "Cinema 4D",
+          "Runway Gen-3",
+          "Google VEO",
+          "Higgsfield",
+          "Creative Direction",
+        ],
+      },
+      knowsAbout: [
+        "Motion Graphics",
+        "Motion Graphics Design",
+        "Motion Graphics Animation",
+        "2D Animation",
+        "3D Animation",
+        "Video Editing",
+        "After Effects",
+        "Cinema 4D",
+        "Figma",
+        "VEO3",
+        "Runway AI",
+        "Higgsfield",
+        "Campaign Films",
+        "Meta Ads Creative",
+        "EDM Design",
+      ],
+      sameAs: [
+        "https://www.linkedin.com/in/themorshedalam/",
+        "https://www.behance.net/themorshedalam",
+        "https://github.com/themorshedalam",
+        "https://themorshedalam.com",
+      ],
+      description:
+        "Morshed Alam is a Motion Graphics Designer & Animator based in Dubai, UAE, working at ENTERTAINER FZ LLC. He specializes in high-impact commercial campaign films, Meta ads, EDM, CRM, and cutting-edge generative AI animation workflows.",
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      name: "MA — Studio | Morshed Alam",
+      url: siteUrl,
+      publisher: {
+        "@id": `${siteUrl}/#person`,
+      },
+      inLanguage: "en",
+      description:
+        "Official motion design and animation portfolio of Morshed Alam. Discover campaign films, launch narratives, and creative motion work.",
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${siteUrl}/#faq`,
+      name: "Frequently Asked Questions about Morshed Alam",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "Who is Morshed Alam?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Morshed Alam is a Motion Graphics Designer, Animator, and Video Editor based in Dubai, UAE, currently designing at ENTERTAINER FZ LLC. He creates high-impact commercial films, launch campaigns, Meta Ads, and AI-augmented motion design.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What services does Morshed Alam provide?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Morshed Alam provides motion graphics design, 2D and 3D animation, commercial video editing, brand launch films, social media advertising (Meta Ads, TikTok, YouTube Shorts), EDM/CRM motion assets, and AI-driven creative workflows.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Where is Morshed Alam based and is he available for inquiries?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Morshed Alam is based in Dubai, United Arab Emirates. He can be contacted for professional collaborations and inquiries at info@themorshedalam.com or on LinkedIn at linkedin.com/in/themorshedalam.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What tools and software does Morshed Alam use?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Morshed Alam works with industry-standard post-production tools including Adobe After Effects, Adobe Premiere Pro, Cinema 4D, and Figma, alongside next-generation generative AI platforms such as Runway Gen-3, Google VEO, and Higgsfield.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What notable campaigns has Morshed Alam created?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "His portfolio highlights flagship projects including Celebrating 25 Years for The Entertainer, Staycation Escapes, Ramadan 2026, Share the Love, and the Multiple Single Task motion series.",
+          },
+        },
+      ],
+    },
+    {
+      "@type": "ItemList",
+      "@id": `${siteUrl}/#projects`,
+      name: "Selected Motion Design Work — Morshed Alam",
+      itemListOrder: "https://schema.org/ItemListOrderAscending",
+      numberOfItems: projects.length,
+      itemListElement: projects.map((p, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: p.title,
+        url: `${siteUrl}/#${p.id}`,
+        description: p.description,
+        image: p.images[0]?.src
+          ? `${siteUrl}${p.images[0].src}`
+          : p.videos?.[0]?.src
+            ? `${siteUrl}${p.videos[0].src}`
+            : `${siteUrl}/og-image.png`,
+      })),
+    },
+    {
+      "@type": "VideoObject",
+      "@id": `${siteUrl}/#showreel`,
+      name: "Morshed Alam — Motion Design Showreel",
+      description: "Motion design and film showreel showcasing commercial campaigns, animation, and video editing by Morshed Alam.",
+      thumbnailUrl: `${siteUrl}/projects/showreel-poster.jpg`,
+      contentUrl: `${siteUrl}/projects/showreel.mp4`,
+      uploadDate: "2026-01-01T00:00:00Z",
+      creator: {
+        "@id": `${siteUrl}/#person`,
+      },
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -125,121 +336,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Morshed Alam",
-              url: siteUrl,
-              image: `${siteUrl}/og-image.png`,
-              jobTitle: "Animator & Designer",
-              worksFor: {
-                "@type": "Organization",
-                name: "ENTERTAINER FZ LLC",
-              },
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Dubai",
-                addressCountry: "AE",
-              },
-              nationality: {
-                "@type": "Country",
-                name: "United Arab Emirates",
-              },
-              knowsAbout: [
-                "Motion Graphics",
-                "Motion Graphics Design",
-                "Motion Graphics Animation",
-                "Animation",
-                "Video Editing",
-                "After Effects",
-                "Cinema 4D",
-                "VEO3",
-                "Runway",
-                "Campaign Films",
-                "Graphic Design",
-              ],
-              sameAs: [
-                "https://www.linkedin.com/in/themorshedalam/",
-                "https://www.behance.net/themorshedalam",
-                "https://themorshedalam.com",
-              ],
-              description:
-                "Morshed Alam — Animator & Designer based in Dubai, working at The Entertainer FZ LLC. Specializing in campaign films, launch films, and seasonal narratives.",
-            }),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              name: "MA - Studio",
-              url: siteUrl,
-              author: {
-                "@type": "Person",
-                name: "Morshed Alam",
-              },
-              description:
-                "Morshed Alam — Animator & Designer based in Dubai. Motion Graphics Designer at ENTERTAINER FZ LLC, specializing in Meta Ads, EDM, CRM, and Paid Media using VEO3 and Runway.",
-              inLanguage: "en",
-              potentialAction: {
-                "@type": "SearchAction",
-                target: {
-                  "@type": "EntryPoint",
-                  urlTemplate: `${siteUrl}/?q={search_term_string}`,
-                },
-                "query-input": "required name=search_term_string",
-              },
-            }),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ItemList",
-              name: "Selected Work — Morshed Alam",
-              itemListOrder: "https://schema.org/ItemListOrderAscending",
-              numberOfItems: projects.length,
-              itemListElement: projects.map((p, i) => ({
-                "@type": "ListItem",
-                position: i + 1,
-                name: p.title,
-                url: siteUrl,
-                description: p.description,
-                image: p.images[0]?.src
-                  ? `${siteUrl}${p.images[0].src}`
-                  : p.videos?.[0]?.src
-                    ? `${siteUrl}${p.videos[0].src}`
-                    : `${siteUrl}/og-image.png`,
-              })),
-            }),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ImageGallery",
-              name: "Morshed Alam — Motion Design Portfolio",
-              url: siteUrl,
-              image: projects
-                .filter((p) => p.images[0]?.src)
-                .slice(0, 6)
-                .map((p) => ({
-                  "@type": "ImageObject",
-                  contentUrl: `${siteUrl}${p.images[0].src}`,
-                  name: p.title,
-                  description: p.description,
-                  creator: {
-                    "@type": "Person",
-                    name: "Morshed Alam",
-                  },
-                })),
-            }),
+            __html: JSON.stringify(jsonLdGraph),
           }}
         />
         {/* Resource hints for LCP optimization */}
@@ -248,9 +345,11 @@ export default function RootLayout({
         <link rel="preconnect" href="https://api.aladhan.com" />
         <link rel="dns-prefetch" href="https://api.aladhan.com" />
         {/* Prevent flash of wrong theme (FOUC) */}
-        <script dangerouslySetInnerHTML={{
-          __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');}}catch(e){}})();`
-        }} />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark");}}catch(e){}})();`,
+          }}
+        />
       </head>
       <body
         className={`${instrumentSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} font-sans antialiased bg-background text-foreground`}
