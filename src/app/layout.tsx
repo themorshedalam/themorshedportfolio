@@ -40,7 +40,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Morshed Alam — Motion Designer & Animator | Dubai, UAE",
+    default: "Morshed Alam — Animator and Designer",
     template: "%s | Morshed Alam",
   },
   description:
@@ -96,7 +96,7 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Morshed Alam — Motion Designer & Animator | Dubai, UAE",
+    title: "Morshed Alam — Animator and Designer",
     description:
       "Morshed Alam is a Motion Graphics Designer & Animator based in Dubai at ENTERTAINER FZ LLC. Specializing in commercial campaign films, Meta ads, 3D motion, and AI-driven creative media.",
     url: siteUrl,
@@ -108,13 +108,13 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Morshed Alam — Motion Designer & Animator Portfolio",
+        alt: "Morshed Alam — Animator and Designer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Morshed Alam — Motion Designer & Animator | Dubai, UAE",
+    title: "Morshed Alam — Animator and Designer",
     description:
       "Morshed Alam is a Motion Graphics Designer & Animator based in Dubai at ENTERTAINER FZ LLC. Specializing in commercial campaign films, Meta ads, 3D motion, and AI-driven creative media.",
     images: ["/og-image.png"],
@@ -141,7 +141,7 @@ const jsonLdGraph = {
       "@type": "ProfilePage",
       "@id": `${siteUrl}/#profile`,
       url: siteUrl,
-      name: "Morshed Alam — Motion Designer & Animator Portfolio",
+      name: "Morshed Alam — Animator and Designer",
       isPartOf: {
         "@type": "WebSite",
         "@id": `${siteUrl}/#website`,
