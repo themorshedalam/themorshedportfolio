@@ -253,7 +253,7 @@ export const projects: Project[] = [
     brief:
       "Energize the tournament excitement with punchy kinetic typography, vibrant team energy, and rhythm-driven motion design optimized for mobile feeds and digital stadium displays.",
     images: [
-      // 3-column grid — kinetic frames
+      // 3-column grid — kinetic tournament frames
       {
         src: "/projects/worldcup-1.gif",
         caption: "Match Day Motion — Frame 01",
@@ -283,19 +283,6 @@ export const projects: Project[] = [
         src: "/projects/worldcup-5.gif",
         caption: "Stadium Atmosphere — Frame 05",
         gridGroup: 2,
-        gridCols: 2,
-      },
-      // 2-column grid — celebration & finale
-      {
-        src: "/projects/worldcup-6.gif",
-        caption: "Celebration Highlight — Frame 06",
-        gridGroup: 3,
-        gridCols: 2,
-      },
-      {
-        src: "/projects/worldcup-7.gif",
-        caption: "Victory Moment — Frame 07",
-        gridGroup: 3,
         gridCols: 2,
       },
     ],
