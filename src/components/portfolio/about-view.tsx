@@ -145,7 +145,7 @@ export function AboutView() {
               draggable="false"
               onContextMenu={(e) => e.preventDefault()}
               onClick={(e) => e.preventDefault()}
-              style={{ pointerEvents: "none", userSelect: "none", WebkitUserDrag: "none" }}
+              style={{ pointerEvents: "none", userSelect: "none", WebkitUserDrag: "none" } as React.CSSProperties}
               className="w-[200px] rounded-2xl border border-[var(--rule)] object-cover md:w-[260px]"
             />
           </motion.div>

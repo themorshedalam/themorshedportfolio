@@ -19,14 +19,16 @@ export function QuotesPanel({ active }: Props) {
   const [videoSrc, setVideoSrc] = useState<string>("");
   const [videoLoading, setVideoLoading] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const timer = useRef<ReturnType<typeof setInterval>>();
+  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     if (!active) return;
     timer.current = setInterval(() => {
       setIndex((prev) => (prev + 1) % quranVerses.length);
     }, 10000);
-    return () => clearInterval(timer.current);
+    return () => {
+      if (timer.current) clearInterval(timer.current);
+    };
   }, [active]);
 
   // Smart video loading — direct URL on desktop, blob on iOS

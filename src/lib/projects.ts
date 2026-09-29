@@ -1,3 +1,13 @@
+export type ProjectCarousel = {
+  id: string;
+  title: string;
+  subtitle?: string;
+  slides: {
+    src: string;
+    caption: string;
+  }[];
+};
+
 export type Project = {
   id: string;
   index: string; // "01", "02", ...
@@ -9,6 +19,7 @@ export type Project = {
   scope: string;
   description: string;
   brief: string;
+  carousels?: ProjectCarousel[];
   images: {
     src: string;
     caption: string;
@@ -252,6 +263,54 @@ export const projects: Project[] = [
       "A dynamic motion campaign and kinetic animation series crafted for the World Cup 2026 celebration.",
     brief:
       "Energize the tournament excitement with punchy kinetic typography, vibrant team energy, and rhythm-driven motion design optimized for mobile feeds and digital stadium displays.",
+    carousels: [
+      {
+        id: "carousel-ksa",
+        title: "Carousel KSA",
+        subtitle: "4-Part Kinetic Social Carousel",
+        slides: [
+          {
+            src: "/projects/ksa-carousel-1.gif",
+            caption: "KSA Match Motion — Slide 01",
+          },
+          {
+            src: "/projects/ksa-carousel-2.gif",
+            caption: "KSA Kinetic Focus — Slide 02",
+          },
+          {
+            src: "/projects/ksa-carousel-3.gif",
+            caption: "KSA Stadium Impact — Slide 03",
+          },
+          {
+            src: "/projects/ksa-carousel-4.gif",
+            caption: "KSA Championship Finale — Slide 04",
+          },
+        ],
+      },
+      {
+        id: "carousel-qatar",
+        title: "Carousel Qatar",
+        subtitle: "4-Part Tournament Grid Carousel",
+        slides: [
+          {
+            src: "/projects/qatar-carousel-1.gif",
+            caption: "Qatar Kickoff Dynamic — Slide 01",
+          },
+          {
+            src: "/projects/qatar-carousel-2.gif",
+            caption: "Qatar Arena Motion — Slide 02",
+          },
+          {
+            src: "/projects/qatar-carousel-3.gif",
+            caption: "Qatar Match Energy — Slide 03",
+          },
+          {
+            src: "/projects/qatar-carousel-4.gif",
+            caption: "Qatar Finale Celebration — Slide 04",
+          },
+        ],
+      },
+    ],
     images: [
       // 3-column grid — kinetic tournament frames
       {

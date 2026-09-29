@@ -6,6 +6,7 @@ import { projects, type Project } from "@/lib/projects";
 import { Lightbox } from "./lightbox";
 import { ProjectImage } from "./project-image";
 import { ProjectVideo } from "./project-video";
+import { ProjectCarouselSection } from "./project-carousel";
 
 type Props = {
   project: Project;
@@ -122,6 +123,14 @@ export function ProjectView({ project, transitionKey }: Props) {
                   </motion.figure>
                 ))}
               </div>
+            )}
+
+            {/* Social Carousel Section — KSA & Qatar at the top */}
+            {project.carousels && project.carousels.length > 0 && (
+              <ProjectCarouselSection
+                carousels={project.carousels}
+                onOpenLightbox={(src) => setLightbox(src)}
+              />
             )}
 
             {/* Image gallery — vertical stack, scroll reveals */}
