@@ -19,131 +19,66 @@ const knowledgeBase: QA[] = [
   {
     question: "What services do you offer?",
     answer:
-      "I specialize in Motion Graphics Design, 2D/3D Animation, Video Editing, and Commercial Direction. My work spans large-format Out-Of-Home (OOH) digital billboards, Meta Ads, social campaigns, campaign films, In-App graphics, and Paid Media — using tools like After Effects, Cinema 4D, Premiere Pro, DaVinci Resolve, Runway Gen-3, and Google Flow.",
+      "I specialize in Motion Graphics Design, Animation, Video Editing, and Graphic Design. My work spans Meta Ads, EDM campaigns, CRM visuals, In-App graphics, Push Notifications, and Paid Media — using tools like After Effects, Cinema 4D, VEO3, and Runway.",
   },
   {
     question: "Where are you based?",
     answer:
-      "I'm based in Dubai, UAE, working on-site at ENTERTAINER FZ LLC as a Graphic & Motion Graphics Designer. I'm open to collaborations across the UAE and remotely worldwide.",
+      "I'm based in Dubai, UAE, working on-site at ENTERTAINER FZ LLC as a Graphic & Motion Graphics Designer. I'm open to collaborations across the UAE and remotely.",
   },
   {
     question: "What's your experience?",
     answer:
-      "I have over 4 years of professional motion design and post-production experience. Currently at the ENTERTAINER (Feb 2024 – Present), previously at DigiZone Media (Aug 2022 – Dec 2023), and freelance motion work with Union Church. I specialize in commercial films, launch campaigns, and seasonal narratives.",
+      "I have over 4 years of professional experience. Currently at the ENTERTAINER (Feb 2024 – Present), previously at DigiZone Media (Aug 2022 – Dec 2023), and freelance motion work with Union Church. I specialize in campaign films, launch films, and seasonal narratives.",
   },
   {
     question: "What tools do you use?",
     answer:
-      "Motion: After Effects, Cinema 4D (3D animation), Frame by Frame, Type in Motion. Video & Post: Premiere Pro, DaVinci Resolve (color grading & sound design). AI Tools: Google Flow, Runway Gen-3, Higgsfield, Adobe Firefly, Claude. Design: Photoshop, Illustrator, InDesign, Figma, Canva.",
-  },
-  {
-    question: "Tell me about Qatar OOH",
-    answer:
-      "Qatar OOH is our 2026 Out-Of-Home campaign for The Entertainer across Qatar. It features large-format digital billboards installed on prominent roadside building towers in Doha (with live on-site installation photos on this portfolio) and a 3-part urban street totem network with kinetic typography: 'Save With The Best App' and 'Live More, Pay Less'.",
-  },
-  {
-    question: "What did you do for World Cup 2026?",
-    answer:
-      "For the World Cup 2026 project, the client is The Entertainer! I created high-energy sports tournament animations, including the 4-slide Carousel KSA motion series, the 4-slide Carousel Qatar motion series, and electrifying match-day stadium frames engineered for fan engagement.",
-  },
-  {
-    question: "Tell me about Celebrating 25 Years",
-    answer:
-      "Celebrating 25 Years is a milestone brand campaign film created for The Entertainer, celebrating a quarter-century of lifestyle savings with golden celebratory lighting, refined kinetic typography, and an uplifting editorial cadence.",
-  },
-  {
-    question: "Tell me about Ramadan 2026",
-    answer:
-      "Ramadan 2026 is a cinematic seasonal campaign for The Entertainer featuring custom 3D crescent moon animations, warm ambient lantern light, and a contemplative tempo reflecting spiritual warmth and generosity.",
-  },
-  {
-    question: "Tell me about Staycation Escapes",
-    answer:
-      "Staycation Escapes is a summer getaway travel campaign for The Entertainer, combining 3D device mockups with poolside visuals and energetic typography to showcase luxury hotel and resort savings.",
-  },
-  {
-    question: "Do you do 3D animation?",
-    answer:
-      "Yes! I create custom 3D motion design using Cinema 4D and After Effects. You can see my 3D work in the Ramadan 2026 crescent scenes, Staycation device renders, and Qatar OOH billboard mockups.",
+      "Motion: After Effects, Cinema 4D, Frame by Frame, Type in Motion. AI Tools: Google Flow, Runway, Higgsfield, Firefly, Claude. Edit: Premiere Pro, DaVinci Resolve, Color, Sound Design. Design: Photoshop, Illustrator, InDesign, Figma, Canva.",
   },
   {
     question: "Are you available for freelance?",
     answer:
-      "Yes! I'm open to select freelance collaborations on campaign films, 3D motion, and OOH displays. If you have a brief or an upcoming launch, reach out to me at info@themorshedalam.com.",
+      "Yes! I'm open to collaborations on campaigns, launches, and seasonal films. If you have a brief — or even just a direction — I'd love to hear what you're making. Reach me at info@themorshedalam.com",
   },
   {
     question: "How can I contact you?",
     answer:
-      "The fastest way is email: info@themorshedalam.com. You can also find me on Behance (behance.net/themorshedalam) and LinkedIn (linkedin.com/in/themorshedalam). For project inquiries, feel free to use the Contact page on this site.",
+      "The fastest way is email: info@themorshedalam.com. You can also find me on Behance (behance.net/themorshedalam) and LinkedIn (linkedin.com/in/themorshedalam). For project inquiries, use the Contact page on this site.",
   },
   {
-    question: "What are your rates?",
+    question: "What's your latest work?",
     answer:
-      "Pricing depends on the scope, deliverables, resolution requirements (4K, OOH screens, vertical ads), and timeline. For a custom quote, please email your brief to info@themorshedalam.com, and I'll get back to you within 24 hours.",
+      "My recent projects include 'Celebrating 25 Years' for The Entertainer, 'Share the Love' campaign, 'Staycation Escapes', 'Ramadan 2026' seasonal film, 'Multiple Single Task' social series, 'ONE Heart', 'World CUP 2026', and 'Qatar OOH'. Browse the Projects page to see them all.",
+  },
+  {
+    question: "Do you work with AI tools?",
+    answer:
+      "Absolutely. I integrate AI into my workflow using Google Flow, Runway, Higgsfield, Firefly, and Claude. These tools help me deliver cutting-edge creative solutions faster, while maintaining full art direction and quality control.",
+  },
+  {
+    question: "Tell me about Qatar OOH",
+    answer:
+      "Qatar OOH is our 2026 Out-Of-Home billboard campaign for The Entertainer in Doha. It features large-format roadside digital screens on prominent building towers (with on-site live installation photos on this site) and an urban street totem network with kinetic typography.",
+  },
+  {
+    question: "What did you do for World Cup 2026?",
+    answer:
+      "For the World Cup 2026 project, the client is The Entertainer! I created tournament motion graphics including the 4-slide Carousel KSA, the 4-slide Carousel Qatar, and match-day motion frames.",
   },
 ];
 
 const quickReplies = [
   "What services do you offer?",
-  "Tell me about Qatar OOH",
-  "What did you do for World Cup 2026?",
+  "What's your experience?",
   "Are you available for freelance?",
+  "How can I contact you?",
 ];
 
 function findAnswer(input: string): string {
-  const lower = input.toLowerCase().trim();
+  const lower = input.toLowerCase();
 
-  // Qatar OOH
-  if (lower.includes("qatar") || lower.includes("ooh") || lower.includes("billboard") || lower.includes("totem")) {
-    return knowledgeBase[4].answer;
-  }
-
-  // World Cup 2026 / FIFA
-  if (lower.includes("world cup") || lower.includes("fifa") || lower.includes("worldcup") || lower.includes("ksa") || (lower.includes("entertainer") && lower.includes("cup"))) {
-    return knowledgeBase[5].answer;
-  }
-
-  // 25 Years
-  if (lower.includes("25 year") || lower.includes("celebrat") || lower.includes("anniversary")) {
-    return knowledgeBase[6].answer;
-  }
-
-  // Ramadan
-  if (lower.includes("ramadan") || lower.includes("crescent") || lower.includes("lantern")) {
-    return knowledgeBase[7].answer;
-  }
-
-  // Staycation
-  if (lower.includes("staycation") || lower.includes("hotel") || lower.includes("summer")) {
-    return knowledgeBase[8].answer;
-  }
-
-  // Multiple Single Task
-  if (lower.includes("multiple single task") || lower.includes("single task") || lower.includes("modular")) {
-    return "Multiple Single Task is a modular social media motion series designed for The Entertainer. It uses tight typographic loops and micro-animations engineered to capture viewer attention on Instagram and TikTok feeds.";
-  }
-
-  // ONE Heart
-  if (lower.includes("one heart") || lower.includes("humanitarian") || lower.includes("cause")) {
-    return "ONE Heart is an emotional humanitarian awareness campaign created for The Entertainer, using gentle heart motion and warm observational storytelling that leads with empathy.";
-  }
-
-  // Share the Love
-  if (lower.includes("share the love") || lower.includes("valentine") || lower.includes("gifting")) {
-    return "Share the Love is a playful Valentine's and seasonal gifting campaign film for The Entertainer, packed with cheerful character animation and blooming heart shapes.";
-  }
-
-  // 3D
-  if (lower.includes("3d") || lower.includes("three d") || lower.includes("cinema 4d") || lower.includes("c4d")) {
-    return knowledgeBase[9].answer;
-  }
-
-  // Client
-  if (lower.includes("client") || lower.includes("who is the client") || lower.includes("entertainer")) {
-    return "Morshed is currently working on-site at ENTERTAINER FZ LLC in Dubai! His key campaigns for The Entertainer include Celebrating 25 Years, Staycation Escapes, Ramadan 2026, Share the Love, Multiple Single Task, ONE Heart, World Cup 2026, and Qatar OOH.";
-  }
-
-  // Keywords
+  // Keyword matching
   const keywords: { match: string[]; answer: string }[] = [
     {
       match: ["service", "offer", "do you do", "what kind", "specialty"],
@@ -158,25 +93,47 @@ function findAnswer(input: string): string {
       answer: knowledgeBase[2].answer,
     },
     {
-      match: ["tool", "software", "use", "program", "app", "after effect", "runway", "premiere", "ai", "flow"],
+      match: ["tool", "software", "use", "program", "app", "after effect", "cinema 4d", "runway"],
       answer: knowledgeBase[3].answer,
     },
     {
       match: ["freelance", "available", "hire", "work with", "collaborate", "open"],
-      answer: knowledgeBase[10].answer,
+      answer: knowledgeBase[4].answer,
     },
     {
-      match: ["contact", "email", "reach", "message", "connect", "social", "linkedin", "behance"],
-      answer: knowledgeBase[11].answer,
+      match: ["contact", "email", "reach", "message", "connect", "social"],
+      answer: knowledgeBase[5].answer,
     },
     {
-      match: ["rate", "price", "cost", "charge", "fee", "budget", "quote"],
-      answer: knowledgeBase[12].answer,
+      match: ["qatar", "ooh", "billboard", "totem"],
+      answer: knowledgeBase[8].answer,
+    },
+    {
+      match: ["world cup", "fifa", "worldcup", "tournament"],
+      answer: knowledgeBase[9].answer,
+    },
+    {
+      match: ["latest", "recent", "portfolio", "project", "work", "showreel", "case study"],
+      answer: knowledgeBase[6].answer,
+    },
+    {
+      match: ["ai", "artificial intelligence", "flow", "firefly", "higgsfield", "claude"],
+      answer: knowledgeBase[7].answer,
+    },
+    {
+      match: ["rate", "price", "cost", "charge", "fee", "budget"],
+      answer:
+        "Pricing depends on the scope and complexity of the project. For a custom quote, please email me at info@themorshedalam.com with your brief, and I'll get back to you within 24 hours.",
+    },
+    {
+      match: ["resume", "cv", "download"],
+      answer:
+        "You can view my full experience on the About page of this site. For a PDF resume, please email me at info@themorshedalam.com and I'll send it over.",
     },
     {
       match: ["hello", "hi", "hey", "salam", "greetings"],
       answer:
-        "Hello! Thanks for visiting. I'm Morshed's portfolio assistant. Ask me anything about his work, 3D motion, Qatar billboards, World Cup 2026, or how to collaborate!",
+        "Hello! Thanks for visiting. I'm Morshed's portfolio assistant. Ask me anything about his work, experience, or how to get in touch — or try one of the quick questions below.",
     },
     {
       match: ["thanks", "thank you", "cheers", "appreciate"],
@@ -190,8 +147,8 @@ function findAnswer(input: string): string {
     }
   }
 
-  // Fallback
-  return `Great question! Morshed specializes in Motion Graphics Design, 3D animation, and commercial films at ENTERTAINER FZ LLC in Dubai. For specific inquiries or a custom quote, please email him directly at info@themorshedalam.com.`;
+  // Default fallback
+  return `Great question! I don't have a specific answer for that, but Morshed would love to help. Email him at info@themorshedalam.com or check the About and Contact pages for more details.`;
 }
 
 export function Chatbot() {
@@ -200,7 +157,7 @@ export function Chatbot() {
     {
       role: "bot",
       content:
-        "Hi! I'm Morshed's assistant. Ask me anything about his motion design, projects, experience, or availability — or try a quick question below.",
+        "Hi! I'm Morshed's assistant. Ask me anything about his work, experience, or availability — or try a quick question below.",
     },
   ]);
   const [input, setInput] = useState("");
@@ -224,12 +181,12 @@ export function Chatbot() {
       const answer = findAnswer(message);
       setMessages((prev) => [...prev, { role: "bot", content: answer }]);
       setIsTyping(false);
-    }, 600 + Math.random() * 400);
+    }, 800 + Math.random() * 600);
   };
 
   return (
     <>
-      {/* Floating button */}
+      {/* Floating button — desktop only (hidden on mobile) */}
       <AnimatePresence>
         {!isOpen && (
           <motion.button
@@ -239,7 +196,7 @@ export function Chatbot() {
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
             onClick={() => setIsOpen(true)}
             data-cursor="link"
-            className="fixed bottom-5 right-5 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-xl hover:scale-105 transition-transform"
+            className="fixed bottom-5 right-5 z-50 hidden h-16 w-16 items-center justify-center rounded-full bg-white shadow-xl hover:scale-105 transition-transform lg:flex"
             aria-label="Ask me anything"
           >
             <img
@@ -257,7 +214,7 @@ export function Chatbot() {
         )}
       </AnimatePresence>
 
-      {/* Chat window */}
+      {/* Chat window — desktop only (hidden on mobile) */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -265,7 +222,7 @@ export function Chatbot() {
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="fixed bottom-5 right-5 z-50 flex h-[540px] w-[calc(100vw-2.5rem)] max-w-[390px] flex-col overflow-hidden rounded-2xl border border-[var(--rule)] bg-[var(--cream)] shadow-2xl"
+            className="fixed bottom-5 right-5 z-50 hidden h-[520px] w-[calc(100vw-2.5rem)] max-w-[380px] flex-col overflow-hidden rounded-2xl border border-[var(--rule)] bg-[var(--cream)] shadow-2xl lg:flex"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-[var(--rule)] bg-foreground px-4 py-3 text-[var(--cream)]">
@@ -336,7 +293,7 @@ export function Chatbot() {
                     <button
                       key={q}
                       onClick={() => handleSend(q)}
-                      className="font-mono-label rounded-full border border-[var(--rule)] bg-[var(--cream-soft)] px-3 py-1.5 text-[11px] text-foreground/75 transition-colors hover:border-foreground hover:bg-foreground hover:text-[var(--cream)]"
+                      className="font-mono-label rounded-full border border-[var(--rule)] px-3 py-1.5 text-[11px] text-foreground/70 transition-colors hover:border-foreground hover:text-foreground"
                     >
                       {q}
                     </button>
@@ -373,7 +330,7 @@ export function Chatbot() {
                   }
                 }}
                 placeholder="Type your question..."
-                className="font-mono-label flex-1 rounded-full border border-[var(--rule)] bg-[var(--cream-soft)] px-4 py-2.5 text-[13px] text-foreground outline-none transition-colors placeholder:text-foreground/30 focus:border-foreground"
+                className="font-mono-label flex-1 rounded-full border border-[var(--rule)] bg-[var(--cream)] px-4 py-2.5 text-[13px] text-foreground outline-none transition-colors placeholder:text-foreground/30 focus:border-foreground"
               />
               <button
                 onClick={() => handleSend()}
