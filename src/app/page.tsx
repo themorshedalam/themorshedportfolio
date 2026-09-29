@@ -181,6 +181,30 @@ export default function Home() {
               {activeNav === "contact" && <ContactView />}
             </motion.div>
           </AnimatePresence>
+        
+          {/* Accessible semantic SEO overview for search engines and assistive technology */}
+          <section className="sr-only" aria-label="About Morshed Alam">
+            <h2>Morshed Alam — Animator and Motion Graphics Designer in Dubai</h2>
+            <p>
+              Morshed Alam is an Animator, Motion Graphics Designer, and Video Editor based in Dubai, United Arab Emirates, currently designing at the ENTERTAINER FZ LLC. He specializes in commercial campaign films, brand launch narratives, 2D and 3D motion graphics, kinetic typography, Meta Ads (Instagram Reels, Stories, Feeds), EDM and CRM creative visual assets, and generative AI-augmented video workflows utilizing Adobe After Effects, Cinema 4D, Runway Gen-3, Google VEO, and Higgsfield.
+            </p>
+            <h3>Key Commercial Campaigns by Morshed Alam</h3>
+            <ul>
+              <li>Celebrating 25 Years (The Entertainer) — Landmark 25th anniversary brand campaign across the GCC.</li>
+              <li>Staycation Escapes — Luxury resort and travel motion film showcasing architecture and atmosphere.</li>
+              <li>Ramadan 2026 — Cultural and spiritual seasonal motion campaign blending lantern warmth with modern animation.</li>
+              <li>Share the Love &amp; ONE Heart — High-converting Valentine&apos;s and seasonal lifestyle campaign films.</li>
+              <li>Multiple Single Task (MST) — High-retention modular short-form motion series engineered for mobile feeds.</li>
+            </ul>
+            <h3>Professional Experience &amp; Recommendations</h3>
+            <p>
+              Morshed Alam serves as Graphic &amp; Motion Graphics Designer at the ENTERTAINER FZ LLC in Dubai, producing high-converting visual assets across Meta Ads, Paid Media, EDMs, and CRM campaigns. Recommended by Logan Cain (Marketing Manager, NAMAA) and May Doukanish (Content Disruptor).
+            </p>
+            <h3>Connect with Morshed Alam</h3>
+            <p>
+              Official Website: https://themorshedalam.com | Email: info@themorshedalam.com | LinkedIn: https://www.linkedin.com/in/themorshedalam/ | Behance: https://www.behance.net/themorshedalam | GitHub: https://github.com/themorshedalam
+            </p>
+          </section>
         </main>
       </div>
 
