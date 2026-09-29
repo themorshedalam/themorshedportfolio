@@ -20,12 +20,12 @@ export function Header({ activeNav, onNav, onHome, hasProject = true }: Props) {
         onClick={onHome}
         className="group flex items-baseline gap-2"
         data-cursor="link"
-        aria-label="Morshed Alam — Home"
+        aria-label="Morshed Alam — MA Studio"
       >
-        <span className="font-mono-label text-[12px] font-medium tracking-[0.02em] text-foreground">
-          Morshed Alam
+        <span className="font-mono-label text-[12px] tracking-[0.02em] text-foreground">
+          MA
         </span>
-        <span className="font-mono-label text-[12px] tracking-[0.02em] text-foreground/60 hidden sm:inline">
+        <span className="font-mono-label text-[12px] tracking-[0.02em] text-foreground/70">
           — Studio
         </span>
       </button>

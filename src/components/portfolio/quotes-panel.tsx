@@ -69,20 +69,10 @@ export function QuotesPanel({ active }: Props) {
 
   return (
     <div className="flex h-full flex-col items-center justify-center bg-[var(--cream)]">
-      {/* Showreel & Identity Header */}
+      {/* Showreel */}
       <div className="w-full max-w-[1100px] px-6 md:px-10">
-        <div className="mb-3 flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 border-b border-[var(--rule)]/60 pb-2.5">
-          <div>
-            <h1 className="font-mono-display text-[clamp(1.15rem,2.2vw,1.5rem)] font-medium tracking-tight text-foreground">
-              Morshed Alam
-            </h1>
-            <p className="font-mono-label text-[11px] text-[var(--meta)]">
-              Animator and Designer — Dubai, UAE
-            </p>
-          </div>
-          <span className="font-mono-label text-[10px] uppercase tracking-[0.24em] text-[var(--meta)] self-start sm:self-auto">
-            Motion Showreel
-          </span>
+        <div className="font-mono-label mb-2 text-[10px] uppercase tracking-[0.24em] text-[var(--meta)]">
+          Showreel
         </div>
         {/* Mobile: GIF banner above showreel */}
         <img

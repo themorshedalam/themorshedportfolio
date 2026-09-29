@@ -17,21 +17,11 @@ export function Sidebar({ activeId, onSelect }: Props) {
 
   return (
     <aside className="flex h-full flex-col bg-[var(--sidebar)]">
-      {/* Profile & Identity Card */}
-      <div className="border-b border-[var(--rule)] px-6 pt-6 pb-4 md:px-8">
-        <h2 className="font-mono-display text-[15px] font-medium tracking-tight text-foreground">
-          Morshed Alam
-        </h2>
-        <p className="font-mono-label text-[11px] text-[var(--meta)]">
-          Animator &amp; Motion Designer • Dubai
-        </p>
-      </div>
-
       {/* Projects header */}
-      <div className="flex items-baseline justify-between px-6 pt-5 pb-3 md:px-8">
-        <span className="font-mono-label text-[11px] uppercase tracking-[0.24em] text-foreground/80">
-          Featured Work
-        </span>
+      <div className="flex items-baseline justify-between px-6 pt-7 pb-5 md:px-8">
+        <h2 className="font-mono-label text-[12px] uppercase tracking-[0.24em] text-foreground">
+          Projects
+        </h2>
         <span className="font-mono-label text-[11px] tabular-nums text-[var(--meta)]">
           {activeIndex >= 0
             ? `${String(activeIndex + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`
@@ -204,10 +194,6 @@ function SidebarFooter() {
     <div className="border-t border-[var(--rule)] px-6 py-5 md:px-8">
       <div className="font-mono-label space-y-3 text-[11px] leading-relaxed text-[var(--meta)]">
         <div className="flex items-baseline justify-between">
-          <span className="uppercase tracking-[0.24em]">Designer</span>
-          <span className="text-foreground/90 font-medium">Morshed Alam</span>
-        </div>
-        <div className="flex items-baseline justify-between">
           <span className="uppercase tracking-[0.24em]">Location</span>
           <span className="text-foreground/80">{profile.location}</span>
         </div>
@@ -227,7 +213,7 @@ function SidebarFooter() {
           </div>
         </div>
         <div className="flex items-baseline justify-between border-t border-[var(--rule)] pt-3">
-          <span>© {new Date().getFullYear()} Morshed Alam</span>
+          <span>© {new Date().getFullYear()}</span>
           <span>All rights reserved</span>
         </div>
       </div>
