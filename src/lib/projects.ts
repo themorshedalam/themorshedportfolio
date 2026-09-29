@@ -239,6 +239,69 @@ export const projects: Project[] = [
     tags: ["Campaign", "Animation", "Cause"],
     featured: true,
   },
+  {
+    id: "world-cup-2026",
+    index: "07",
+    title: "World CUP 2026",
+    slug: "world-cup-2026",
+    year: "2026",
+    client: "FIFA World Cup 2026",
+    role: "Motion Design, Animation",
+    scope: "Campaign Motion, Social Media, Kinetic Visuals",
+    description:
+      "A dynamic motion campaign and kinetic animation series crafted for the World Cup 2026 celebration.",
+    brief:
+      "Energize the tournament excitement with punchy kinetic typography, vibrant team energy, and rhythm-driven motion design optimized for mobile feeds and digital stadium displays.",
+    images: [
+      // 3-column grid — kinetic frames
+      {
+        src: "/projects/worldcup-1.gif",
+        caption: "Match Day Motion — Frame 01",
+        gridGroup: 1,
+        gridCols: 3,
+      },
+      {
+        src: "/projects/worldcup-2.gif",
+        caption: "Tournament Energy — Frame 02",
+        gridGroup: 1,
+        gridCols: 3,
+      },
+      {
+        src: "/projects/worldcup-3.gif",
+        caption: "Championship Spirit — Frame 03",
+        gridGroup: 1,
+        gridCols: 3,
+      },
+      // 2-column grid — stadium & atmosphere
+      {
+        src: "/projects/worldcup-4.gif",
+        caption: "Kinetic Identity — Frame 04",
+        gridGroup: 2,
+        gridCols: 2,
+      },
+      {
+        src: "/projects/worldcup-5.gif",
+        caption: "Stadium Atmosphere — Frame 05",
+        gridGroup: 2,
+        gridCols: 2,
+      },
+      // 2-column grid — celebration & finale
+      {
+        src: "/projects/worldcup-6.gif",
+        caption: "Celebration Highlight — Frame 06",
+        gridGroup: 3,
+        gridCols: 2,
+      },
+      {
+        src: "/projects/worldcup-7.gif",
+        caption: "Victory Moment — Frame 07",
+        gridGroup: 3,
+        gridCols: 2,
+      },
+    ],
+    tags: ["World Cup 2026", "Animation", "Sports", "Motion Design"],
+    featured: true,
+  },
 ];
 
 export const profile = {
