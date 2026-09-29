@@ -36,23 +36,21 @@ export function IntroOverlay({ onComplete }: Props) {
       onClick={onComplete}
       className="fixed inset-0 z-[90] flex cursor-pointer flex-col items-center justify-center bg-[var(--cream)] text-foreground select-none"
     >
-      {/* Middle: Heart animation from chatbot */}
+      {/* Middle: Heart animation (2x bigger, no background oval, no shadow) */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.88 }}
+        initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="relative flex items-center justify-center"
       >
-        <div className="relative flex h-20 w-20 sm:h-24 sm:w-24 items-center justify-center rounded-full bg-white shadow-xl">
-          <img
-            src="/projects/chatbot-heart.gif"
-            alt="MA Studio"
-            width={96}
-            height={96}
-            className="h-16 w-16 sm:h-20 sm:w-20 rounded-full object-cover"
-            loading="eager"
-          />
-        </div>
+        <img
+          src="/projects/chatbot-heart.gif"
+          alt="MA Studio"
+          width={180}
+          height={180}
+          className="h-36 w-36 sm:h-44 sm:w-44 object-contain mix-blend-multiply"
+          loading="eager"
+        />
       </motion.div>
 
       {/* Bottom: MA — Studio in small standard size */}
