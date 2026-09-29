@@ -98,29 +98,94 @@ export function ProjectView({ project, transitionKey }: Props) {
               ))}
             </motion.dl>
 
-            {/* Video gallery — inline players */}
+            {/* Video gallery — inline players with grid support */}
             {project.videos && project.videos.length > 0 && (
               <div className="mb-16 space-y-16 md:space-y-24">
-                {project.videos.map((vid, i) => (
-                  <motion.figure
-                    key={i}
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    className="group"
-                  >
-                    <div className="font-mono-label mb-4 flex items-baseline justify-between">
-                      <span className="text-[11px] uppercase tracking-[0.24em] text-[var(--meta)]">
-                        {vid.caption}
-                      </span>
-                      <span className="text-[11px] tabular-nums text-[var(--meta)]">
-                        Video
-                      </span>
-                    </div>
-                    <ProjectVideo src={vid.src} caption={vid.caption} />
-                  </motion.figure>
-                ))}
+                {(() => {
+                  const videoGroups: { items: typeof project.videos; startIndex: number; gridCols?: number }[] = [];
+                  let currentVGroup: { items: typeof project.videos; startIndex: number; gridCols?: number } | null = null;
+                  project.videos.forEach((vid, i) => {
+                    const groupKey = vid.gridGroup ?? (vid.gridCols ? "grid" : null);
+                    if (groupKey !== null) {
+                      if (!currentVGroup || currentVGroup.gridCols !== vid.gridCols) {
+                        if (currentVGroup) videoGroups.push(currentVGroup);
+                        currentVGroup = { items: [], startIndex: i, gridCols: vid.gridCols };
+                      }
+                      currentVGroup.items.push(vid);
+                    } else {
+                      if (currentVGroup) { videoGroups.push(currentVGroup); currentVGroup = null; }
+                      videoGroups.push({ items: [vid], startIndex: i });
+                    }
+                  });
+                  if (currentVGroup) videoGroups.push(currentVGroup);
+
+                  return videoGroups.map((group, gi) => {
+                    const isGrid = group.items.length > 1 || (group.gridCols !== undefined && group.gridCols > 1);
+                    if (isGrid && (group.gridCols || 1) > 1) {
+                      const cols = group.gridCols || 2;
+                      const colClass =
+                        cols === 3
+                          ? "grid-cols-1 md:grid-cols-3"
+                          : cols === 4
+                          ? "grid-cols-2 md:grid-cols-4"
+                          : "grid-cols-1 md:grid-cols-2";
+                      return (
+                        <div key={gi} className="space-y-6">
+                          {group.items[0].groupLabel && (
+                            <div className="font-mono-label mb-4 flex items-center gap-3 text-[11px] uppercase tracking-[0.24em] text-[var(--meta)]">
+                              <span className="h-px flex-1 bg-[var(--rule)]" />
+                              <span>{group.items[0].groupLabel}</span>
+                              <span className="h-px flex-1 bg-[var(--rule)]" />
+                            </div>
+                          )}
+                          <div className={`grid ${colClass} gap-6`}>
+                            {group.items.map((vid, vi) => (
+                              <motion.figure
+                                key={gi + "-v-" + vi}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+                                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                                className="group flex flex-col justify-between"
+                              >
+                                <div className="font-mono-label mb-3 flex items-baseline justify-between">
+                                  <span className="text-[11px] uppercase tracking-[0.24em] text-[var(--meta)]">
+                                    {vid.caption}
+                                  </span>
+                                  <span className="text-[11px] tabular-nums text-[var(--meta)]">
+                                    {String(group.startIndex + vi + 1).padStart(2, "0")} / {String(project.videos!.length).padStart(2, "0")}
+                                  </span>
+                                </div>
+                                <ProjectVideo src={vid.src} caption={vid.caption} />
+                              </motion.figure>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    }
+                    const single = group.items[0];
+                    return (
+                      <motion.figure
+                        key={gi}
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        className="group"
+                      >
+                        <div className="font-mono-label mb-4 flex items-baseline justify-between">
+                          <span className="text-[11px] uppercase tracking-[0.24em] text-[var(--meta)]">
+                            {single.caption}
+                          </span>
+                          <span className="text-[11px] tabular-nums text-[var(--meta)]">
+                            Video
+                          </span>
+                        </div>
+                        <ProjectVideo src={single.src} caption={single.caption} />
+                      </motion.figure>
+                    );
+                  });
+                })()}
               </div>
             )}
 

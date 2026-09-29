@@ -37,6 +37,9 @@ export type Project = {
   videos?: {
     src: string;
     caption: string;
+    gridCols?: number;
+    gridGroup?: number;
+    groupLabel?: string;
   }[];
   tags: string[];
   featured?: boolean;
@@ -401,6 +404,71 @@ export const projects: Project[] = [
       },
     ],
     tags: ["World Cup 2026", "Animation", "Sports", "Motion Design"],
+    featured: true,
+  },
+  {
+    id: "qatar-ooh",
+    index: "08",
+    title: "Qatar OOH",
+    slug: "qatar-ooh",
+    year: "2026",
+    client: "The Entertainer",
+    role: "Motion Design, 3D & OOH Art Direction",
+    scope: "Large-Format Digital Billboards, Street Totems, Key Visuals",
+    description:
+      "High-impact Out-Of-Home (OOH) campaign and dynamic digital totem motion series deployed across premier roadside displays and urban commercial destinations in Qatar for the ENTERTAINER.",
+    brief:
+      "Maximize brand dominance across large-scale roadside digital screens and pedestrian totem networks in Qatar. Pair synchronized typography and bold brand colorways to communicate 'Save With The Best App' and 'Live More, Pay Less' with instantaneous visual clarity for fast-moving traffic and footfall.",
+    videos: [
+      {
+        src: "/projects/qatar-ooh-billboard-1.mp4",
+        caption: "Digital Billboard Screen — Main Brand Motion",
+        gridGroup: 1,
+        gridCols: 2,
+        groupLabel: "Large-Format Digital Billboard Displays",
+      },
+      {
+        src: "/projects/qatar-ooh-billboard-2.mp4",
+        caption: "Digital Billboard Screen — Dynamic Reveal",
+        gridGroup: 1,
+        gridCols: 2,
+      },
+      {
+        src: "/projects/qatar-ooh-totem-1.mp4",
+        caption: "Digital Totem — 'Live More, Pay Less' Sequence",
+        gridGroup: 2,
+        gridCols: 3,
+        groupLabel: "Pedestrian & Highway Digital Totem Network",
+      },
+      {
+        src: "/projects/qatar-ooh-totem-2.mp4",
+        caption: "Digital Totem — 'Save With The Best App' Sequence",
+        gridGroup: 2,
+        gridCols: 3,
+      },
+      {
+        src: "/projects/qatar-ooh-totem-3.mp4",
+        caption: "Digital Totem — Kinetic Typographic Loop",
+        gridGroup: 2,
+        gridCols: 3,
+      },
+    ],
+    images: [
+      {
+        src: "/projects/qatar-ooh-visual-1.jpg",
+        caption: "OOH Key Visual — Square Display Format",
+        gridGroup: 3,
+        gridCols: 2,
+        groupLabel: "Campaign Key Visuals & On-Site Stills",
+      },
+      {
+        src: "/projects/qatar-ooh-visual-2.jpg",
+        caption: "OOH Totem Key Visual — Vertical Display Format",
+        gridGroup: 3,
+        gridCols: 2,
+      },
+    ],
+    tags: ["Qatar OOH", "Motion Design", "Digital Billboard", "Animation", "Advertising"],
     featured: true,
   },
 ];
