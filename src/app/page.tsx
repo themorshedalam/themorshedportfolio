@@ -195,6 +195,7 @@ export default function Home() {
               <li>Ramadan 2026 — Cultural and spiritual seasonal motion campaign blending lantern warmth with modern animation.</li>
               <li>Share the Love &amp; ONE Heart — High-converting Valentine&apos;s and seasonal lifestyle campaign films.</li>
               <li>Multiple Single Task (MST) — High-retention modular short-form motion series engineered for mobile feeds.</li>
+              <li>World CUP 2026 — Kinetic tournament celebration and dynamic sports animation series.</li>
             </ul>
             <h3>Professional Experience &amp; Recommendations</h3>
             <p>
