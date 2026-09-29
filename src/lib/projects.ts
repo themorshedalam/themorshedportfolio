@@ -367,34 +367,34 @@ export const projects: Project[] = [
         gridCols: 4,
       },
 
-      // 3. THEN THE OTHERS GIFS — Tournament Motion Frames
+      // 3. THEN THE OTHERS GIFS — Tournament Motion Frames (Google Drive footage)
       {
-        src: "/projects/worldcup-1.gif",
+        src: "/projects/slide08_image14.gif",
         caption: "Match Day Motion — Frame 01",
         gridGroup: 12,
         gridCols: 3,
         groupLabel: "Tournament Motion & Broadcast Frames",
       },
       {
-        src: "/projects/worldcup-2.gif",
+        src: "/projects/slide11_image18.gif",
         caption: "Tournament Energy — Frame 02",
         gridGroup: 12,
         gridCols: 3,
       },
       {
-        src: "/projects/worldcup-3.gif",
+        src: "/projects/slide14_image23.gif",
         caption: "Championship Spirit — Frame 03",
         gridGroup: 12,
         gridCols: 3,
       },
       {
-        src: "/projects/worldcup-4.gif",
+        src: "/projects/slide15_image25.gif",
         caption: "Kinetic Identity — Frame 04",
         gridGroup: 13,
         gridCols: 2,
       },
       {
-        src: "/projects/worldcup-5.gif",
+        src: "/projects/slide19_image32.gif",
         caption: "Stadium Atmosphere — Frame 05",
         gridGroup: 13,
         gridCols: 2,
