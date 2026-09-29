@@ -260,7 +260,7 @@ export const projects: Project[] = [
     title: "World CUP 2026",
     slug: "world-cup-2026",
     year: "2026",
-    client: "FIFA World Cup 2026",
+    client: "The Entertainer",
     role: "Motion Design, Animation",
     scope: "Campaign Motion, Social Media, Kinetic Visuals",
     description:
@@ -419,53 +419,56 @@ export const projects: Project[] = [
       "High-impact Out-Of-Home (OOH) campaign and dynamic digital totem motion series deployed across premier roadside displays and urban commercial destinations in Qatar for the ENTERTAINER.",
     brief:
       "Maximize brand dominance across large-scale roadside digital screens and pedestrian totem networks in Qatar. Pair synchronized typography and bold brand colorways to communicate 'Save With The Best App' and 'Live More, Pay Less' with instantaneous visual clarity for fast-moving traffic and footfall.",
-    videos: [
-      {
-        src: "/projects/qatar-ooh-billboard-1.mp4",
-        caption: "Digital Billboard Screen — Main Brand Motion",
-        gridGroup: 1,
-        gridCols: 2,
-        groupLabel: "Large-Format Digital Billboard Displays",
-      },
-      {
-        src: "/projects/qatar-ooh-billboard-2.mp4",
-        caption: "Digital Billboard Screen — Dynamic Reveal",
-        gridGroup: 1,
-        gridCols: 2,
-      },
-      {
-        src: "/projects/qatar-ooh-totem-1.mp4",
-        caption: "Digital Totem — 'Live More, Pay Less' Sequence",
-        gridGroup: 2,
-        gridCols: 3,
-        groupLabel: "Pedestrian & Highway Digital Totem Network",
-      },
-      {
-        src: "/projects/qatar-ooh-totem-2.mp4",
-        caption: "Digital Totem — 'Save With The Best App' Sequence",
-        gridGroup: 2,
-        gridCols: 3,
-      },
-      {
-        src: "/projects/qatar-ooh-totem-3.mp4",
-        caption: "Digital Totem — Kinetic Typographic Loop",
-        gridGroup: 2,
-        gridCols: 3,
-      },
-    ],
     images: [
+      // 1. Digital Billboard 01: Motion Graphic + Live On-Site Demo
       {
-        src: "/projects/qatar-ooh-visual-1.jpg",
-        caption: "OOH Key Visual — Square Display Format",
-        gridGroup: 3,
+        src: "/projects/qatar-ooh-billboard-1.gif",
+        caption: "Digital Billboard 01 — 'Save With The Best App' (Motion Graphic)",
+        gridGroup: 1,
         gridCols: 2,
-        groupLabel: "Campaign Key Visuals & On-Site Stills",
+        groupLabel: "Digital Billboard 01 — Motion Graphic & Live Installation",
       },
       {
-        src: "/projects/qatar-ooh-visual-2.jpg",
-        caption: "OOH Totem Key Visual — Vertical Display Format",
-        gridGroup: 3,
+        src: "/projects/qatar-ooh-billboard-1-live.jpg",
+        caption: "Digital Billboard 01 — Live On-Site Installation (Qatar)",
+        gridGroup: 1,
         gridCols: 2,
+      },
+
+      // 2. Digital Billboard 02: Motion Graphic + Live On-Site Demo
+      {
+        src: "/projects/qatar-ooh-billboard-2.gif",
+        caption: "Digital Billboard 02 — 'Live More, Pay Less' (Motion Graphic)",
+        gridGroup: 2,
+        gridCols: 2,
+        groupLabel: "Digital Billboard 02 — Motion Graphic & Live Installation",
+      },
+      {
+        src: "/projects/qatar-ooh-billboard-2-live.jpg",
+        caption: "Digital Billboard 02 — Live On-Site Installation (Qatar)",
+        gridGroup: 2,
+        gridCols: 2,
+      },
+
+      // 3. Urban Digital Totem Network: 3-Part Vertical Motion Series
+      {
+        src: "/projects/qatar-ooh-totem-1.gif",
+        caption: "Urban Totem — 'Live More, Pay Less' Loop",
+        gridGroup: 3,
+        gridCols: 3,
+        groupLabel: "Urban Digital Totem Network — 3-Part Motion Series",
+      },
+      {
+        src: "/projects/qatar-ooh-totem-2.gif",
+        caption: "Urban Totem — 'Save With The Best App' Loop",
+        gridGroup: 3,
+        gridCols: 3,
+      },
+      {
+        src: "/projects/qatar-ooh-totem-3.gif",
+        caption: "Urban Totem — Kinetic Typographic Loop",
+        gridGroup: 3,
+        gridCols: 3,
       },
     ],
     tags: ["Qatar OOH", "Motion Design", "Digital Billboard", "Animation", "Advertising"],
