@@ -6,6 +6,7 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Cache-Control: public, max-age=0, must-revalidate
 
 # Cache all video files aggressively (1 year)
 /projects/*.mp4
@@ -26,10 +27,6 @@
 # HTML pages — short cache (so deploys show quickly)
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
-
-# Compress responses
-/*
-  Content-Encoding: br
 
 # Video files — enable range requests for iOS
 /projects/*.mp4

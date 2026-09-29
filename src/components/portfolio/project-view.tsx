@@ -6,7 +6,6 @@ import { projects, type Project } from "@/lib/projects";
 import { Lightbox } from "./lightbox";
 import { ProjectImage } from "./project-image";
 import { ProjectVideo } from "./project-video";
-import { ProjectCarouselSection } from "./project-carousel";
 
 type Props = {
   project: Project;
@@ -125,14 +124,6 @@ export function ProjectView({ project, transitionKey }: Props) {
               </div>
             )}
 
-            {/* Social Carousel Section — KSA & Qatar at the top */}
-            {project.carousels && project.carousels.length > 0 && (
-              <ProjectCarouselSection
-                carousels={project.carousels}
-                onOpenLightbox={(src) => setLightbox(src)}
-              />
-            )}
-
             {/* Image gallery — vertical stack, scroll reveals */}
             {project.images.length > 0 && (
             <div className="space-y-12 md:space-y-16">
@@ -162,14 +153,19 @@ export function ProjectView({ project, transitionKey }: Props) {
                     // Check for explicit CSS Grid placement (gridCol + gridRowStart)
                     const hasExplicitPlacement = group.items[0].gridCol !== undefined && group.items[0].gridRowStart !== undefined;
                     const cols = group.gridCols || 2;
-                    const colClass = cols === 3 ? "grid-cols-2 sm:grid-cols-3" : "grid-cols-2";
+                    const colClass =
+                      cols === 4
+                        ? "grid-cols-2 sm:grid-cols-4"
+                        : cols === 3
+                        ? "grid-cols-2 sm:grid-cols-3"
+                        : "grid-cols-2";
                     // If side items exist, use flex layout
                     if (group.hasSide) {
                       const frameItems = group.items.filter((img) => !img.side);
                       const sideItems = group.items.filter((img) => img.side);
                       const sideBase = group.startIndex + frameItems.length;
                       const frameCols = group.gridCols || 2;
-                      const frameColClass = frameCols === 1 ? "grid-cols-1" : frameCols === 3 ? "grid-cols-2 sm:grid-cols-3" : "grid-cols-2";
+                      const frameColClass = frameCols === 1 ? "grid-cols-1" : frameCols === 3 ? "grid-cols-2 sm:grid-cols-3" : frameCols === 4 ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-2";
                       return (
                         <div key={gi} className="flex flex-col gap-4 md:flex-row md:gap-6">
                           {frameItems.length > 0 && (
@@ -215,10 +211,19 @@ export function ProjectView({ project, transitionKey }: Props) {
                     }
                     // Regular grid
                     return (
-                      <div key={gi} className={`grid ${colClass} gap-4 md:gap-6`}>
-                        {group.items.map((img, ii) => (
-                          <GalleryImage key={gi + "-" + ii} src={img.src} caption={img.caption} behanceUrl={img.behanceUrl} projectTitle={project.title} index={group.startIndex + ii + 1} total={project.images.length} projectIndex={projectIndex} onOpen={() => setLightbox(img.src)} compact />
-                        ))}
+                      <div key={gi} className="space-y-4">
+                        {group.items[0].groupLabel && (
+                          <div className="font-mono-label mb-3 flex items-center gap-3 text-[11px] uppercase tracking-[0.24em] text-[var(--meta)]">
+                            <span className="h-px flex-1 bg-[var(--rule)]" />
+                            <span>{group.items[0].groupLabel}</span>
+                            <span className="h-px flex-1 bg-[var(--rule)]" />
+                          </div>
+                        )}
+                        <div className={`grid ${colClass} gap-4 md:gap-6`}>
+                          {group.items.map((img, ii) => (
+                            <GalleryImage key={gi + "-" + ii} src={img.src} caption={img.caption} behanceUrl={img.behanceUrl} projectTitle={project.title} index={group.startIndex + ii + 1} total={project.images.length} projectIndex={projectIndex} onOpen={() => setLightbox(img.src)} compact />
+                          ))}
+                        </div>
                       </div>
                     );
                   }

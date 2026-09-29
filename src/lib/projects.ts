@@ -28,6 +28,7 @@ export type Project = {
     side?: boolean;
     gridGroup?: number;
     gridCols?: number;
+    groupLabel?: string;
     /** Explicit CSS Grid placement for complex layouts */
     gridCol?: number;
     gridRowStart?: number;
@@ -312,36 +313,90 @@ export const projects: Project[] = [
       },
     ],
     images: [
-      // 3-column grid — kinetic tournament frames
+      // 1. CAROUSEL KSA — 4-Slide Motion Series (At Top)
+      {
+        src: "/projects/ksa-carousel-1.gif",
+        caption: "Carousel KSA — Slide 01",
+        gridGroup: 10,
+        gridCols: 4,
+        groupLabel: "Carousel KSA — 4-Slide Motion Series",
+      },
+      {
+        src: "/projects/ksa-carousel-2.gif",
+        caption: "Carousel KSA — Slide 02",
+        gridGroup: 10,
+        gridCols: 4,
+      },
+      {
+        src: "/projects/ksa-carousel-3.gif",
+        caption: "Carousel KSA — Slide 03",
+        gridGroup: 10,
+        gridCols: 4,
+      },
+      {
+        src: "/projects/ksa-carousel-4.gif",
+        caption: "Carousel KSA — Slide 04",
+        gridGroup: 10,
+        gridCols: 4,
+      },
+
+      // 2. CAROUSEL QATAR — 4-Slide Grid Series (At Top)
+      {
+        src: "/projects/qatar-carousel-1.gif",
+        caption: "Carousel Qatar — Slide 01",
+        gridGroup: 11,
+        gridCols: 4,
+        groupLabel: "Carousel Qatar — 4-Slide Motion Series",
+      },
+      {
+        src: "/projects/qatar-carousel-2.gif",
+        caption: "Carousel Qatar — Slide 02",
+        gridGroup: 11,
+        gridCols: 4,
+      },
+      {
+        src: "/projects/qatar-carousel-3.gif",
+        caption: "Carousel Qatar — Slide 03",
+        gridGroup: 11,
+        gridCols: 4,
+      },
+      {
+        src: "/projects/qatar-carousel-4.gif",
+        caption: "Carousel Qatar — Slide 04",
+        gridGroup: 11,
+        gridCols: 4,
+      },
+
+      // 3. THEN THE OTHERS GIFS — Tournament Motion Frames
       {
         src: "/projects/worldcup-1.gif",
         caption: "Match Day Motion — Frame 01",
-        gridGroup: 1,
+        gridGroup: 12,
         gridCols: 3,
+        groupLabel: "Tournament Motion & Broadcast Frames",
       },
       {
         src: "/projects/worldcup-2.gif",
         caption: "Tournament Energy — Frame 02",
-        gridGroup: 1,
+        gridGroup: 12,
         gridCols: 3,
       },
       {
         src: "/projects/worldcup-3.gif",
         caption: "Championship Spirit — Frame 03",
-        gridGroup: 1,
+        gridGroup: 12,
         gridCols: 3,
       },
-      // 2-column grid — stadium & atmosphere
       {
         src: "/projects/worldcup-4.gif",
         caption: "Kinetic Identity — Frame 04",
-        gridGroup: 2,
+        gridGroup: 13,
         gridCols: 2,
       },
       {
         src: "/projects/worldcup-5.gif",
         caption: "Stadium Atmosphere — Frame 05",
-        gridGroup: 2,
+        gridGroup: 13,
         gridCols: 2,
       },
     ],
