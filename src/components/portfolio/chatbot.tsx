@@ -4,31 +4,68 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
-  Send,
-  Mail,
   Mic,
   MicOff,
   Volume2,
   VolumeX,
+  PhoneOff,
   Sparkles,
+  MessageSquare,
+  ChevronDown,
   RotateCcw,
-  Square,
-  Bot,
-  User,
 } from "lucide-react";
-import { projects, profile, type Project } from "@/lib/projects";
+import { profile } from "@/lib/projects";
 
-type Message = {
-  id: string;
-  role: "bot" | "user";
-  content: string;
+// ChatGPT-style voice personas with distinct pitch, rate, and preferred voice matchers
+type VoicePersona = {
+  id: "breeze" | "cove" | "ember" | "sky";
+  name: string;
+  tone: string;
+  rate: number;
+  pitch: number;
+  genderFilter: "female" | "male" | "any";
 };
 
-// Comprehensive website knowledge base and intellectual query matching
-function generateIntellectualAnswer(input: string): string {
+const VOICE_PERSONAS: VoicePersona[] = [
+  {
+    id: "breeze",
+    name: "Breeze",
+    tone: "Crisp & Friendly",
+    rate: 1.02,
+    pitch: 1.05,
+    genderFilter: "female",
+  },
+  {
+    id: "cove",
+    name: "Cove",
+    tone: "Calm & Grounded",
+    rate: 0.95,
+    pitch: 0.92,
+    genderFilter: "male",
+  },
+  {
+    id: "ember",
+    name: "Ember",
+    tone: "Dynamic & Warm",
+    rate: 1.0,
+    pitch: 1.0,
+    genderFilter: "any",
+  },
+  {
+    id: "sky",
+    name: "Sky",
+    tone: "Gentle & Natural",
+    rate: 0.98,
+    pitch: 1.08,
+    genderFilter: "female",
+  },
+];
+
+// Natural, human-like conversational answers formatted specifically for spoken dialogue
+function getConversationalSpokenAnswer(input: string): string {
   const query = input.toLowerCase().trim();
 
-  // 1. Qatar OOH Project
+  // 1. Qatar OOH
   if (
     query.includes("qatar") ||
     query.includes("ooh") ||
@@ -36,59 +73,52 @@ function generateIntellectualAnswer(input: string): string {
     query.includes("totem")
   ) {
     return (
-      "Qatar OOH is our flagship 2026 Out-Of-Home campaign for The Entertainer across Qatar. " +
-      "It features large-format roadside digital billboards installed on prominent high-traffic towers in Doha, " +
-      "paired with on-site live demo photography, alongside a 3-part urban digital totem network. " +
-      "The creative pairs high-velocity kinetic typography with punchy messaging like 'Save With The Best App' and 'Live More, Pay Less', " +
-      "engineered for instant readability from moving highway traffic and busy pedestrian walkways."
+      "Yeah, absolutely! Qatar OOH is a massive Out-Of-Home billboard campaign we did for The Entertainer in Doha. " +
+      "Morshed created huge digital billboard screens for highway building towers, plus a network of pedestrian street totems with fast kinetic typography. " +
+      "You can actually see the real on-site photos of the billboard screens live in Qatar right on the portfolio!"
     );
   }
 
-  // 2. FIFA / World Cup 2026 Project
+  // 2. FIFA / World Cup 2026
   if (
     query.includes("fifa") ||
     query.includes("world cup") ||
     query.includes("worldcup") ||
     query.includes("tournament") ||
-    query.includes("ksa carousel") ||
-    query.includes("qatar carousel")
+    query.includes("entertainer") && query.includes("cup")
   ) {
     return (
-      "For the World Cup 2026 campaign, the client is The Entertainer! " +
-      "Morshed crafted high-octane tournament motion graphics, including the 4-slide Carousel KSA motion series, " +
-      "the 4-slide Carousel Qatar motion series, and electrifying match-day stadium frames. " +
-      "The motion language is rhythm-driven, pairing team colors with rapid kinetic type to ignite fan celebration across mobile feeds."
+      "For the World Cup 2026 project, the client is The Entertainer! " +
+      "Morshed designed high-energy sports animations, including the four-part KSA and Qatar motion carousels, and match-day motion frames with vibrant team celebration."
     );
   }
 
-  // 3. Celebrating 25 Years Project
+  // 3. Celebrating 25 Years
   if (
-    query.includes("25 year") ||
-    query.includes("celebrating 25") ||
+    query.includes("25") ||
+    query.includes("celebrat") ||
     query.includes("anniversary")
   ) {
     return (
-      "Celebrating 25 Years is a milestone brand campaign film created for The Entertainer. " +
-      "It commemorates a quarter-century of savings and lifestyle experiences with refined typography, " +
-      "golden celebratory accents, and an uplifting editorial cadence that honors the brand's heritage across the Middle East."
+      "Celebrating 25 Years is a milestone brand film for The Entertainer. " +
+      "It honors a quarter-century of lifestyle savings with golden celebratory lighting, refined typography, and an uplifting editorial cadence."
     );
   }
 
-  // 4. Staycation Escapes Project
+  // 4. Staycation Escapes
   if (
     query.includes("staycation") ||
     query.includes("hotel") ||
-    query.includes("escape") ||
-    query.includes("summer getaway")
+    query.includes("summer") ||
+    query.includes("resort")
   ) {
     return (
-      "Staycation Escapes is a vibrant summer travel campaign for The Entertainer. " +
-      "It blends 3D device mockups with sun-drenched poolside cinematography, swift kinetic typography, " +
-      "and dynamic promotional cuts showcasing premium hotel and resort getaways across the UAE."
+      "Staycation Escapes is a summer travel campaign for The Entertainer. " +
+      "It pairs 3D device mockups with poolside visuals and energetic typography to highlight luxury hotel getaways across the UAE."
     );
   }
 
-  // 5. Ramadan 2026 Project
+  // 5. Ramadan 2026
   if (
     query.includes("ramadan") ||
     query.includes("crescent") ||
@@ -96,144 +126,98 @@ function generateIntellectualAnswer(input: string): string {
     query.includes("spiritual")
   ) {
     return (
-      "Ramadan 2026 is a seasonal cinematic campaign for The Entertainer. " +
-      "It features custom 3D crescent moon animations, warm ambient lantern light, and a contemplative narrative tempo " +
-      "designed to reflect the spiritual warmth, generosity, and family gatherings of the holy month."
+      "Ramadan 2026 is a cinematic seasonal campaign featuring custom 3D crescent moon animations, warm ambient lantern light, and a contemplative spiritual pacing."
     );
   }
 
-  // 6. Multiple Single Task Project
+  // 6. Multiple Single Task
   if (
     query.includes("multiple single task") ||
     query.includes("single task") ||
-    query.includes("modular")
+    query.includes("modular") ||
+    query.includes("social")
   ) {
     return (
-      "Multiple Single Task is a modular social media motion series designed for The Entertainer. " +
-      "It uses tight typographic loops, micro-animations, and high-contrast color blocks engineered to hook user attention " +
-      "within the first two seconds on Instagram and TikTok feeds."
+      "Multiple Single Task is a modular social media motion series designed for fast feeds, using rapid typographic loops and micro-animations to catch eyes on Instagram and TikTok."
     );
   }
 
-  // 7. ONE Heart Project
+  // 7. ONE Heart
   if (
     query.includes("one heart") ||
     query.includes("humanitarian") ||
-    query.includes("cause")
+    query.includes("cause") ||
+    query.includes("heart")
   ) {
     return (
-      "ONE Heart is an emotional humanitarian awareness campaign created for The Entertainer. " +
-      "It features minimalist heart kinetic motion and tender, observational pacing that leads with empathy, " +
-      "quiet transitions, and warm human storytelling."
+      "ONE Heart is an emotional humanitarian awareness campaign created for The Entertainer. It uses gentle heart motion and warm, observational storytelling that leads with empathy."
     );
   }
 
-  // 8. Share the Love Project
+  // 8. Share the Love
   if (
     query.includes("share the love") ||
     query.includes("valentine") ||
+    query.includes("love") ||
     query.includes("gifting")
   ) {
     return (
-      "Share the Love is a playful Valentine's and seasonal gifting campaign film for The Entertainer. " +
-      "It combines joyful character animations, blooming heart shapes, and upbeat kinetic typography " +
-      "to celebrate shared experiences and dining savings with loved ones."
+      "Share the Love is a playful Valentine's and seasonal gifting campaign for The Entertainer, packed with cheerful character animation and blooming heart shapes."
     );
   }
 
-  // 9. Client for projects / Entertainer
-  if (
-    query.includes("client") ||
-    query.includes("who is the client") ||
-    query.includes("entertainer")
-  ) {
+  // 9. 3D Animation Work
+  if (query.includes("3d") || query.includes("three d") || query.includes("cinema 4d") || query.includes("c4d")) {
     return (
-      "Morshed is currently designing on-site at ENTERTAINER FZ LLC in Dubai! " +
-      "His key campaigns for The Entertainer include Celebrating 25 Years, Staycation Escapes, Ramadan 2026, " +
-      "Share the Love, Multiple Single Task, ONE Heart, World Cup 2026, and Qatar OOH."
+      "Yes! Morshed does custom 3D motion design using Cinema 4D and After Effects. You can see his 3D work in the Ramadan crescent scenes, the Staycation device renders, and the Qatar billboards."
     );
   }
 
-  // 10. Tools & Software / AI
+  // 10. Tools & AI Pipeline
   if (
     query.includes("tool") ||
     query.includes("software") ||
-    query.includes("after effect") ||
-    query.includes("cinema 4d") ||
-    query.includes("c4d") ||
+    query.includes("after effects") ||
     query.includes("premiere") ||
     query.includes("ai") ||
-    query.includes("runway") ||
-    query.includes("veo") ||
-    query.includes("higgsfield")
+    query.includes("runway")
   ) {
     return (
-      "Morshed works with industry-leading post-production software: Adobe After Effects, Cinema 4D (for 3D motion), " +
-      "Premiere Pro, DaVinci Resolve (color & sound), Figma, Photoshop, and Illustrator. " +
-      "He also integrates modern generative AI tools into creative pipelines, including Runway Gen-3, Google Flow, " +
-      "Higgsfield, Adobe Firefly, and Claude for conceptual exploration and rapid visual prototyping."
+      "His core creative stack is After Effects, Cinema 4D, Premiere Pro, and DaVinci Resolve. He also integrates generative AI tools like Runway Gen-3, Google Flow, and Higgsfield for rapid visual prototyping."
     );
   }
 
-  // 11. 3D Animation capability
-  if (query.includes("3d") || query.includes("three d") || query.includes("render")) {
-    return (
-      "Yes, Morshed creates custom 3D motion design using Cinema 4D and After Effects! " +
-      "Notable examples include the 3D crescent moon and lantern environments in 'Ramadan 2026', " +
-      "3D device mockups in 'Staycation Escapes', and 3D kinetic typography for 'Qatar OOH'."
-    );
-  }
-
-  // 12. Experience & Background
+  // 11. Background, Experience & Dubai
   if (
+    query.includes("who is morshed") ||
+    query.includes("tell me about yourself") ||
     query.includes("experience") ||
     query.includes("background") ||
-    query.includes("career") ||
-    query.includes("how long") ||
-    query.includes("resume") ||
-    query.includes("cv")
-  ) {
-    return (
-      "Morshed has over 4 years of professional motion graphics and post-production experience. " +
-      "He has been working on-site at ENTERTAINER FZ LLC in Dubai since February 2024. " +
-      "Previously, he was Motion Graphics Designer at DigiZone Media (2022–2023) and led motion projects for Union Church. " +
-      "For his official CV or portfolio deck, you can reach out via info@themorshedalam.com."
-    );
-  }
-
-  // 13. Location & Availability / Freelance
-  if (
     query.includes("where") ||
-    query.includes("location") ||
     query.includes("dubai") ||
-    query.includes("uae") ||
-    query.includes("freelance") ||
-    query.includes("hire") ||
-    query.includes("available") ||
-    query.includes("collaborat")
+    query.includes("uae")
   ) {
     return (
-      "Morshed is based in Dubai, United Arab Emirates. He is available for select freelance collaborations, " +
-      "brand commercial films, OOH displays, and motion graphics direction both locally in the UAE and with international brands remotely."
+      "Morshed is a motion graphics designer and video editor with over four years of experience. He's based in Dubai, working on-site at The Entertainer since February 2024, and previously worked at DigiZone Media."
     );
   }
 
-  // 14. Rates / Pricing / Quotes
+  // 12. Freelance Availability, Rates & Hiring
   if (
+    query.includes("hire") ||
+    query.includes("freelance") ||
+    query.includes("available") ||
+    query.includes("work with") ||
     query.includes("rate") ||
-    query.includes("price") ||
     query.includes("cost") ||
-    query.includes("charge") ||
-    query.includes("budget") ||
     query.includes("quote")
   ) {
     return (
-      "Project pricing is tailored to the project's scope, deliverables, resolution requirements (e.g. 4K, OOH billboards, vertical ads), " +
-      "and turnaround timeline. Send your project brief to info@themorshedalam.com to receive a custom quote within 24 hours."
+      "He's open for select freelance collaborations on brand films, 3D motion, and campaigns! Just drop him an email with your project brief at info@themorshedalam.com, and he'll get back to you within twenty-four hours."
     );
   }
 
-  // 15. Contact info
+  // 13. Contact Info
   if (
     query.includes("contact") ||
     query.includes("email") ||
@@ -242,240 +226,207 @@ function generateIntellectualAnswer(input: string): string {
     query.includes("behance")
   ) {
     return (
-      "You can contact Morshed directly at info@themorshedalam.com. " +
-      "You can also connect on LinkedIn at linkedin.com/in/themorshedalam and view his curated showcases on Behance at behance.net/themorshedalam."
+      "You can reach Morshed directly at info@themorshedalam.com, or check out his LinkedIn and Behance profiles linked right on this site."
     );
   }
 
-  // 16. Philosophy & Craft
-  if (
-    query.includes("philosophy") ||
-    query.includes("style") ||
-    query.includes("approach") ||
-    query.includes("quote")
-  ) {
-    return (
-      "Morshed's design philosophy centers on craft, restraint, and deliberate kinetic rhythm: " +
-      "'Motion design and film for brands that take craft seriously.' " +
-      "He believes typography must breathe and transitions should honor the subject rather than distract."
-    );
-  }
-
-  // 17. Greetings
+  // 14. Greetings & Small Talk
   if (
     query.startsWith("hi") ||
     query.startsWith("hello") ||
     query.startsWith("hey") ||
     query.includes("salam") ||
-    query === "yo"
+    query === "yo" ||
+    query.includes("how are you")
   ) {
     return (
-      "Hello! I'm Morshed's AI portfolio voice assistant. You can speak to me or type your question. " +
-      "Ask me anything about his 8 campaigns, 3D motion work, tools, or how to collaborate!"
+      "Hey! I'm doing great, thanks for asking. What would you like to explore? We can talk about his 3D animations, the Qatar billboards, or his work at The Entertainer."
     );
   }
 
-  // 18. Gratitude
-  if (query.includes("thank") || query.includes("great") || query.includes("awesome")) {
-    return "You're very welcome! Feel free to ask more about any project or tap the microphone to chat further.";
+  if (query.includes("thank") || query.includes("great") || query.includes("cool") || query.includes("awesome")) {
+    return "You're very welcome! Feel free to ask anything else whenever you're ready.";
   }
 
-  // Default intelligent synthesis
+  // Default fallback conversational reply
   return (
-    `Morshed Alam is an Animator & Motion Graphics Designer based in Dubai at ENTERTAINER FZ LLC. ` +
-    `He specializes in commercial films, 3D motion, large-format OOH screens (like Qatar OOH), ` +
-    `sports campaigns (World Cup 2026), and AI-augmented creative pipelines. ` +
-    `Feel free to ask about any specific project, software, or send your brief to info@themorshedalam.com.`
+    "Morshed is a motion graphics designer and 3D animator in Dubai at The Entertainer. " +
+    "He specializes in commercial campaign films, large-format OOH billboards, and social animation. " +
+    "What specific project or tool would you like to talk about?"
   );
-}
-
-const quickQuestions = [
-  "Tell me about Qatar OOH",
-  "Who is the client for FIFA / World Cup?",
-  "What 3D & AI tools do you use?",
-  "Are you available for freelance in Dubai?",
-];
-
-// Clean text for natural speech synthesis
-function cleanTextForVoice(raw: string): string {
-  return raw
-    .replace(/\*\*(.*?)\*\*/g, "$1")
-    .replace(/\*(.*?)\*/g, "$1")
-    .replace(/\[(.*?)\]\(.*?\)/g, "$1")
-    .replace(/https?:\/\/\S+/g, "link on this site")
-    .replace(/—/g, ", ")
-    .replace(/•/g, "")
-    .replace(/[#_~`]/g, "")
-    .trim();
 }
 
 export function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "intro",
-      role: "bot",
-      content:
-        "Hi! I'm Morshed's voice assistant. You can chat by text or tap the microphone to talk with me. Ask me anything about his campaigns, 3D motion, or availability.",
-    },
-  ]);
-  const [input, setInput] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
-  const [isListening, setIsListening] = useState(false);
-  const [isSpeaking, setIsSpeaking] = useState(false);
-  const [speakingId, setSpeakingId] = useState<string | null>(null);
-  const [autoSpeak, setAutoSpeak] = useState(true);
-  const [speechSupported, setSpeechSupported] = useState(false);
-  const [listeningInterim, setListeningInterim] = useState("");
+  const [voiceState, setVoiceState] = useState<"idle" | "listening" | "thinking" | "speaking">("idle");
+  const [activePersona, setActivePersona] = useState<VoicePersona>(VOICE_PERSONAS[0]); // Default "Breeze"
+  const [showPersonaMenu, setShowPersonaMenu] = useState(false);
+  const [showTranscript, setShowTranscript] = useState(false);
+  const [isMicMuted, setIsMicMuted] = useState(false);
+  const [userTranscript, setUserTranscript] = useState("");
+  const [botTranscript, setBotTranscript] = useState("");
+  const [transcriptHistory, setTranscriptHistory] = useState<
+    { role: "user" | "bot"; text: string }[]
+  >([]);
 
-  const messagesEndRef = useRef<HTMLDivElement>(null);
   const recognitionRef = useRef<any>(null);
+  const voicesRef = useRef<SpeechSynthesisVoice[]>([]);
+  const isSpeakingRef = useRef(false);
+  const isComponentMounted = useRef(true);
 
-  // Initialize Speech Recognition & Synthesis support
+  // Load available system voices
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const hasSpeech = "speechSynthesis" in window;
-      const SpeechRecognition =
-        (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-
-      setSpeechSupported(hasSpeech && !!SpeechRecognition);
-
-      if (hasSpeech) {
-        // Pre-load available voices
-        window.speechSynthesis.getVoices();
-        window.speechSynthesis.onvoiceschanged = () => {
-          window.speechSynthesis.getVoices();
-        };
-      }
+    isComponentMounted.current = true;
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      const updateVoices = () => {
+        voicesRef.current = window.speechSynthesis.getVoices();
+      };
+      updateVoices();
+      window.speechSynthesis.onvoiceschanged = updateVoices;
     }
+    return () => {
+      isComponentMounted.current = false;
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+    };
   }, []);
-
-  // Scroll to bottom on updates
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, isTyping, listeningInterim]);
 
   // Stop speaking helper
-  const stopSpeaking = useCallback(() => {
+  const stopSpeech = useCallback(() => {
     if (typeof window !== "undefined" && "speechSynthesis" in window) {
       window.speechSynthesis.cancel();
-      setIsSpeaking(false);
-      setSpeakingId(null);
+      isSpeakingRef.current = false;
     }
   }, []);
 
-  // Text-To-Speech with human-like, warm inflection (Whisper/GPT voice style)
-  const speakText = useCallback(
-    (text: string, msgId?: string) => {
-      if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+  // Find best natural voice for chosen persona
+  const getPersonaVoice = useCallback(
+    (persona: VoicePersona): SpeechSynthesisVoice | null => {
+      const allVoices = voicesRef.current.length > 0
+        ? voicesRef.current
+        : typeof window !== "undefined" && "speechSynthesis" in window
+        ? window.speechSynthesis.getVoices()
+        : [];
 
-      stopSpeaking();
+      if (!allVoices.length) return null;
 
-      const clean = cleanTextForVoice(text);
-      if (!clean) return;
+      const englishVoices = allVoices.filter((v) => v.lang.startsWith("en"));
 
-      const utterance = new SpeechSynthesisUtterance(clean);
+      // 1. Natural / Neural premium voices
+      const naturalVoices = englishVoices.filter(
+        (v) =>
+          v.name.includes("Natural") ||
+          v.name.includes("Enhanced") ||
+          v.name.includes("Premium") ||
+          v.name.includes("Google")
+      );
 
-      // Conversational pacing and natural inflection
-      utterance.rate = 0.98;
-      utterance.pitch = 1.02;
-
-      // Select top-tier natural voice
-      const voices = window.speechSynthesis.getVoices();
-      const preferred =
-        voices.find(
+      // Match persona preference
+      if (persona.id === "breeze") {
+        const found = naturalVoices.find(
           (v) =>
-            v.lang.startsWith("en") &&
-            (v.name.includes("Natural") ||
-              v.name.includes("Google") ||
-              v.name.includes("Samantha") ||
-              v.name.includes("Daniel") ||
-              v.name.includes("Karen") ||
-              v.name.includes("Arthur") ||
-              v.name.includes("Oliver") ||
-              v.name.includes("Serena"))
-        ) ||
-        voices.find((v) => v.lang.startsWith("en")) ||
-        voices[0];
-
-      if (preferred) {
-        utterance.voice = preferred;
+            v.name.includes("Jenny") ||
+            v.name.includes("Samantha") ||
+            v.name.includes("Serena") ||
+            v.name.includes("Aria") ||
+            v.name.includes("Google UK English Female")
+        );
+        if (found) return found;
+      } else if (persona.id === "cove") {
+        const found = naturalVoices.find(
+          (v) =>
+            v.name.includes("Guy") ||
+            v.name.includes("Ryan") ||
+            v.name.includes("Daniel") ||
+            v.name.includes("Oliver") ||
+            v.name.includes("Google UK English Male")
+        );
+        if (found) return found;
+      } else if (persona.id === "ember") {
+        const found = naturalVoices.find(
+          (v) =>
+            v.name.includes("Ava") ||
+            v.name.includes("Arthur") ||
+            v.name.includes("Google US English")
+        );
+        if (found) return found;
+      } else if (persona.id === "sky") {
+        const found = naturalVoices.find(
+          (v) =>
+            v.name.includes("Karen") ||
+            v.name.includes("Zoe") ||
+            v.name.includes("Sonia")
+        );
+        if (found) return found;
       }
 
-      utterance.onstart = () => {
-        setIsSpeaking(true);
-        if (msgId) setSpeakingId(msgId);
-      };
+      // Fallbacks
+      return naturalVoices[0] || englishVoices[0] || allVoices[0] || null;
+    },
+    []
+  );
+
+  // Text-To-Speech (Bot Speaks directly to user)
+  const speakDirectly = useCallback(
+    (text: string, onFinish?: () => void) => {
+      if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+
+      stopSpeech();
+      setVoiceState("speaking");
+      isSpeakingRef.current = true;
+      setBotTranscript(text);
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = activePersona.rate;
+      utterance.pitch = activePersona.pitch;
+
+      const selectedVoice = getPersonaVoice(activePersona);
+      if (selectedVoice) {
+        utterance.voice = selectedVoice;
+      }
 
       utterance.onend = () => {
-        setIsSpeaking(false);
-        setSpeakingId(null);
+        isSpeakingRef.current = false;
+        if (onFinish) {
+          onFinish();
+        } else {
+          // Continuous Voice Loop: Automatically start listening for the user's next spoken input!
+          startListeningLoop();
+        }
       };
 
-      utterance.onerror = () => {
-        setIsSpeaking(false);
-        setSpeakingId(null);
+      utterance.onerror = (e) => {
+        console.warn("Speech synthesis error", e);
+        isSpeakingRef.current = false;
+        startListeningLoop();
       };
 
       window.speechSynthesis.speak(utterance);
     },
-    [stopSpeaking]
+    [activePersona, getPersonaVoice, stopSpeech]
   );
 
-  // Send message and trigger intelligent answer
-  const handleSend = useCallback(
-    (userText?: string, fromVoice = false) => {
-      const message = (userText || input).trim();
-      if (!message) return;
-
-      stopSpeaking();
-
-      const userMsgId = "user-" + Date.now();
-      const botMsgId = "bot-" + (Date.now() + 1);
-
-      setMessages((prev) => [
-        ...prev,
-        { id: userMsgId, role: "user", content: message },
-      ]);
-      setInput("");
-      setListeningInterim("");
-      setIsTyping(true);
-
-      // Brief human typing delay for realistic interaction
-      setTimeout(() => {
-        const answer = generateIntellectualAnswer(message);
-        setMessages((prev) => [
-          ...prev,
-          { id: botMsgId, role: "bot", content: answer },
-        ]);
-        setIsTyping(false);
-
-        // Auto-speak answer if user asked by voice or autoSpeak is enabled
-        if (autoSpeak || fromVoice) {
-          speakText(answer, botMsgId);
-        }
-      }, 700 + Math.random() * 400);
-    },
-    [input, autoSpeak, speakText, stopSpeaking]
-  );
-
-  // Speech-To-Text (Microphone) handler
-  const startListening = () => {
-    if (typeof window === "undefined") return;
-
-    stopSpeaking();
+  // Speech-To-Text (Continuous User Voice Input)
+  const startListeningLoop = useCallback(() => {
+    if (typeof window === "undefined" || isMicMuted) {
+      setVoiceState("idle");
+      return;
+    }
 
     const SpeechRecognition =
       (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
 
     if (!SpeechRecognition) {
-      alert("Voice input is not supported in this browser. Please type your message.");
+      setVoiceState("idle");
       return;
     }
 
     try {
       if (recognitionRef.current) {
-        recognitionRef.current.abort();
+        try {
+          recognitionRef.current.abort();
+        } catch (_) {}
       }
 
       const recognition = new SpeechRecognition();
@@ -484,8 +435,7 @@ export function Chatbot() {
       recognition.lang = "en-US";
 
       recognition.onstart = () => {
-        setIsListening(true);
-        setListeningInterim("Listening... speak now");
+        setVoiceState("listening");
       };
 
       recognition.onresult = (event: any) => {
@@ -493,21 +443,41 @@ export function Chatbot() {
         for (let i = event.resultIndex; i < event.results.length; i++) {
           transcript += event.results[i][0].transcript;
         }
-        setListeningInterim(transcript);
-        setInput(transcript);
+        setUserTranscript(transcript);
       };
 
       recognition.onerror = (event: any) => {
         console.warn("Speech recognition error:", event.error);
-        setIsListening(false);
-        setListeningInterim("");
+        if (event.error !== "no-speech") {
+          setVoiceState("idle");
+        }
       };
 
       recognition.onend = () => {
-        setIsListening(false);
-        setListeningInterim("");
-        if (input.trim()) {
-          handleSend(input.trim(), true);
+        // If user said something, answer it intellectually
+        if (userTranscript.trim()) {
+          const finalQuery = userTranscript.trim();
+          setUserTranscript("");
+          setTranscriptHistory((prev) => [...prev, { role: "user", text: finalQuery }]);
+
+          setVoiceState("thinking");
+
+          // Brief natural processing pause
+          setTimeout(() => {
+            const answer = getConversationalSpokenAnswer(finalQuery);
+            setTranscriptHistory((prev) => [...prev, { role: "bot", text: answer }]);
+            speakDirectly(answer);
+          }, 450);
+        } else {
+          // If no speech detected yet, stay in listening state or return to idle
+          if (!isSpeakingRef.current && !isMicMuted && isOpen) {
+            // Keep listening
+            try {
+              recognition.start();
+            } catch (_) {
+              setVoiceState("idle");
+            }
+          }
         }
       };
 
@@ -515,21 +485,79 @@ export function Chatbot() {
       recognition.start();
     } catch (err) {
       console.error("Error starting speech recognition:", err);
-      setIsListening(false);
-      setListeningInterim("");
+      setVoiceState("idle");
+    }
+  }, [isMicMuted, userTranscript, isOpen, speakDirectly]);
+
+  // Open Voice Mode: Greet user with warm human voice directly
+  const handleOpenVoiceMode = () => {
+    setIsOpen(true);
+    setIsMicMuted(false);
+    setUserTranscript("");
+    setBotTranscript("");
+
+    // Initial warm conversational voice greeting (exactly like ChatGPT Voice Mode)
+    setTimeout(() => {
+      const greeting =
+        "Hey! I'm Morshed's voice assistant. We can talk about his 3D motion, Qatar billboards, or his work at The Entertainer. What's on your mind?";
+      setBotTranscript(greeting);
+      setTranscriptHistory([{ role: "bot", text: greeting }]);
+      speakDirectly(greeting);
+    }, 400);
+  };
+
+  // Close Voice Mode
+  const handleCloseVoiceMode = () => {
+    stopSpeech();
+    if (recognitionRef.current) {
+      try {
+        recognitionRef.current.abort();
+      } catch (_) {}
+    }
+    setVoiceState("idle");
+    setIsOpen(false);
+  };
+
+  // User taps the orb to interrupt or speak
+  const handleOrbClick = () => {
+    if (voiceState === "speaking") {
+      // Interrupt bot speaking immediately!
+      stopSpeech();
+      startListeningLoop();
+    } else if (voiceState === "listening") {
+      // User tapped while listening -> finalize or stop
+      if (recognitionRef.current) {
+        recognitionRef.current.stop();
+      }
+    } else {
+      // Idle -> start listening
+      startListeningLoop();
     }
   };
 
-  const stopListening = () => {
-    if (recognitionRef.current) {
-      recognitionRef.current.stop();
+  // Toggle Mute
+  const toggleMicMute = () => {
+    if (!isMicMuted) {
+      // Muting
+      if (recognitionRef.current) {
+        try {
+          recognitionRef.current.abort();
+        } catch (_) {}
+      }
+      setIsMicMuted(true);
+      if (voiceState === "listening") {
+        setVoiceState("idle");
+      }
+    } else {
+      // Unmuting
+      setIsMicMuted(false);
+      startListeningLoop();
     }
-    setIsListening(false);
   };
 
   return (
     <>
-      {/* Floating Chat & Voice Button */}
+      {/* Floating Entry Button with Voice Waves */}
       <AnimatePresence>
         {!isOpen && (
           <motion.button
@@ -537,333 +565,377 @@ export function Chatbot() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
-            onClick={() => setIsOpen(true)}
+            onClick={handleOpenVoiceMode}
             data-cursor="link"
-            className="fixed bottom-5 right-5 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-2xl hover:scale-105 transition-transform border border-[var(--rule)]"
-            aria-label="Ask Me Anything & Voice Chat"
+            className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-full bg-foreground px-4 py-2.5 text-[var(--cream)] shadow-2xl hover:scale-105 transition-all border border-white/10 group backdrop-blur-md"
+            aria-label="Start Voice Bot"
           >
-            <img
-              src="/projects/chatbot-heart.gif"
-              alt="Ask Me Anything"
-              width={56}
-              height={56}
-              className="h-14 w-14 rounded-full object-cover"
-            />
-            {/* Live voice pulse indicator */}
-            <span className="absolute -top-1 -right-1 flex h-4 w-4">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-4 w-4 rounded-full bg-emerald-500 items-center justify-center text-[8px] text-white">
-                <Mic className="h-2.5 w-2.5" />
+            <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-white/10 overflow-hidden">
+              <img
+                src="/projects/chatbot-heart.gif"
+                alt="Voice Assistant"
+                width={40}
+                height={40}
+                className="h-9 w-9 rounded-full object-cover"
+              />
+              <span className="absolute inset-0 rounded-full border border-emerald-400/40 animate-ping opacity-75" />
+            </div>
+
+            <div className="flex flex-col text-left">
+              <span className="font-mono-display text-[13px] font-semibold tracking-tight text-white flex items-center gap-1.5">
+                <span>Talk with Voice</span>
+                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
               </span>
-            </span>
+              <span className="font-mono text-[10px] text-white/60">
+                Direct voice • No typing
+              </span>
+            </div>
           </motion.button>
         )}
       </AnimatePresence>
 
-      {/* Chat Window */}
+      {/* ChatGPT Voice Bot Modal (Pure Voice Interface) */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ scale: 0.92, opacity: 0, y: 25 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.92, opacity: 0, y: 25 }}
-            transition={{ type: "spring", stiffness: 300, damping: 26 }}
-            className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex h-[82vh] max-h-[600px] w-[calc(100vw-2rem)] sm:w-[400px] flex-col overflow-hidden rounded-2xl border border-[var(--rule)] bg-[var(--cream)] shadow-2xl backdrop-blur-md"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-2xl p-4 sm:p-6"
           >
-            {/* Chat Header */}
-            <div className="flex items-center justify-between border-b border-[var(--rule)] bg-foreground px-4 py-3.5 text-[var(--cream)]">
-              <div className="flex items-center gap-3">
-                <div className="relative flex h-9 w-9 items-center justify-center rounded-full bg-[var(--cream)] text-foreground">
-                  <span className="font-mono-display text-[13px] font-bold tracking-tight">
-                    MA
-                  </span>
-                  {isSpeaking && (
-                    <span className="absolute -inset-1 rounded-full border-2 border-emerald-400 animate-ping opacity-60" />
-                  )}
-                </div>
-                <div>
-                  <div className="font-mono-display flex items-center gap-2 text-[14px] font-medium leading-tight">
-                    <span>Ask Me Anything</span>
-                    <span className="rounded-full bg-emerald-500/20 px-1.5 py-0.5 text-[9px] font-mono uppercase text-emerald-300">
-                      Voice AI
-                    </span>
-                  </div>
-                  <div className="font-mono-label flex items-center gap-2 text-[10px] text-[var(--cream)]/70 mt-0.5">
-                    {isSpeaking ? (
-                      <span className="flex items-center gap-1.5 text-emerald-300 font-medium">
-                        <span className="flex items-center gap-0.5">
-                          <span className="h-2 w-0.5 animate-pulse bg-emerald-300" />
-                          <span className="h-3 w-0.5 animate-pulse bg-emerald-300 [animation-delay:0.15s]" />
-                          <span className="h-2 w-0.5 animate-pulse bg-emerald-300 [animation-delay:0.3s]" />
-                        </span>
-                        Speaking answer...
-                      </span>
-                    ) : isListening ? (
-                      <span className="flex items-center gap-1.5 text-amber-300 font-medium">
-                        <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-ping" />
-                        Listening to you...
-                      </span>
-                    ) : (
-                      <span className="flex items-center gap-1.5">
-                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                        Online • Ready to chat & talk
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </div>
+            <motion.div
+              initial={{ scale: 0.92, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.92, y: 20 }}
+              transition={{ type: "spring", stiffness: 300, damping: 28 }}
+              className="relative flex h-full max-h-[720px] w-full max-w-[480px] flex-col items-center justify-between rounded-3xl border border-white/10 bg-neutral-950 p-6 text-white shadow-2xl overflow-hidden"
+            >
+              {/* Background ambient voice glow */}
+              <div
+                className={`absolute inset-0 pointer-events-none transition-opacity duration-1000 ${
+                  voiceState === "speaking"
+                    ? "opacity-40"
+                    : voiceState === "listening"
+                    ? "opacity-30"
+                    : "opacity-15"
+                }`}
+                style={{
+                  background:
+                    voiceState === "speaking"
+                      ? "radial-gradient(circle at center, rgba(16, 185, 129, 0.25) 0%, transparent 70%)"
+                      : voiceState === "listening"
+                      ? "radial-gradient(circle at center, rgba(59, 130, 246, 0.25) 0%, transparent 70%)"
+                      : "radial-gradient(circle at center, rgba(168, 85, 247, 0.2) 0%, transparent 70%)",
+                }}
+              />
 
-              {/* Header Controls: Voice Toggle & Close */}
-              <div className="flex items-center gap-1.5">
-                {/* Voice Auto-Speak Toggle */}
-                <button
-                  onClick={() => {
-                    if (isSpeaking) stopSpeaking();
-                    setAutoSpeak(!autoSpeak);
-                  }}
-                  className={`flex h-8 w-8 items-center justify-center rounded-full transition-colors ${
-                    autoSpeak
-                      ? "text-emerald-300 hover:bg-white/10"
-                      : "text-[var(--cream)]/40 hover:bg-white/10"
-                  }`}
-                  title={autoSpeak ? "Voice is ON (click to mute)" : "Voice is OFF (click to unmute)"}
-                  aria-label="Toggle voice output"
-                >
-                  {autoSpeak ? (
-                    <Volume2 className="h-4 w-4" />
-                  ) : (
-                    <VolumeX className="h-4 w-4" />
-                  )}
-                </button>
-
-                {/* Stop speech if currently speaking */}
-                {isSpeaking && (
+              {/* Top Bar: Title & Voice Persona Picker */}
+              <div className="relative z-10 flex w-full items-center justify-between">
+                {/* Voice Persona Dropdown */}
+                <div className="relative">
                   <button
-                    onClick={stopSpeaking}
-                    className="flex h-8 w-8 items-center justify-center rounded-full bg-rose-500/20 text-rose-300 hover:bg-rose-500/30 transition-colors"
-                    title="Stop speaking"
-                    aria-label="Stop speaking"
+                    onClick={() => setShowPersonaMenu(!showPersonaMenu)}
+                    className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[12px] font-mono text-white/90 hover:bg-white/10 transition-colors"
                   >
-                    <Square className="h-3.5 w-3.5 fill-current" />
+                    <Sparkles className="h-3 w-3 text-emerald-400" />
+                    <span>Voice: {activePersona.name}</span>
+                    <ChevronDown className="h-3 w-3 text-white/50" />
                   </button>
-                )}
+
+                  <AnimatePresence>
+                    {showPersonaMenu && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 5 }}
+                        className="absolute left-0 mt-2 w-48 rounded-2xl border border-white/15 bg-neutral-900/95 p-1.5 shadow-2xl backdrop-blur-xl z-20"
+                      >
+                        {VOICE_PERSONAS.map((persona) => (
+                          <button
+                            key={persona.id}
+                            onClick={() => {
+                              setActivePersona(persona);
+                              setShowPersonaMenu(false);
+                            }}
+                            className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-[12px] font-mono transition-colors ${
+                              activePersona.id === persona.id
+                                ? "bg-white/15 text-emerald-400 font-semibold"
+                                : "text-white/70 hover:bg-white/5 hover:text-white"
+                            }`}
+                          >
+                            <span>{persona.name}</span>
+                            <span className="text-[10px] text-white/40">{persona.tone}</span>
+                          </button>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
 
                 {/* Close Button */}
                 <button
-                  onClick={() => {
-                    stopSpeaking();
-                    stopListening();
-                    setIsOpen(false);
-                  }}
-                  aria-label="Close chat"
-                  className="flex h-8 w-8 items-center justify-center rounded-full text-[var(--cream)]/60 hover:text-[var(--cream)] hover:bg-white/10 transition-colors ml-1"
+                  onClick={handleCloseVoiceMode}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/70 hover:bg-white/15 hover:text-white transition-colors"
+                  aria-label="Close Voice Chat"
                 >
                   <X className="h-4 w-4" />
                 </button>
               </div>
-            </div>
 
-            {/* Messages Area */}
-            <div className="scroll-cream flex-1 overflow-y-auto px-4 py-4 space-y-3.5 bg-[var(--cream)]">
-              {messages.map((msg) => {
-                const isBot = msg.role === "bot";
-                const isCurrentSpeaking = isSpeaking && speakingId === msg.id;
-
-                return (
-                  <motion.div
-                    key={msg.id}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.25 }}
-                    className={`flex flex-col ${isBot ? "items-start" : "items-end"}`}
-                  >
-                    <div className="flex items-end gap-1.5 max-w-[88%]">
-                      {isBot && (
-                        <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--cream-soft)] border border-[var(--rule)] text-[10px] text-foreground font-mono">
-                          MA
-                        </div>
-                      )}
-
-                      <div
-                        className={`group relative rounded-2xl px-3.5 py-2.5 text-[13px] leading-[1.55] ${
-                          !isBot
-                            ? "bg-foreground text-[var(--cream)] rounded-br-sm shadow-sm"
-                            : "bg-[var(--cream-soft)] border border-[var(--rule)] text-foreground rounded-bl-sm"
-                        } ${isCurrentSpeaking ? "ring-2 ring-emerald-500/40" : ""}`}
-                      >
-                        {msg.content}
-
-                        {/* Bot Voice Replay Button */}
-                        {isBot && (
-                          <div className="mt-2 pt-1.5 border-t border-[var(--rule)]/60 flex items-center justify-between gap-2 text-[10px] text-[var(--meta)]">
-                            <button
-                              onClick={() => {
-                                if (isCurrentSpeaking) {
-                                  stopSpeaking();
-                                } else {
-                                  speakText(msg.content, msg.id);
-                                }
-                              }}
-                              className="font-mono flex items-center gap-1.5 hover:text-foreground transition-colors py-0.5"
-                              title="Listen to this answer"
-                            >
-                              {isCurrentSpeaking ? (
-                                <>
-                                  <Square className="h-3 w-3 fill-emerald-600 text-emerald-600" />
-                                  <span className="text-emerald-600 font-medium">Stop audio</span>
-                                </>
-                              ) : (
-                                <>
-                                  <Volume2 className="h-3 w-3" />
-                                  <span>Listen voice</span>
-                                </>
-                              )}
-                            </button>
-
-                            {isCurrentSpeaking && (
-                              <div className="flex items-center gap-0.5">
-                                <span className="h-2 w-0.5 bg-emerald-500 animate-pulse" />
-                                <span className="h-3.5 w-0.5 bg-emerald-500 animate-pulse [animation-delay:0.1s]" />
-                                <span className="h-2 w-0.5 bg-emerald-500 animate-pulse [animation-delay:0.2s]" />
-                                <span className="h-4 w-0.5 bg-emerald-500 animate-pulse [animation-delay:0.3s]" />
-                                <span className="h-2.5 w-0.5 bg-emerald-500 animate-pulse [animation-delay:0.15s]" />
-                              </div>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-
-              {/* Live Listening Feedback Banner */}
-              {isListening && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="rounded-xl border border-amber-300/60 bg-amber-50/80 dark:bg-amber-950/20 px-3.5 py-2.5 text-[12px] text-amber-800 dark:text-amber-200 flex items-center justify-between"
-                >
-                  <div className="flex items-center gap-2">
-                    <span className="flex h-2.5 w-2.5 rounded-full bg-amber-500 animate-ping" />
-                    <span className="font-mono text-[11px] font-medium">
-                      {listeningInterim || "Listening... speak now"}
-                    </span>
-                  </div>
-                  <button
-                    onClick={stopListening}
-                    className="text-[11px] font-mono text-amber-700 dark:text-amber-300 underline underline-offset-2"
-                  >
-                    Done
-                  </button>
-                </motion.div>
-              )}
-
-              {/* Typing Indicator */}
-              {isTyping && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="flex justify-start items-center gap-2"
-                >
-                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--cream-soft)] border border-[var(--rule)] text-[10px] text-foreground font-mono">
-                    MA
-                  </div>
-                  <div className="flex gap-1 rounded-2xl rounded-bl-sm border border-[var(--rule)] bg-[var(--cream-soft)] px-3.5 py-2.5">
-                    <span className="h-2 w-2 animate-bounce rounded-full bg-foreground/40 [animation-delay:-0.3s]" />
-                    <span className="h-2 w-2 animate-bounce rounded-full bg-foreground/40 [animation-delay:-0.15s]" />
-                    <span className="h-2 w-2 animate-bounce rounded-full bg-foreground/40" />
-                  </div>
-                </motion.div>
-              )}
-
-              {/* Quick Questions Pills */}
-              {messages.length <= 2 && !isTyping && (
-                <div className="space-y-1.5 pt-2">
-                  <div className="font-mono text-[10px] uppercase tracking-wider text-[var(--meta)] px-1">
-                    Suggested questions
-                  </div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {quickQuestions.map((q) => (
-                      <button
-                        key={q}
-                        onClick={() => handleSend(q)}
-                        className="font-mono-label rounded-full border border-[var(--rule)] bg-[var(--cream-soft)] px-3 py-1.5 text-[11px] text-foreground/80 transition-all hover:border-foreground hover:bg-foreground hover:text-[var(--cream)]"
-                      >
-                        {q}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              <div ref={messagesEndRef} />
-            </div>
-
-            {/* Direct Email Link */}
-            {messages.length > 2 && (
-              <div className="border-t border-[var(--rule)]/60 bg-[var(--cream-soft)]/50 px-4 py-2">
-                <a
-                  href={`mailto:${profile.email}`}
-                  className="font-mono-label flex items-center justify-center gap-2 text-[11px] text-foreground/60 hover:text-foreground transition-colors"
-                >
-                  <Mail className="h-3.5 w-3.5" />
-                  Have a specific brief? Email Morshed directly
-                </a>
-              </div>
-            )}
-
-            {/* Input Bar with Voice (Mic) & Send */}
-            <div className="border-t border-[var(--rule)] bg-[var(--cream)] p-3">
-              <div className="flex items-center gap-2">
-                {/* Voice Input (Microphone) Button */}
+              {/* Center: The Iconic ChatGPT Voice Orb */}
+              <div className="relative z-10 flex flex-1 flex-col items-center justify-center my-auto w-full">
+                {/* Clickable Orb container */}
                 <button
-                  type="button"
-                  onClick={isListening ? stopListening : startListening}
-                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-all ${
-                    isListening
-                      ? "bg-rose-500 text-white ring-4 ring-rose-300/40 animate-pulse"
-                      : "border border-[var(--rule)] bg-[var(--cream-soft)] text-foreground hover:bg-foreground hover:text-[var(--cream)]"
-                  }`}
-                  title={isListening ? "Listening... click to send" : "Tap to speak with voice"}
-                  aria-label={isListening ? "Stop listening" : "Start speaking"}
+                  onClick={handleOrbClick}
+                  className="group relative flex items-center justify-center outline-none cursor-pointer"
+                  aria-label="Voice Orb. Tap to speak or interrupt"
+                  title="Tap to speak or interrupt"
                 >
-                  {isListening ? (
-                    <MicOff className="h-4 w-4" />
+                  {/* Outer Ripple Wave 1 */}
+                  <motion.div
+                    animate={
+                      voiceState === "speaking"
+                        ? {
+                            scale: [1, 1.45, 1],
+                            opacity: [0.35, 0.05, 0.35],
+                          }
+                        : voiceState === "listening"
+                        ? {
+                            scale: [1, 1.25, 1],
+                            opacity: [0.4, 0.15, 0.4],
+                          }
+                        : {
+                            scale: [1, 1.1, 1],
+                            opacity: [0.2, 0.08, 0.2],
+                          }
+                    }
+                    transition={{
+                      duration: voiceState === "speaking" ? 1.4 : 2.5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                    className={`absolute h-64 w-64 rounded-full ${
+                      voiceState === "speaking"
+                        ? "bg-emerald-500/25 blur-2xl"
+                        : voiceState === "listening"
+                        ? "bg-blue-500/25 blur-2xl"
+                        : "bg-purple-500/15 blur-2xl"
+                    }`}
+                  />
+
+                  {/* Outer Ripple Wave 2 */}
+                  <motion.div
+                    animate={
+                      voiceState === "speaking"
+                        ? {
+                            scale: [1, 1.3, 1],
+                            opacity: [0.5, 0.15, 0.5],
+                          }
+                        : voiceState === "listening"
+                        ? {
+                            scale: [1, 1.18, 1],
+                            opacity: [0.5, 0.25, 0.5],
+                          }
+                        : {
+                            scale: [1, 1.05, 1],
+                            opacity: [0.3, 0.15, 0.3],
+                          }
+                    }
+                    transition={{
+                      duration: voiceState === "speaking" ? 1.1 : 2.0,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 0.2,
+                    }}
+                    className={`absolute h-52 w-52 rounded-full ${
+                      voiceState === "speaking"
+                        ? "bg-teal-400/30 blur-xl"
+                        : voiceState === "listening"
+                        ? "bg-cyan-400/30 blur-xl"
+                        : "bg-indigo-400/20 blur-xl"
+                    }`}
+                  />
+
+                  {/* Core ChatGPT Fluid Voice Orb */}
+                  <motion.div
+                    animate={
+                      voiceState === "speaking"
+                        ? {
+                            scale: [1, 1.15, 0.95, 1.08, 1],
+                            rotate: [0, 90, 180, 270, 360],
+                            borderRadius: [
+                              "50% 50% 50% 50%",
+                              "45% 55% 50% 50%",
+                              "55% 45% 55% 45%",
+                              "50% 50% 45% 55%",
+                              "50% 50% 50% 50%",
+                            ],
+                          }
+                        : voiceState === "listening"
+                        ? {
+                            scale: [1, 1.08, 1],
+                            borderRadius: [
+                              "50% 50% 50% 50%",
+                              "48% 52% 52% 48%",
+                              "50% 50% 50% 50%",
+                            ],
+                          }
+                        : voiceState === "thinking"
+                        ? {
+                            scale: [0.95, 1.05, 0.95],
+                            rotate: [0, 360],
+                          }
+                        : {
+                            scale: [1, 1.03, 1],
+                          }
+                    }
+                    transition={{
+                      duration:
+                        voiceState === "speaking"
+                          ? 2.2
+                          : voiceState === "thinking"
+                          ? 1.5
+                          : 3.0,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                    className={`relative flex h-36 w-36 sm:h-40 sm:w-40 items-center justify-center shadow-2xl transition-all ${
+                      voiceState === "speaking"
+                        ? "bg-gradient-to-tr from-emerald-400 via-teal-200 to-cyan-400 shadow-emerald-500/50"
+                        : voiceState === "listening"
+                        ? "bg-gradient-to-tr from-blue-500 via-cyan-300 to-sky-200 shadow-blue-500/50"
+                        : voiceState === "thinking"
+                        ? "bg-gradient-to-tr from-amber-400 via-purple-300 to-pink-400 shadow-purple-500/50"
+                        : "bg-gradient-to-tr from-neutral-200 via-neutral-100 to-neutral-300 shadow-white/30"
+                    }`}
+                  >
+                    {/* Inner organic core */}
+                    <div className="h-24 w-24 sm:h-28 sm:w-28 rounded-full bg-white/40 blur-md" />
+
+                    {/* Dynamic Equalizer Lines while speaking */}
+                    {voiceState === "speaking" && (
+                      <div className="absolute flex items-center gap-1">
+                        <span className="h-6 w-1 rounded-full bg-neutral-900 animate-pulse" />
+                        <span className="h-10 w-1 rounded-full bg-neutral-900 animate-pulse [animation-delay:0.15s]" />
+                        <span className="h-14 w-1 rounded-full bg-neutral-900 animate-pulse [animation-delay:0.3s]" />
+                        <span className="h-9 w-1 rounded-full bg-neutral-900 animate-pulse [animation-delay:0.1s]" />
+                        <span className="h-5 w-1 rounded-full bg-neutral-900 animate-pulse [animation-delay:0.25s]" />
+                      </div>
+                    )}
+                  </motion.div>
+                </button>
+
+                {/* Status Indicator & Live Guidance */}
+                <div className="mt-8 text-center">
+                  <div className="font-mono-display text-[18px] sm:text-[20px] font-medium tracking-tight">
+                    {voiceState === "listening" && (
+                      <span className="text-cyan-300 flex items-center justify-center gap-2">
+                        <span className="h-2.5 w-2.5 rounded-full bg-cyan-400 animate-ping" />
+                        Listening to you...
+                      </span>
+                    )}
+                    {voiceState === "speaking" && (
+                      <span className="text-emerald-300 flex items-center justify-center gap-2">
+                        <span>Speaking...</span>
+                        <span className="text-[12px] font-mono text-white/50">(Tap orb to interrupt)</span>
+                      </span>
+                    )}
+                    {voiceState === "thinking" && (
+                      <span className="text-purple-300 flex items-center justify-center gap-2">
+                        <span>Thinking...</span>
+                      </span>
+                    )}
+                    {voiceState === "idle" && (
+                      <span className="text-white/70">
+                        {isMicMuted ? "Microphone Muted" : "Tap Orb to Speak"}
+                      </span>
+                    )}
+                  </div>
+
+                  <p className="mt-2 font-mono text-[12px] text-white/40 max-w-[320px] mx-auto">
+                    {voiceState === "listening"
+                      ? userTranscript || "Speak naturally. I answer directly without texting."
+                      : voiceState === "speaking"
+                      ? "Listening will auto-resume right when I finish."
+                      : "Direct voice conversation grounded with all of Morshed's portfolio."}
+                  </p>
+                </div>
+
+                {/* Optional Transcript Preview (Collapsible) */}
+                {showTranscript && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="mt-4 w-full max-h-36 overflow-y-auto rounded-2xl border border-white/10 bg-white/5 p-3 text-[12px] font-mono text-white/80 space-y-2 scroll-cream"
+                  >
+                    {transcriptHistory.length === 0 ? (
+                      <p className="text-white/40 italic text-center">No messages yet.</p>
+                    ) : (
+                      transcriptHistory.slice(-4).map((item, idx) => (
+                        <div
+                          key={idx}
+                          className={`${
+                            item.role === "user" ? "text-cyan-300 text-right" : "text-emerald-300 text-left"
+                          }`}
+                        >
+                          <span className="font-semibold uppercase text-[10px] text-white/40 mr-1.5">
+                            {item.role === "user" ? "You:" : "Bot:"}
+                          </span>
+                          {item.text}
+                        </div>
+                      ))
+                    )}
+                  </motion.div>
+                )}
+              </div>
+
+              {/* Bottom Call Controls (Like ChatGPT Voice Mode) */}
+              <div className="relative z-10 flex w-full items-center justify-center gap-6 pt-4 border-t border-white/10">
+                {/* Mute / Unmute Microphone */}
+                <button
+                  onClick={toggleMicMute}
+                  className={`flex h-14 w-14 items-center justify-center rounded-full transition-all border ${
+                    isMicMuted
+                      ? "bg-rose-500/20 border-rose-500/40 text-rose-300"
+                      : "bg-white/10 border-white/15 text-white hover:bg-white/20"
+                  }`}
+                  aria-label={isMicMuted ? "Unmute microphone" : "Mute microphone"}
+                  title={isMicMuted ? "Unmute mic" : "Mute mic"}
+                >
+                  {isMicMuted ? (
+                    <MicOff className="h-6 w-6" />
                   ) : (
-                    <Mic className="h-4 w-4" />
+                    <Mic className="h-6 w-6" />
                   )}
                 </button>
 
-                {/* Text input */}
-                <input
-                  type="text"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" && !e.shiftKey) {
-                      e.preventDefault();
-                      handleSend();
-                    }
-                  }}
-                  placeholder={
-                    isListening ? "Listening to your voice..." : "Type or speak question..."
-                  }
-                  className="font-mono-label flex-1 rounded-full border border-[var(--rule)] bg-[var(--cream-soft)] px-4 py-2.5 text-[13px] text-foreground outline-none transition-colors placeholder:text-foreground/40 focus:border-foreground"
-                />
-
-                {/* Send Button */}
+                {/* End Voice Call Button (Red Hangup) */}
                 <button
-                  type="button"
-                  onClick={() => handleSend()}
-                  disabled={!input.trim()}
-                  aria-label="Send message"
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-foreground text-[var(--cream)] transition-all hover:opacity-85 disabled:opacity-25"
+                  onClick={handleCloseVoiceMode}
+                  className="flex h-14 w-14 items-center justify-center rounded-full bg-rose-600 text-white shadow-xl hover:bg-rose-500 transition-all hover:scale-105 active:scale-95"
+                  aria-label="End voice conversation"
+                  title="End voice call"
                 >
-                  <Send className="h-4 w-4" />
+                  <PhoneOff className="h-6 w-6" />
+                </button>
+
+                {/* Show/Hide Transcript Toggle */}
+                <button
+                  onClick={() => setShowTranscript(!showTranscript)}
+                  className={`flex h-14 w-14 items-center justify-center rounded-full transition-all border ${
+                    showTranscript
+                      ? "bg-emerald-500/20 border-emerald-500/40 text-emerald-300"
+                      : "bg-white/10 border-white/15 text-white/70 hover:bg-white/20 hover:text-white"
+                  }`}
+                  aria-label="Toggle text transcript"
+                  title={showTranscript ? "Hide transcript" : "Show transcript"}
+                >
+                  <MessageSquare className="h-5 w-5" />
                 </button>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
