@@ -128,6 +128,38 @@ export function AboutView() {
             >
               {profile.bio[0]}
             </motion.p>
+
+            {/* Verified Profiles: LinkedIn & Behance */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-6 flex flex-wrap items-center gap-3 text-[11px] font-mono uppercase tracking-[0.16em]"
+            >
+              <a
+                href="https://www.linkedin.com/in/themorshedalam/"
+                target="_blank"
+                rel="noopener noreferrer me"
+                data-cursor="link"
+                className="group inline-flex items-center gap-2 rounded-full border border-[var(--rule)] bg-[var(--cream-soft)] px-3.5 py-1.5 text-foreground/85 transition-colors hover:border-foreground/40 hover:text-foreground"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-[#0077b5]" />
+                <span>LinkedIn</span>
+                <span className="text-[var(--meta)] transition-transform group-hover:translate-x-0.5">→</span>
+              </a>
+
+              <a
+                href="https://www.behance.net/themorshedalam"
+                target="_blank"
+                rel="noopener noreferrer me"
+                data-cursor="link"
+                className="group inline-flex items-center gap-2 rounded-full border border-[var(--rule)] bg-[var(--cream-soft)] px-3.5 py-1.5 text-foreground/85 transition-colors hover:border-foreground/40 hover:text-foreground"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-[#053eff]" />
+                <span>Behance</span>
+                <span className="text-[var(--meta)] transition-transform group-hover:translate-x-0.5">→</span>
+              </a>
+            </motion.div>
           </div>
 
           {/* Right — portrait photo */}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://themorshedalam.com/sitemap.xml

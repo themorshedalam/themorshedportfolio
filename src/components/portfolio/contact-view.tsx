@@ -135,6 +135,8 @@ export function ContactView() {
                 <a
                   key={s.label}
                   href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer me"
                   data-cursor="link"
                   className="font-serif-display link-underline text-[17px] text-foreground/85 hover:text-foreground"
                 >

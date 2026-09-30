@@ -204,6 +204,8 @@ function SidebarFooter() {
               <a
                 key={s.label}
                 href={s.href}
+                target="_blank"
+                rel="noopener noreferrer me"
                 data-cursor="link"
                 className="link-underline text-foreground/80 hover:text-foreground"
               >
