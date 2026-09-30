@@ -73,9 +73,6 @@ export function QuotesPanel({ active }: Props) {
     <div className="flex h-full flex-col items-center justify-center bg-[var(--cream)]">
       {/* Showreel */}
       <div className="w-full max-w-[1100px] px-6 md:px-10">
-        <div className="font-mono-label mb-2 text-[10px] uppercase tracking-[0.24em] text-[var(--meta)]">
-          Showreel
-        </div>
         {/* Mobile: GIF banner above showreel */}
         <img
           src="/projects/showreel-banner.gif"
