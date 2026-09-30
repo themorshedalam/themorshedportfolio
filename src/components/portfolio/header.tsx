@@ -35,7 +35,7 @@ export function Header({ activeNav, onNav, onHome, hasProject = true }: Props) {
 
       {/* Nav + theme toggle */}
       <div className="flex items-center gap-5 md:gap-7">
-        <nav className="flex items-center gap-7 md:gap-9">
+        <nav className="flex items-center gap-5 sm:gap-7 md:gap-9">
           {navItems.map((item) => {
             const isActive =
               item.id === "project"
@@ -53,7 +53,7 @@ export function Header({ activeNav, onNav, onHome, hasProject = true }: Props) {
                     isActive ? "text-foreground" : "text-foreground/70 hover:text-foreground"
                   }`}
                 >
-                  {item.id === "project" ? "Project" : item.id === "personal" ? "About" : "Contact"}
+                  {item.label}
                 </span>
                 {isActive && (
                   <motion.span

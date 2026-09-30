@@ -513,6 +513,7 @@ export const designQuotes = [
 export const navItems = [
   { id: "project", label: "Project" },
   { id: "personal", label: "About" },
+  { id: "gallery", label: "Gallery" },
   { id: "contact", label: "Contact" },
 ] as const;
 

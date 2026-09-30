@@ -8,6 +8,7 @@ import { Header } from "@/components/portfolio/header";
 import { Sidebar } from "@/components/portfolio/sidebar";
 import { ProjectView } from "@/components/portfolio/project-view";
 import { AboutView } from "@/components/portfolio/about-view";
+import { GalleryView } from "@/components/portfolio/gallery-view";
 import { ContactView } from "@/components/portfolio/contact-view";
 import { IntroOverlay } from "@/components/portfolio/intro-overlay";
 import { QuotesPanel } from "@/components/portfolio/quotes-panel";
@@ -136,15 +137,17 @@ export default function Home() {
 
       <Header activeNav={activeNav} onNav={handleNav} onHome={handleHome} hasProject={!!activeProjectId} />
 
-      {/* Mobile menu button */}
-      <button
-        onClick={() => setMobileNav(true)}
-        data-cursor="link"
-        className="fixed bottom-5 right-5 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-foreground bg-foreground text-[var(--cream)] shadow-lg lg:hidden"
-        aria-label="Open menu"
-      >
-        <Menu className="h-5 w-5" />
-      </button>
+      {/* Mobile menu button (only on Project tab) */}
+      {activeNav === "project" && (
+        <button
+          onClick={() => setMobileNav(true)}
+          data-cursor="link"
+          className="fixed bottom-5 right-5 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-foreground bg-foreground text-[var(--cream)] shadow-lg lg:hidden"
+          aria-label="Open menu"
+        >
+          <Menu className="h-5 w-5" />
+        </button>
+      )}
 
       <div className="flex min-h-0 flex-1">
         {/* LEFT — projects sidebar (only on Project tab) */}
@@ -178,6 +181,7 @@ export default function Home() {
                 />
               )}
               {activeNav === "personal" && <AboutView />}
+              {activeNav === "gallery" && <GalleryView />}
               {activeNav === "contact" && <ContactView />}
             </motion.div>
           </AnimatePresence>
