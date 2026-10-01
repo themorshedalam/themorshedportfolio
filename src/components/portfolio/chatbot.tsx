@@ -196,16 +196,12 @@ export function Chatbot() {
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
             onClick={() => setIsOpen(true)}
             data-cursor="link"
-            className="fixed bottom-5 right-5 z-50 hidden h-16 w-16 items-center justify-center rounded-full bg-white shadow-xl hover:scale-105 transition-transform lg:flex"
+            className="group fixed bottom-5 right-5 z-50 hidden h-14 w-14 items-center justify-center rounded-full border border-[var(--rule)] bg-foreground text-[var(--cream)] shadow-xl transition-all duration-200 hover:scale-105 hover:bg-foreground/90 lg:flex"
             aria-label="Ask me anything"
           >
-            <img
-              src="/projects/chatbot-heart.gif"
-              alt="Ask me anything"
-              width={56}
-              height={56}
-              className="h-14 w-14 rounded-full object-cover"
-            />
+            <span className="font-mono-display text-[15px] font-semibold tracking-[0.04em]">
+              MA
+            </span>
             <span className="absolute -top-1 -right-1 flex h-3 w-3">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
               <span className="relative inline-flex h-3 w-3 rounded-full bg-green-500" />
