@@ -60,4 +60,14 @@ export const galleryItems: GalleryItem[] = [
     description: "Company celebration gathering with colleagues, partners, and collaborators.",
     location: "Dubai, UAE",
   },
+  {
+    id: "gallery-art-dubai",
+    title: "Art Dubai — Special Edition",
+    category: "Events & Gatherings",
+    date: "May 2026",
+    src: "/gallery/art-dubai-2026.jpg",
+    aspect: "portrait",
+    description: "Attending Art Dubai Special Edition at Madinat Jumeirah, exploring regional contemporary visual arts, design culture, and creative direction.",
+    location: "Madinat Jumeirah · Dubai, UAE",
+  },
 ];

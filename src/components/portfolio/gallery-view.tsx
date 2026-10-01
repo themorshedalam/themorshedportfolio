@@ -1,13 +1,18 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, Upload, Loader2, Sparkles } from "lucide-react";
 import { galleryItems } from "@/lib/gallery";
 
 export function GalleryView() {
   const [selectedItemIndex, setSelectedItemIndex] = useState<number | null>(null);
   const [direction, setDirection] = useState<number>(0);
+  const [uploading, setUploading] = useState(false);
+  const [uploadSuccess, setUploadSuccess] = useState<string | null>(null);
+  const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
+  const [cacheBust, setCacheBust] = useState<number>(Date.now());
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handlePrev = useCallback(() => {
     if (selectedItemIndex === null) return;
@@ -59,13 +64,63 @@ export function GalleryView() {
     };
   }, [selectedItemIndex, handleClose, handlePrev, handleNext]);
 
+  // Upload handler for photos (supports HEIC, JPG, PNG with auto color-correction)
+  const handleFileUpload = async (file: File) => {
+    setUploading(true);
+    setUploadSuccess(null);
+    try {
+      const res = await fetch("/api/upload-gallery", {
+        method: "POST",
+        body: file,
+      });
+      const data = await res.json();
+      if (data.success) {
+        setCacheBust(Date.now());
+        setImageErrors((prev) => ({ ...prev, "gallery-art-dubai": false }));
+        setUploadSuccess("Photo processed with editorial color correction & pushed to GitHub!");
+        setTimeout(() => setUploadSuccess(null), 6000);
+      } else {
+        throw new Error(data.error || "Upload failed");
+      }
+    } catch (err: any) {
+      console.error("Upload error:", err);
+      alert(err.message || "Failed to process photo");
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const onDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      const file = e.dataTransfer.files[0];
+      handleFileUpload(file);
+    }
+  };
+
   const activeItem = selectedItemIndex !== null ? galleryItems[selectedItemIndex] : null;
 
   return (
-    <div className="scroll-cream relative h-full overflow-y-auto bg-[var(--cream)]">
+    <div
+      onDragOver={(e) => e.preventDefault()}
+      onDrop={onDrop}
+      className="scroll-cream relative h-full overflow-y-auto bg-[var(--cream)]"
+    >
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*,.heic,.HEIC"
+        className="hidden"
+        onChange={(e) => {
+          if (e.target.files && e.target.files.length > 0) {
+            handleFileUpload(e.target.files[0]);
+          }
+        }}
+      />
+
       <div className="mx-auto max-w-[1240px] px-6 pt-12 pb-24 md:px-12 md:pt-16">
         {/* Minimalist Top Bar */}
-        <div className="mb-10 flex items-center justify-between border-b border-[var(--rule)] pb-6">
+        <div className="mb-10 flex flex-wrap items-center justify-between gap-4 border-b border-[var(--rule)] pb-6">
           <motion.div
             initial={{ opacity: 0, x: -8 }}
             animate={{ opacity: 1, x: 0 }}
@@ -76,50 +131,114 @@ export function GalleryView() {
             <span>/gallery</span>
           </motion.div>
 
-          <motion.span
-            initial={{ opacity: 0, x: 8 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[11px] uppercase tracking-[0.24em] text-[var(--meta)]"
-          >
-            [{String(galleryItems.length).padStart(2, "0")}]
-          </motion.span>
+          <div className="flex items-center gap-4">
+            {uploadSuccess && (
+              <span className="flex items-center gap-1.5 text-[11px] font-mono text-emerald-600 dark:text-emerald-400">
+                <Sparkles className="h-3 w-3" />
+                {uploadSuccess}
+              </span>
+            )}
+
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              disabled={uploading}
+              data-cursor="link"
+              className="group inline-flex items-center gap-2 rounded-full border border-[var(--rule)] bg-[var(--cream-soft)] px-3 py-1 text-[10px] font-mono uppercase tracking-[0.2em] text-foreground/80 transition-colors hover:border-foreground/40 hover:text-foreground"
+            >
+              {uploading ? (
+                <>
+                  <Loader2 className="h-3 w-3 animate-spin text-foreground" />
+                  <span>Color Correcting...</span>
+                </>
+              ) : (
+                <>
+                  <Upload className="h-3 w-3 text-[var(--meta)] transition-transform group-hover:-translate-y-0.5" />
+                  <span>Upload / Drop IMG_1277</span>
+                </>
+              )}
+            </button>
+
+            <motion.span
+              initial={{ opacity: 0, x: 8 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[11px] uppercase tracking-[0.24em] text-[var(--meta)]"
+            >
+              [{String(galleryItems.length).padStart(2, "0")}]
+            </motion.span>
+          </div>
         </div>
 
         {/* Clean, Gapless Aligned Masonry Layout */}
         <div className="columns-1 gap-6 sm:columns-2 lg:columns-3 [column-fill:_balance]">
-          {galleryItems.map((item, index) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.06,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="mb-6 inline-block w-full break-inside-avoid"
-            >
-              <div
-                onClick={() => handleSelect(index)}
-                data-cursor="link"
-                className="group relative block w-full cursor-pointer overflow-hidden rounded-lg border border-[var(--rule)] bg-[var(--cream-soft)] transition-colors duration-300 hover:border-foreground/30"
+          {galleryItems.map((item, index) => {
+            const hasError = imageErrors[item.id];
+            const imgSrc = `${item.src}?v=${cacheBust}`;
+
+            return (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.06,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="mb-6 inline-block w-full break-inside-avoid"
               >
-                <img
-                  src={item.src}
-                  alt=""
-                  loading="lazy"
-                  className="block h-auto w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
-                />
-              </div>
-            </motion.div>
-          ))}
+                {hasError ? (
+                  <div
+                    onClick={() => fileInputRef.current?.click()}
+                    data-cursor="link"
+                    className="group relative flex aspect-[3/4] w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-[var(--rule)] bg-[var(--cream-soft)] p-6 text-center transition-all duration-300 hover:border-foreground/50 hover:bg-[var(--cream)]"
+                  >
+                    <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full border border-[var(--rule)] bg-background">
+                      {uploading ? (
+                        <Loader2 className="h-5 w-5 animate-spin text-foreground" />
+                      ) : (
+                        <Upload className="h-5 w-5 text-foreground/70 transition-transform group-hover:-translate-y-1" />
+                      )}
+                    </div>
+                    <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground">
+                      {item.title}
+                    </div>
+                    <div className="font-mono mt-1 text-[10px] text-[var(--meta)]">
+                      {item.date} · {item.location}
+                    </div>
+                    <p className="mt-3 text-[11px] text-foreground/60">
+                      Drop <strong>IMG_1277.heic</strong> here or click to upload
+                    </p>
+                    <span className="font-mono mt-3 inline-flex items-center gap-1 rounded border border-[var(--rule)] px-2 py-0.5 text-[9px] uppercase tracking-wider text-[var(--meta)]">
+                      <Sparkles className="h-2.5 w-2.5" /> Auto Color Correction
+                    </span>
+                  </div>
+                ) : (
+                  <div
+                    onClick={() => handleSelect(index)}
+                    data-cursor="link"
+                    className="group relative block w-full cursor-pointer overflow-hidden rounded-lg border border-[var(--rule)] bg-[var(--cream-soft)] transition-colors duration-300 hover:border-foreground/30"
+                  >
+                    <img
+                      src={imgSrc}
+                      alt={item.title}
+                      loading="lazy"
+                      onError={() => {
+                        setImageErrors((prev) => ({ ...prev, [item.id]: true }));
+                      }}
+                      className="block h-auto w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                    />
+                  </div>
+                )}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
 
       {/* Fullscreen Interactive Lightbox with Dynamic Directional Motion */}
       <AnimatePresence>
-        {activeItem && selectedItemIndex !== null && (
+        {activeItem && selectedItemIndex !== null && !imageErrors[activeItem.id] && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -133,9 +252,15 @@ export function GalleryView() {
               className="flex items-center justify-between text-white/70"
               onClick={(e) => e.stopPropagation()}
             >
-              <span className="text-[11px] uppercase tracking-[0.26em]">
-                {String(selectedItemIndex + 1).padStart(2, "0")} / {String(galleryItems.length).padStart(2, "0")}
-              </span>
+              <div className="flex flex-col">
+                <span className="text-[11px] uppercase tracking-[0.26em]">
+                  {String(selectedItemIndex + 1).padStart(2, "0")} /{" "}
+                  {String(galleryItems.length).padStart(2, "0")}
+                </span>
+                <span className="text-[12px] font-mono text-white/90">
+                  {activeItem.title}
+                </span>
+              </div>
 
               <button
                 onClick={handleClose}
@@ -215,8 +340,8 @@ export function GalleryView() {
                   className="flex max-h-[78vh] max-w-[90vw] items-center justify-center"
                 >
                   <img
-                    src={activeItem.src}
-                    alt=""
+                    src={`${activeItem.src}?v=${cacheBust}`}
+                    alt={activeItem.title}
                     className="max-h-[78vh] max-w-[90vw] rounded-md object-contain shadow-2xl select-none"
                   />
                 </motion.div>
@@ -244,7 +369,7 @@ export function GalleryView() {
                       aria-label={`Jump to image ${idx + 1}`}
                     >
                       <img
-                        src={thumb.src}
+                        src={`${thumb.src}?v=${cacheBust}`}
                         alt=""
                         className="h-full w-full object-cover"
                       />
