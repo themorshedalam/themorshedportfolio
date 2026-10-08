@@ -140,12 +140,8 @@ export function ProjectView({ project, transitionKey }: Props) {
                           )}
                           <div className={`grid ${colClass} gap-6`}>
                             {group.items.map((vid, vi) => (
-                              <motion.figure
+                              <figure
                                 key={gi + "-v-" + vi}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-                                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                                 className="group flex flex-col justify-between"
                               >
                                 <div className="font-mono-label mb-3 flex items-baseline justify-between">
@@ -157,7 +153,7 @@ export function ProjectView({ project, transitionKey }: Props) {
                                   </span>
                                 </div>
                                 <ProjectVideo src={vid.src} caption={vid.caption} />
-                              </motion.figure>
+                              </figure>
                             ))}
                           </div>
                         </div>
@@ -165,12 +161,8 @@ export function ProjectView({ project, transitionKey }: Props) {
                     }
                     const single = group.items[0];
                     return (
-                      <motion.figure
+                      <figure
                         key={gi}
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                         className="group"
                       >
                         <div className="font-mono-label mb-4 flex items-baseline justify-between">
@@ -182,7 +174,7 @@ export function ProjectView({ project, transitionKey }: Props) {
                           </span>
                         </div>
                         <ProjectVideo src={single.src} caption={single.caption} />
-                      </motion.figure>
+                      </figure>
                     );
                   });
                 })()}
