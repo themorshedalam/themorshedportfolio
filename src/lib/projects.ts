@@ -420,6 +420,12 @@ export const projects: Project[] = [
     brief:
       "Maximize brand dominance across large-scale roadside digital screens and pedestrian totem networks in Qatar. Pair synchronized typography and bold brand colorways to communicate 'Save With The Best App' and 'Live More, Pay Less' with instantaneous visual clarity for fast-moving traffic and footfall.",
     images: [
+      // Hero: Live Architectural Facade Projection (Continuous Looping GIF)
+      {
+        src: "/projects/qatar-ooh-billboard-1-live.gif",
+        caption: "Live On-Site Architectural Facade Projection — Qatar Twin Towers (Campaign Launch Loop)",
+      },
+
       // 1. Digital Billboard 01: Motion Graphic + Live On-Site Demo
       {
         src: "/projects/qatar-ooh-billboard-1.gif",

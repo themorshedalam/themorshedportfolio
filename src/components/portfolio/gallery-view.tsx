@@ -89,30 +89,12 @@ export function GalleryView() {
         {/* Clean, Gapless Aligned Masonry Layout */}
         <div className="columns-1 gap-6 sm:columns-2 lg:columns-3 [column-fill:_balance]">
           {galleryItems.map((item, index) => (
-            <motion.div
+            <GalleryGridCard
               key={item.id}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.06,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="mb-6 inline-block w-full break-inside-avoid"
-            >
-              <div
-                onClick={() => handleSelect(index)}
-                data-cursor="link"
-                className="group relative block w-full cursor-pointer overflow-hidden rounded-lg border border-[var(--rule)] bg-[var(--cream-soft)] transition-colors duration-300 hover:border-foreground/30"
-              >
-                <img
-                  src={item.src}
-                  alt={item.title}
-                  loading="lazy"
-                  className="block h-auto w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
-                />
-              </div>
-            </motion.div>
+              item={item}
+              index={index}
+              onSelect={() => handleSelect(index)}
+            />
           ))}
         </div>
       </div>
@@ -215,11 +197,7 @@ export function GalleryView() {
                   exit="exit"
                   className="flex max-h-[78vh] max-w-[90vw] items-center justify-center"
                 >
-                  <img
-                    src={activeItem.src}
-                    alt={activeItem.title}
-                    className="max-h-[78vh] max-w-[90vw] rounded-md object-contain shadow-2xl select-none"
-                  />
+                  <LightboxImage item={activeItem} />
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -248,6 +226,9 @@ export function GalleryView() {
                         src={thumb.src}
                         alt=""
                         className="h-full w-full object-cover"
+                        onError={(e) => {
+                          e.currentTarget.style.display = "none";
+                        }}
                       />
                     </button>
                   );
@@ -262,5 +243,93 @@ export function GalleryView() {
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+function GalleryGridCard({
+  item,
+  index,
+  onSelect,
+}: {
+  item: (typeof galleryItems)[number];
+  index: number;
+  onSelect: () => void;
+}) {
+  const [hasError, setHasError] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.5,
+        delay: index * 0.06,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      className="mb-6 inline-block w-full break-inside-avoid"
+    >
+      <div
+        onClick={onSelect}
+        data-cursor="link"
+        className="group relative block w-full cursor-pointer overflow-hidden rounded-lg border border-[var(--rule)] bg-[var(--cream-soft)] transition-colors duration-300 hover:border-foreground/30"
+      >
+        {hasError ? (
+          <div className="flex flex-col items-center justify-center p-8 text-center aspect-[4/5] bg-[var(--cream-soft)] border border-dashed border-[var(--rule)]">
+            <span className="font-mono-label text-[10px] uppercase tracking-[0.24em] text-[var(--meta)]">
+              {item.category} · {item.date}
+            </span>
+            <h4 className="mt-3 text-sm font-medium text-foreground">{item.title}</h4>
+            {item.description && (
+              <p className="mt-2 text-xs text-[var(--meta)] max-w-[220px] leading-relaxed">
+                {item.description}
+              </p>
+            )}
+            <span className="mt-4 inline-block text-[10px] uppercase tracking-wider text-[var(--meta)] border border-[var(--rule)] px-3 py-1 rounded-full">
+              Photo Upload Pending
+            </span>
+          </div>
+        ) : (
+          <img
+            src={item.src}
+            alt={item.title}
+            loading="lazy"
+            onError={() => setHasError(true)}
+            className="block h-auto w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+          />
+        )}
+      </div>
+    </motion.div>
+  );
+}
+
+function LightboxImage({ item }: { item: (typeof galleryItems)[number] }) {
+  const [hasError, setHasError] = useState(false);
+
+  if (hasError) {
+    return (
+      <div className="flex max-h-[78vh] w-[90vw] max-w-lg flex-col items-center justify-center rounded-2xl border border-white/20 bg-neutral-900/90 p-8 text-center text-white backdrop-blur-md">
+        <span className="font-mono-label text-[11px] uppercase tracking-[0.26em] text-white/60">
+          {item.category} · {item.date}
+        </span>
+        <h3 className="mt-3 text-lg font-medium tracking-tight text-white">{item.title}</h3>
+        {item.description && (
+          <p className="mt-3 text-sm text-white/70 leading-relaxed max-w-sm">
+            {item.description}
+          </p>
+        )}
+        {item.location && (
+          <span className="mt-4 text-xs text-white/50">{item.location}</span>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={item.src}
+      alt={item.title}
+      onError={() => setHasError(true)}
+      className="max-h-[78vh] max-w-[90vw] rounded-md object-contain shadow-2xl select-none"
+    />
   );
 }

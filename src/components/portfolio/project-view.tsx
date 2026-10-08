@@ -196,17 +196,19 @@ export function ProjectView({ project, transitionKey }: Props) {
                 // Build groups: full-width items individually, gridGroup items together
                 const groups: { items: typeof project.images; startIndex: number; gridCols?: number; hasSide?: boolean }[] = [];
                 let currentGroup: { items: typeof project.images; startIndex: number; gridCols?: number; hasSide?: boolean } | null = null;
+                let currentGroupKey: unknown = null;
                 project.images.forEach((img, i) => {
                   const groupKey = img.gridGroup ?? (img.grid ? "grid" : null);
                   if (groupKey !== null) {
-                    if (!currentGroup || currentGroup.gridCols !== img.gridCols) {
+                    if (!currentGroup || currentGroup.gridCols !== img.gridCols || currentGroupKey !== groupKey) {
                       if (currentGroup) groups.push(currentGroup);
                       currentGroup = { items: [], startIndex: i, gridCols: img.gridCols, hasSide: false };
+                      currentGroupKey = groupKey;
                     }
                     currentGroup.items.push(img);
                     if (img.side) currentGroup.hasSide = true;
                   } else {
-                    if (currentGroup) { groups.push(currentGroup); currentGroup = null; }
+                    if (currentGroup) { groups.push(currentGroup); currentGroup = null; currentGroupKey = null; }
                     groups.push({ items: [img], startIndex: i });
                   }
                 });
