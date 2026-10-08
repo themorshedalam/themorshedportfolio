@@ -422,7 +422,7 @@ export const projects: Project[] = [
     images: [
       // Hero: Live Architectural Facade Projection (Continuous Looping GIF)
       {
-        src: "/projects/qatar-ooh-billboard-1-live.gif",
+        src: "/projects/qatar-ooh-billboard-1-live-v2.gif",
         caption: "Live On-Site Architectural Facade Projection — Qatar Twin Towers (Campaign Launch Loop)",
       },
 
@@ -435,7 +435,7 @@ export const projects: Project[] = [
         groupLabel: "Digital Billboard 01 — Motion Graphic & Live Installation",
       },
       {
-        src: "/projects/qatar-ooh-billboard-1-live.gif",
+        src: "/projects/qatar-ooh-billboard-1-live-v2.gif",
         caption: "Digital Billboard 01 — Live On-Site Installation (Qatar)",
         gridGroup: 1,
         gridCols: 2,
