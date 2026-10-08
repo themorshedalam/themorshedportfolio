@@ -419,12 +419,6 @@ export const projects: Project[] = [
       "High-impact Out-Of-Home (OOH) campaign and dynamic digital totem motion series deployed across premier roadside displays and urban commercial destinations in Qatar for the ENTERTAINER.",
     brief:
       "Maximize brand dominance across large-scale roadside digital screens and pedestrian totem networks in Qatar. Pair synchronized typography and bold brand colorways to communicate 'Save With The Best App' and 'Live More, Pay Less' with instantaneous visual clarity for fast-moving traffic and footfall.",
-    videos: [
-      {
-        src: "/projects/qatar-ooh-billboard-1.mp4",
-        caption: "Live Architectural Facade Projection — Qatar Twin Towers (Night Installation)",
-      },
-    ],
     images: [
       // 1. Digital Billboard 01: Motion Graphic + Live On-Site Demo
       {
@@ -435,7 +429,7 @@ export const projects: Project[] = [
         groupLabel: "Digital Billboard 01 — Motion Graphic & Live Installation",
       },
       {
-        src: "/projects/qatar-ooh-billboard-1-live.jpg",
+        src: "/projects/qatar-ooh-billboard-1-live.gif",
         caption: "Digital Billboard 01 — Live On-Site Installation (Qatar)",
         gridGroup: 1,
         gridCols: 2,

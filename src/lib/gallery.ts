@@ -70,4 +70,14 @@ export const galleryItems: GalleryItem[] = [
     description: "Attending Art Dubai Special Edition at Madinat Jumeirah, exploring regional contemporary visual arts, design culture, and creative direction.",
     location: "Madinat Jumeirah · Dubai, UAE",
   },
+  {
+    id: "gallery-entertainer-25-years",
+    title: "25 Years of Saving — Team Milestone",
+    category: "Events & Gatherings",
+    date: "2026",
+    src: "/gallery/entertainer-25-years.jpg",
+    aspect: "portrait",
+    description: "Celebrating the ENTERTAINER's 25 Years of Saving milestone with the core creative and marketing team at the Dubai headquarters.",
+    location: "ENTERTAINER FZ LLC · Dubai, UAE",
+  },
 ];
