@@ -396,7 +396,8 @@ function GalleryImage({
         <img
           src={src}
           alt={projectTitle}
-          loading="lazy"
+          loading={index <= 2 ? "eager" : "lazy"}
+          decoding="async"
           className="block w-full h-auto rounded-2xl border border-[var(--rule)]"
         />
         <div className="absolute inset-0 bg-foreground/0 transition-colors duration-500 group-hover/img:bg-foreground/[0.04] rounded-2xl" />
