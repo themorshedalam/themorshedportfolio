@@ -73,7 +73,7 @@ export function ProjectVideo({ src, caption }: { src: string; caption: string })
           controlsList="nodownload nofullscreen noremoteplayback"
           disablePictureInPicture
           onContextMenu={(e) => e.preventDefault()}
-          className="block w-full h-auto rounded-2xl border border-[var(--rule)]"
+          className="block max-h-[82vh] w-auto max-w-full mx-auto rounded-2xl border border-[var(--rule)] bg-black/60 shadow-lg"
         />
       )}
     </div>
